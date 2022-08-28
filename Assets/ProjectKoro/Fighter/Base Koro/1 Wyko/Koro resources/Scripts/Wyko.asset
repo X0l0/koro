@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e4a134a9f68d445b9a2d0c5031220b, type: 3}
+  m_Name: Wyko
+  m_EditorClassIdentifier: 
+  dexNo: 1
+  Speciesname: Wyko
+  hP: 100
+  aTK: 135
+  dEF: 80
+  sPDEF: 95
+  baseLevel: 50
