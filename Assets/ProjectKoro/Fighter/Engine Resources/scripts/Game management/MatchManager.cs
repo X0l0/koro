@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MatchManager : MonoBehaviour
 {
+    //The match manager is responsibile for managing the fights of the game. its in charge of loading and starting the fight, unloading and stopping the fight, and keeping all the information in place while the fight is going.
+
+
     #region singleton
     public static MatchManager instance;
     //static variables are variables that are shared in every instance of a class.
@@ -21,7 +24,6 @@ public class MatchManager : MonoBehaviour
     }
     #endregion
 
-    //The match manager is responsibile for managing the fights of the game. its in charge of loading and starting the fight, unloading and stopping the fight, and keeping all the information in place.
 
     //combat system aspects  
     [SerializeField]
