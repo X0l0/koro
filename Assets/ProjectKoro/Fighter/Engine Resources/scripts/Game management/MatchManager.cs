@@ -96,19 +96,19 @@ public class MatchManager : MonoBehaviour
             
             Debug.Log("***PLAYER 1 WINS!***");
             //play a graphic
-            ExitCombat();
+            ExitCombat(p1win);
         }
         else if(p1win == false)//this means player 2 wins
         {
             
             Debug.Log("***PLAYER 2 WINS!***");
             //play a graphic
-            ExitCombat();
+            ExitCombat(p1win);
         }
 
     }
 
-    public void ExitCombat()//this would be called after the winnier is decided and intiate going back to the overworld.
+    public void ExitCombat(bool p1win)//this would be called after the winnier is decided and intiate going back to the overworld.
     {
         //upon displaying who won, bring all rigs offline
         SwitchKoro1.instance.BringKoroOffline();
@@ -127,7 +127,7 @@ public class MatchManager : MonoBehaviour
         CombatVcam.SetActive(false);
 
         //tell overworld that things are ready for it to take over again
-        OWMatchManager.instance.ExitCombat();
+        OWMatchManager.instance.ExitCombat(p1win);
 
         //unload combat scene, this is done last to make sure all rigs are removed before it is unloaded. may need a way to better communicate when rigs are clear
         CombatSystem.SetActive(false);
