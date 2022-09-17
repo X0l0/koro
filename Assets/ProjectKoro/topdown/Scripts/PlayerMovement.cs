@@ -88,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
                 InventoryUI.SetActive(true);
                 //set inventory bool to true
                 InventoryOpen = true;
+                //Stop player moving animations
+                animator.SetBool("Moving", false);
             }
             else if (InventoryOpen == true)
             {

@@ -79,7 +79,7 @@ public class KoroParty : MonoBehaviour
         PlayerMovement.instance.ControlOn(false);
 
         //call entercombat function in game manager
-        OWMatchManager.instance.EnterCombat();//this tells the overworld match manager to turn off overworld things and turn on combat scene things.
+        OWMatchManager.instance.EnterCombat(Currentenemy);//this tells the overworld match manager to turn off overworld things and turn on combat scene things.
 
     }
 

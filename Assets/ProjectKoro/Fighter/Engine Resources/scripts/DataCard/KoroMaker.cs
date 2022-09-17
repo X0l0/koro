@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KoroMaker : MonoBehaviour//rename to koromaker 
 {
@@ -20,6 +21,11 @@ public class KoroMaker : MonoBehaviour//rename to koromaker
 
     private bool KoroSent;
 
+    public GameObject dialogueBox;
+    public Text dialogueText;
+    public string dialogue;
+    public bool PlayerInRange;
+
     void Start()
     {
         //creating data card from species card
@@ -32,8 +38,46 @@ public class KoroMaker : MonoBehaviour//rename to koromaker
         }
     }
 
+    void Update()
+    {
+        if(!KoroSent){ //Essentially, if this script isn't attached to an enemy
+            if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange)
+            {
+                if(dialogueBox.activeInHierarchy)
+                {
+                    dialogueBox.SetActive(false);
+                    SendKoroToPlayer();
+                    GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    dialogueBox.SetActive(true);
+                    dialogueText.text = dialogue;
+                    GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
+                }
+            }
+        }
+    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            PlayerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerInRange = false;
+        }   
+    }
+
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (KoroSent == true)
         {
@@ -43,7 +87,7 @@ public class KoroMaker : MonoBehaviour//rename to koromaker
         {
         SendKoroToPlayer();
         }
-    }
+    }*/
 
     public void CreateKoro()//activate rig and then de activate to load all rig variables?
     {
