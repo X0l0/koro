@@ -25,11 +25,12 @@ public class Sign : MonoBehaviour
             if(dialogueBox.activeInHierarchy)
             {
                 dialogueBox.SetActive(false);
-
+                GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
             }
             else
             {
                 dialogueBox.SetActive(true);
+                GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
                 dialogueText.text = dialogue;
             }
         }

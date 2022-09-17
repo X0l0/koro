@@ -16,7 +16,7 @@ public class SceneTransition : MonoBehaviour
         {
             //playerStorage.initialValue = playerPosition;
             //SceneManager.LoadScene(sceneToLoad);
-            SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+            SceneManager.LoadScene(sceneToLoad);
 
         }
     }

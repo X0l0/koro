@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChildCollider : MonoBehaviour
+public class NPCChildCollider : MonoBehaviour
 {
     public NPC npcScript;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player")) //tell the NPC.cs component which direction the player is interacting from
         {
             npcScript.PlayerInRange = true;
             if(gameObject.name == "UpCollider"){
@@ -28,7 +28,7 @@ public class ChildCollider : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")) //reset dialogue box conditions if player exits the collider
         {
             npcScript.PlayerInRange = false;
             npcScript.dialogueBox.SetActive(false);

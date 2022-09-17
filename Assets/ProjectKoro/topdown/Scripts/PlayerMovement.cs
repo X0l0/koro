@@ -35,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
     public bool ControlActive = true;//connects to battle code to turn off and on overworld control.
 
     [SerializeField]
-    public GameObject InventoryUI;
-    bool InventoryOpen = false;
+    public GameObject PauseUI;
+    bool PauseOpen = false;
 
 
     public PlayerState1 currentstate;//current state of the enum
@@ -78,25 +78,29 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(change);
         }      
 
-        if (Input.GetKeyDown(KeyCode.E))//E is the inventory buttom
+        if (Input.GetKeyDown(KeyCode.E))//E is the pause buttom
         {
-            if(InventoryOpen == false)//when pressed it will check if the inventory is open, false means its not
+            if(PauseOpen == false)//when pressed it will check if the pause is open, false means its not
             {
                 //turn off movement
                 ControlOn(false);
-                //open inventory
-                InventoryUI.SetActive(true);
-                //set inventory bool to true
-                InventoryOpen = true;
+                //open pause
+                PauseUI.SetActive(true);
+                //set pause bool to true
+                PauseOpen = true;
                 //Stop player moving animations
                 animator.SetBool("Moving", false);
             }
-            else if (InventoryOpen == true)
+            else if (PauseOpen == true)
             {
-                //close inventory
-                InventoryUI.SetActive(false);
+                //close pause
+                PauseUI.SetActive(false);
+                //if the inventory is active, make it inactive
+                if(PauseUI.gameObject.transform.parent.transform.GetChild(0).gameObject != null){
+                    PauseUI.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(false);
+                }
                 //set bool to false
-                InventoryOpen = false;
+                PauseOpen = false;
                 //turn on movement
                 ControlOn(true);
             }

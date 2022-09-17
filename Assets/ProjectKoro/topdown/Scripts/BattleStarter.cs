@@ -11,20 +11,25 @@ public class BattleStarter : MonoBehaviour//this script would be put on wild kor
     public CardHolder KoroCardHolder;//temporary variable that holds card holder
     public MatchConnecter KoroConnector;//temporary variable that holds connector
 
+    [SerializeField]
+    public bool isDefeated; //if true, battle won't initiate
+
     private void Start(){} //This is added so that the script can be enabled/disabled
 
     public void AddKoroObject(Transform newKoro)
     {
         Koro = newKoro;
         //PUT THESE EARLIER AS THEY SHOULD/COULD BE KNOWN EARLIER
-        KoroRig = Koro.gameObject;//this loads a local rig variable with the local trasnforms logged rig.
+        KoroRig = Koro.gameObject;//this loads a local rig variable with the local transforms logged rig.
         KoroConnector = KoroRig.GetComponent<MatchConnecter>();
     }
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.GetComponent<KoroParty>().BeChallenged(this);//finds enemies health script and applies damage value. eventually going to need game objects.
+        if(other.CompareTag("Player") && !isDefeated && other.transform.childCount > 0){
+            other.GetComponent<KoroParty>().BeChallenged(this);//finds enemies health script and applies damage value. eventually going to need game objects.
+        }
 
         //battle start is going to need to be able to hold a rig like koro party and send it over alongside the players party.
     }

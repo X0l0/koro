@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ControlActive: 1
-  InventoryUI: {fileID: 106233482}
+  PauseUI: {fileID: 0}
   currentstate: 0
   speed: 6
   startingPosition: {fileID: 11400000, guid: eed2103bfd01fdc4dbba939aa64365c8, type: 2}
@@ -976,6 +976,7 @@ MonoBehaviour:
   OWVcam: {fileID: 1756290019}
   OverWorldGrid: {fileID: 1153118977}
   sceneToLoad: SampleScene
+  Currentenemy: {fileID: 0}
   IsInCombat: 0
 --- !u!4 &1149994156
 Transform:
@@ -1239,6 +1240,10 @@ MonoBehaviour:
   Enemy: {fileID: 0}
   KoroCardHolder: {fileID: 0}
   KoroHoldPoint: {fileID: 1691963446}
+  dialogueBox: {fileID: 0}
+  dialogueText: {fileID: 0}
+  dialogue: 
+  PlayerInRange: 0
 --- !u!61 &1382699099
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17267,6 +17272,10 @@ MonoBehaviour:
   Enemy: {fileID: 0}
   KoroCardHolder: {fileID: 0}
   KoroHoldPoint: {fileID: 1691963446}
+  dialogueBox: {fileID: 0}
+  dialogueText: {fileID: 0}
+  dialogue: 
+  PlayerInRange: 0
 --- !u!61 &1921808143
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17335,9 +17344,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 19.471884, y: 16.22885}
-      - {x: -20.528118, y: 16.228851}
-      - {x: -20.510513, y: -20.756968}
+    - - {x: 19.525473, y: 15.532103}
+      - {x: -19.777813, y: 15.532135}
+      - {x: -19.70662, y: -20.756968}
       - {x: 19.471882, y: -20.774572}
 --- !u!4 &1958313188
 Transform:
@@ -24611,6 +24620,7 @@ MonoBehaviour:
   KoroRig: {fileID: 0}
   KoroCardHolder: {fileID: 0}
   KoroConnector: {fileID: 0}
+  isDefeated: 0
 --- !u!114 &7411981379175725542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24628,3 +24638,7 @@ MonoBehaviour:
   Enemy: {fileID: 7411981379175725541}
   KoroCardHolder: {fileID: 0}
   KoroHoldPoint: {fileID: 7361298435034372959}
+  dialogueBox: {fileID: 0}
+  dialogueText: {fileID: 0}
+  dialogue: 
+  PlayerInRange: 0

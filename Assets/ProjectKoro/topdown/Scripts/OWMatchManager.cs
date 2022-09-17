@@ -37,6 +37,10 @@ public class OWMatchManager : MonoBehaviour
 
     public bool IsInCombat;//bool is used to track when the player is in combat
 
+    private void Start(){
+        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+    }
+
     public void EnterCombat(BattleStarter CurrentEnemy)//make sure this command is only called by player? that way theres a way to check if the player can even fight.
     {
         IsInCombat = true;
@@ -86,7 +90,14 @@ public class OWMatchManager : MonoBehaviour
         IsInCombat = false;
 
         if(p1win){
-            Destroy(Currentenemy);
+            if(Currentenemy.gameObject.tag == "WildKoro"){
+                Destroy(Currentenemy.gameObject);
+            }
+            else{
+                Currentenemy.gameObject.GetComponent<NPC>().enabled = true;
+                Currentenemy.gameObject.GetComponent<NPC>().startDialogue();
+                Currentenemy.isDefeated = true;
+            }
         }
     }
 

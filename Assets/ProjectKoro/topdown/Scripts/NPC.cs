@@ -22,13 +22,12 @@ public class NPC : MonoBehaviour
     void Start()
     {
         index = 0;
-        inDialogue = false;
         defaultSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && inDialogue){
+        if(Input.GetKeyDown(KeyCode.Space) && inDialogue){ //advance one dialogue box, or close it if finished with the array
             index++;
             if(index < dialogue.Length){
                 dialogueText.text = dialogue[index];
@@ -37,19 +36,25 @@ public class NPC : MonoBehaviour
                 dialogueBox.SetActive(false);
                 index = 0;
                 inDialogue = false;
+                GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
                 GetComponent<SpriteRenderer>().sprite = defaultSprite;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange)
+        else if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange) //start dialogue if in range and dialogue hasn't already started
         {
-            inDialogue = true;
-            dialogueBox.SetActive(true);
-            dialogueText.text = dialogue[index];
-            turnToFacePlayer();
+            startDialogue();
         }
     }
 
-    private void turnToFacePlayer(){
+    public void startDialogue(){ //initiates dialogue note: when called by BattleStarter, this runs before Start() upon returning from a battle
+        inDialogue = true;
+        dialogueBox.SetActive(true);
+        dialogueText.text = dialogue[index];
+        GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
+        turnToFacePlayer();
+    }
+
+    private void turnToFacePlayer(){ //turn to face the player based on the variables derived from ChildCollider components
         if(faceDirection == "up"){
             GetComponent<SpriteRenderer>().sprite = upSprite;
         }
