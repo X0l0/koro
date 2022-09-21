@@ -41,21 +41,17 @@ public class KoroMaker : MonoBehaviour//rename to koromaker
     void Update()
     {
         if(!KoroSent){ //Essentially, if this script isn't attached to an enemy
-            if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange)
+            if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange && GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive)
             {
-                if(dialogueBox.activeInHierarchy)
-                {
-                    dialogueBox.SetActive(false);
-                    SendKoroToPlayer();
-                    GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    dialogueBox.SetActive(true);
-                    dialogueText.text = dialogue;
-                    GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
-                }
+                dialogueBox.SetActive(true);
+                dialogueText.text = dialogue;
+                GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
+            }
+            else if(Input.GetKeyDown(KeyCode.Space) && PlayerInRange && dialogueBox.activeInHierarchy){
+                dialogueBox.SetActive(false);
+                SendKoroToPlayer();
+                GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
+                Destroy(gameObject);
             }
         }
     }

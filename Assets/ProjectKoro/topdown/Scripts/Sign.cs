@@ -20,19 +20,15 @@ public class Sign : MonoBehaviour
     void Update()
     {
     
-        if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange)
+        if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange && GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive)
         {
-            if(dialogueBox.activeInHierarchy)
-            {
-                dialogueBox.SetActive(false);
-                GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
-            }
-            else
-            {
-                dialogueBox.SetActive(true);
-                GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
-                dialogueText.text = dialogue;
-            }
+            dialogueBox.SetActive(true);
+            GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
+            dialogueText.text = dialogue;
+        }
+        else if(Input.GetKeyDown(KeyCode.Space) && PlayerInRange && dialogueBox.activeInHierarchy){
+            dialogueBox.SetActive(false);
+            GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
         }
     }
 

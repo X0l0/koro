@@ -40,7 +40,7 @@ public class NPC : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = defaultSprite;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange) //start dialogue if in range and dialogue hasn't already started
+        else if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange && GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive) //start dialogue if in range and dialogue hasn't already started
         {
             startDialogue();
         }

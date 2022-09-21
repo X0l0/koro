@@ -75,36 +75,38 @@ public class PlayerMovement : MonoBehaviour
             change.x = Input.GetAxisRaw("Horizontal");//sets x values to horizontal inputs
             change.y = Input.GetAxisRaw("Vertical");//see above
             UpdateAnimationAndMove();
-        //Debug.Log(change);
-        }      
-
-        if (Input.GetKeyDown(KeyCode.E))//E is the pause buttom
-        {
-            if(PauseOpen == false)//when pressed it will check if the pause is open, false means its not
+            //Debug.Log(change);
+            if (Input.GetKeyDown(KeyCode.E))//E is the pause buttom
             {
-                //turn off movement
-                ControlOn(false);
-                //open pause
-                PauseUI.SetActive(true);
-                //set pause bool to true
-                PauseOpen = true;
-                //Stop player moving animations
-                animator.SetBool("Moving", false);
-            }
-            else if (PauseOpen == true)
-            {
-                //close pause
-                PauseUI.SetActive(false);
-                //if the inventory is active, make it inactive
-                if(PauseUI.gameObject.transform.parent.transform.GetChild(0).gameObject != null){
-                    PauseUI.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(false);
+                if(PauseOpen == false)//when pressed it will check if the pause is open, false means its not
+                {
+                    //stop time
+                    Time.timeScale = 0;
+                    //turn off movement
+                    ControlOn(false);
+                    //open pause
+                    PauseUI.SetActive(true);
+                    //set pause bool to true
+                    PauseOpen = true;
+                    //Stop player moving animations
+                    animator.SetBool("Moving", false);
                 }
-                //set bool to false
-                PauseOpen = false;
-                //turn on movement
-                ControlOn(true);
             }
         }
+        else if(Input.GetKeyDown(KeyCode.E) && PauseOpen == true){
+            //resume time
+            Time.timeScale = 1;
+            //close pause
+            PauseUI.SetActive(false);
+            //if the inventory is active, make it inactive
+            if(PauseUI.gameObject.transform.parent.transform.GetChild(0).gameObject != null){
+                PauseUI.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(false);
+            }
+            //set bool to false
+            PauseOpen = false;
+            //turn on movement
+            ControlOn(true);
+        }   
     }
 
     void UpdateAnimationAndMove()
