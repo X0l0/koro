@@ -24,9 +24,12 @@ public class MusicPlayer : MonoBehaviour
 
     private void SceneManager_activeSceneChanged(Scene previousScene, Scene currentScene)
     {
-        Debug.Log("Scene changed.");
+        this.gameObject.GetComponent<AudioSource>().Play();
         if(currentScene.name == "korotopdown"){
             this.gameObject.GetComponent<AudioSource>().clip = korotopdown;
+        }
+        else{
+            this.gameObject.GetComponent<AudioSource>().Pause();
         }
     }
 }

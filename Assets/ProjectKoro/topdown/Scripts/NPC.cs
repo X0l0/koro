@@ -8,6 +8,7 @@ public class NPC : MonoBehaviour
     public GameObject dialogueBox;
     public Text dialogueText;
     public string[] dialogue;
+    public string[] defeatedDialogue;
     public bool PlayerInRange;
     public int index;
     public bool inDialogue;
@@ -18,6 +19,7 @@ public class NPC : MonoBehaviour
     public Sprite rightSprite;
     private Sprite defaultSprite;
     public string faceDirection;
+    public bool isEnemy;
 
     void Start()
     {
@@ -37,6 +39,9 @@ public class NPC : MonoBehaviour
                 index = 0;
                 inDialogue = false;
                 GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
+                if(isEnemy && !this.gameObject.GetComponent<BattleStarter>().isDefeated){
+                    this.gameObject.GetComponent<BattleStarter>().Challenge();
+                }
                 GetComponent<SpriteRenderer>().sprite = defaultSprite;
             }
         }
@@ -67,5 +72,9 @@ public class NPC : MonoBehaviour
         else{
             GetComponent<SpriteRenderer>().sprite = downSprite;
         }
+    }
+
+    public void sayDefeated(){
+        dialogue = defeatedDialogue;
     }
 }

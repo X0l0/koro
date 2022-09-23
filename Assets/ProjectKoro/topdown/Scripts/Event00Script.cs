@@ -8,7 +8,6 @@ public class Event00Script : MonoBehaviour
     private bool talking;
     private bool giving;
     private bool inDialogue;
-    public Sprite PlayerUpSprite;
     private NPC npcScript;
     
     void Start()
@@ -18,8 +17,7 @@ public class Event00Script : MonoBehaviour
         giving = false;
         inDialogue = false;
         GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
-        GameObject.Find("player").GetComponent<Animator>().enabled = false;
-        GameObject.Find("player").GetComponent<SpriteRenderer>().sprite = PlayerUpSprite;
+        GameObject.Find("player").GetComponent<PlayerMovement>().SetXY(0, 1);
         npcScript = this.gameObject.GetComponent<NPC>();
     }
 
@@ -44,7 +42,6 @@ public class Event00Script : MonoBehaviour
             npcScript.dialogue[0] = "You can use your Kuro to fight with other Kuro and trainers.";
             npcScript.dialogue[1] = "You can take up to six Kuro with you on your journeys, once you've caught them.";
             npcScript.dialogue[2] = "Now go out there and see what the world has to offer you!";
-            GameObject.Find("player").GetComponent<Animator>().enabled = true;
             Destroy(this);
         }
     }

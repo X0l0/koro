@@ -46,17 +46,22 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;//player animator
     public VectorValue startingPosition;//used in scene changes
 
+    [SerializeField]
+    public float MoveX;
+    public float MoveY;
 
     void Start()
     {
-        //initilizaes state
+        //initilizes state
         currentstate = PlayerState1.walk;
         //gets components
         animator = GetComponent<Animator>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
-        //sets animator to looking down
-        animator.SetFloat("MoveX", 0);
-        animator.SetFloat("MoveY", -1);
+        //sets animator to look in last known direction
+        if(MoveX != null){
+            animator.SetFloat("MoveX", MoveX);
+            animator.SetFloat("MoveY", MoveY);
+        }
         //sets starting position
         transform.position = startingPosition.initialValue;
     }
@@ -106,7 +111,12 @@ public class PlayerMovement : MonoBehaviour
             PauseOpen = false;
             //turn on movement
             ControlOn(true);
-        }   
+        }
+        else{
+            animator.SetBool("Moving", false);
+            animator.SetFloat("MoveX", MoveX);
+            animator.SetFloat("MoveY", MoveY);
+        }
     }
 
     void UpdateAnimationAndMove()
@@ -115,14 +125,16 @@ public class PlayerMovement : MonoBehaviour
         {
             MoveCharacter();
             //setting animator angles and whether or not there is movement
-            animator.SetFloat("MoveX", change.x);
-            animator.SetFloat("MoveY", change.y);
+            MoveX = change.x;
+            MoveY = change.y;
             animator.SetBool("Moving", true);
         }
         else
         {
             animator.SetBool("Moving", false);
         }
+        animator.SetFloat("MoveX", MoveX);
+        animator.SetFloat("MoveY", MoveY);
     }
 
 
@@ -140,5 +152,10 @@ public class PlayerMovement : MonoBehaviour
     {
         ControlActive = ControlOn;
         return;
+    }
+
+    public void SetXY(float x, float y){
+        MoveX = x;
+        MoveY = y;
     }
 }

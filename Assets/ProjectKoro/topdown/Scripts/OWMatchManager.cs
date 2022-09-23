@@ -95,6 +95,7 @@ public class OWMatchManager : MonoBehaviour
             }
             else{
                 Currentenemy.gameObject.GetComponent<NPC>().enabled = true;
+                Currentenemy.gameObject.GetComponent<NPC>().sayDefeated();
                 Currentenemy.gameObject.GetComponent<NPC>().startDialogue();
                 Currentenemy.isDefeated = true;
             }
