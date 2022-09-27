@@ -254,7 +254,7 @@ public class KoroCore : MonoBehaviour//attaches to game object to create states 
     public void SetMoveDirection(float Movedirection)//called by input handler constantly to decide move direction 
     {
         MoveDirection = Movedirection;
-        Debug.Log("movedirection detected");
+        //Debug.Log("movedirection detected");
     }
     public void Jump()
     {
@@ -264,7 +264,7 @@ public class KoroCore : MonoBehaviour//attaches to game object to create states 
     public void DownIsPressed(bool isdownpressed)
     {
         isDownPressed = isdownpressed;
-        Debug.Log("isdownpressed = " + isdownpressed);
+        //Debug.Log("isdownpressed = " + isdownpressed);
     }
     public void UseJumpInput() => JumpInput = false;//these put the bool back to false after there used in the states.
 
@@ -318,18 +318,18 @@ public class KoroCore : MonoBehaviour//attaches to game object to create states 
 
     public IEnumerator HoldStun()
     {//
-        Debug.Log("holding stun");
+        //Debug.Log("holding stun");
 
         yield return new WaitForSeconds(StunTime);//holds script here for eloted stun time
 
-        Debug.Log("Stun over");
+        //Debug.Log("Stun over");
         StunTime = 0f;//once over the local variable is reset
         IsStunned = false;//is stunned is set to false which the current stun state reads and allows to the player to change states.
     }
 
     public void Die()//called by PlayerDeadState to disable hitboxes and input script
     {
-        Debug.Log("Enemy Died!");
+        //Debug.Log("Enemy Died!");
         //soundManager.PlaySound("WolfDie");//sounds need work!!!
         GetComponent<Collider2D>().enabled = false;//removes hitbox
         GetComponent<SpriteRenderer>().sortingLayerName = default;//idk double check what this does?

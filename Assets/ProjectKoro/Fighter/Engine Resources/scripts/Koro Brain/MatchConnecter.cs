@@ -31,7 +31,7 @@ public class MatchConnecter : MonoBehaviour
 
 	void Start()//this start is called only once when the rig is created thus filing all relevant variables on creation.
 	{
-		Debug.Log("MAtch connector starting");
+		//Debug.Log("MAtch connector starting");
 		KoroRig = transform.GetChild(0).gameObject;//this fills the current koro variable with the one directly under it.
 		KoroRigTransform = (KoroRig.transform);//this fills a transform variable with the transform of the current koro.
 		//Player = KoroRig.GetComponent<Player>();//this is normally player but is changed to rigo core for testing.
@@ -68,7 +68,7 @@ public class MatchConnecter : MonoBehaviour
 		KoroRigTransform.transform.position = PlayerBrain.transform.position;
 
 		//activate rig
-		Debug.Log("Activating rig");
+		//Debug.Log("Activating rig");
 		 KoroRig.SetActive(true);//on activation intiate intro state
 
 		//load Camera

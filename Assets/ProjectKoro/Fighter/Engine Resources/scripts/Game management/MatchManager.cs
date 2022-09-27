@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MatchManager : MonoBehaviour
 {
@@ -43,6 +44,18 @@ public class MatchManager : MonoBehaviour
     bool p1Ready;//these are some bools representing when players are loaded and ready to fight.
     bool p2Ready;
 
+    private bool gameOver;
+    private float currentTime;
+    private float initialTime;
+    public bool p1win;
+    public Text winnerText;
+
+    void Start(){
+        gameOver = false;
+        initialTime = 3;
+        currentTime = initialTime;
+    }
+
     void Update()
     {
         if(p1Ready == true && p2Ready == true)//match manager checks if players are loaded in, change from update?
@@ -55,7 +68,14 @@ public class MatchManager : MonoBehaviour
             OWMatchManager.instance.UnloadOverworld();//communicates to overworld match manager to unload the overworld
             StartCombat();//starts battle after everything is loaded
         }
-
+        if(gameOver){
+            currentTime -= Time.deltaTime;
+            if(currentTime <= 0){
+                currentTime = initialTime;
+                gameOver = false;
+                ExitCombat(p1win);
+            }
+        }
     }
     //These are called by the switch koros to let the game manager that they are loaded .
     public void P1Loaded() => p1Ready = true;
@@ -87,29 +107,27 @@ public class MatchManager : MonoBehaviour
         //etc
     }
 
-    public void MatchSet(bool p1win)//called by switch koro scripts to tell when the match is ended, add way to stop both switch koros sending in signals?
+    public void MatchSet(bool result)//called by switch koro scripts to tell when the match is ended, add way to stop both switch koros sending in signals?
     {
         //stop input and play animation?
-
+        p1win = result;
         if(p1win == true)//this means player 1 wins
         {
-            
-            Debug.Log("***PLAYER 1 WINS!***");
             //play a graphic
-            ExitCombat(p1win);
+            winnerText.text = "PLAYER 1 WINS!";
         }
         else if(p1win == false)//this means player 2 wins
         {
-            
-            Debug.Log("***PLAYER 2 WINS!***");
             //play a graphic
-            ExitCombat(p1win);
+            winnerText.text = "PLAYER 2 WINS!";
         }
-
+        gameOver = true;
     }
 
     public void ExitCombat(bool p1win)//this would be called after the winnier is decided and intiate going back to the overworld.
     {
+        winnerText.text = "";
+
         //upon displaying who won, bring all rigs offline
         SwitchKoro1.instance.BringKoroOffline();
         SwitchKoro2.instance.BringKoroOffline();

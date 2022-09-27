@@ -44,7 +44,7 @@ public class Projectile : MonoBehaviour
             {
                 //ActiveLifespan = 0;//sets to zero to stop from being negative
                 BecomeInactive();
-                Debug.Log("Time has run out!");
+                //Debug.Log("Time has run out!");
                 //IsActive = false;//sets is active to false
             }
         }
@@ -69,7 +69,7 @@ public class Projectile : MonoBehaviour
 
             BecomeInactive();
 
-            Debug.Log("projectile hit enemy");
+            //Debug.Log("projectile hit enemy");
 
         }
         else if (collision.CompareTag("Walls"))//plays fx and destroys self if hitting a wall
@@ -79,7 +79,7 @@ public class Projectile : MonoBehaviour
             //Destroy(gameObject);
             BecomeInactive();
 
-            Debug.Log("projectile hit wall");
+            //Debug.Log("projectile hit wall");
         }
     }
 
@@ -104,7 +104,7 @@ public class Projectile : MonoBehaviour
         ActiveLifespan = Lifespan;
         IsActive = true;
 
-        Debug.Log("projectile set to active");
+        //Debug.Log("projectile set to active");
         //StartCoroutine("ProjectileLifeSpan");
     }
 

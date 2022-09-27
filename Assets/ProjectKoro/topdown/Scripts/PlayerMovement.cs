@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
     public float MoveX;
     public float MoveY;
 
+    private bool currentlyMoving;
+
     void Start()
     {
         //initilizes state
@@ -64,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         }
         //sets starting position
         transform.position = startingPosition.initialValue;
+        currentlyMoving = false;
     }
 
     //public void update()
@@ -123,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (change != Vector3.zero)//if change is not 0, aka there is input
         {
-            MoveCharacter();
+            currentlyMoving = true;
             //setting animator angles and whether or not there is movement
             MoveX = change.x;
             MoveY = change.y;
@@ -131,12 +134,18 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            currentlyMoving = false;
             animator.SetBool("Moving", false);
         }
         animator.SetFloat("MoveX", MoveX);
         animator.SetFloat("MoveY", MoveY);
     }
 
+    void FixedUpdate(){
+        if(currentlyMoving){
+            MoveCharacter();
+        }
+    }
 
     void MoveCharacter()
     {

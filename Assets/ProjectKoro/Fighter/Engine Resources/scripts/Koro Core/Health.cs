@@ -19,7 +19,7 @@ public class Health : MonoBehaviour
         CardHolder = GetComponentInParent<CardHolder>();
         Core = GetComponent<KoroCore>();//change this eventually to intake variable
 
-        Debug.Log("loading current health from cardholder");
+        //Debug.Log("loading current health from cardholder");
         currentHealth = CardHolder.KoroData.CurrHP;
     }
 
@@ -36,12 +36,12 @@ public class Health : MonoBehaviour
         healthBar = HealthBar;
         if(healthBar == null)
         {
-            Debug.LogWarning("Healthbar not detected.");
+            //Debug.LogWarning("Healthbar not detected.");
             return;
         }
         else
         {
-            Debug.Log("Loading Healthbar");
+            //Debug.Log("Loading Healthbar");
        healthBar.SetMaxHealth(currentHealth); // UI
 
         }

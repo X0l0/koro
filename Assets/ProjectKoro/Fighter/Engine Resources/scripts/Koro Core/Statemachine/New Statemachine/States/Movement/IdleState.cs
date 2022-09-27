@@ -29,7 +29,7 @@ public class IdleState : GroundedState
         base.LogicUpdate();
         if (movedirection != 0)//move direction is taken from the groundstate which is in turn copied from whatever the core movement is.
         {
-            Debug.Log("movement detected changing to move state");
+            //Debug.Log("movement detected changing to move state");
             stateMachine.ChangeState(Core.MoveState);
         }
     }

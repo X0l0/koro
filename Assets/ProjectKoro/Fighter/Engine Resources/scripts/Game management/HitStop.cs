@@ -13,7 +13,7 @@ public class HitStop : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("More then one instance of MatchManager found");
+            //Debug.LogWarning("More then one instance of MatchManager found");
             return;
         }
         instance = this;
@@ -26,7 +26,7 @@ public class HitStop : MonoBehaviour
         if (waiting)
             return;
         Time.timeScale = 0.1f;
-        Debug.Log("hitstopactivated");
+        //Debug.Log("hitstopactivated");
         StartCoroutine(Wait(duration));
     }
 

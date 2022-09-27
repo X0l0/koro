@@ -169,8 +169,10 @@ MonoBehaviour:
   ControlActive: 1
   PauseUI: {fileID: 0}
   currentstate: 0
-  speed: 10
+  speed: 3
   startingPosition: {fileID: 11400000, guid: eed2103bfd01fdc4dbba939aa64365c8, type: 2}
+  MoveX: 0
+  MoveY: 0
 --- !u!114 &3305123869729886765
 MonoBehaviour:
   m_ObjectHideFlags: 0

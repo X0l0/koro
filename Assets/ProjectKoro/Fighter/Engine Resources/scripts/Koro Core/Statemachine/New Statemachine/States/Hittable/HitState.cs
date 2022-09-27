@@ -36,7 +36,7 @@ public class HitState : State
             }
             else if (isGrounded)//if still on the ground after the hit animationi that means the knockback was low and footing can be regained.
             {
-                Debug.Log("koro touching ground after hit animation is finished.");
+                //Debug.Log("koro touching ground after hit animation is finished.");
                 stateMachine.ChangeState(Core.IdleState);
             }
         }

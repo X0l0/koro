@@ -32,12 +32,12 @@ public class GroundedState : State//broader state that holds grounded states lik
         attack3input = Core.Attack3Input;//this senses if the attack input is pressed
         attack4input = Core.Attack4Input;//this senses if the attack input is pressed
 
-        Debug.Log(movedirection);
+        //Debug.Log(movedirection);
 
         if (jumpinput)
         {
             Core.UseJumpInput();//this sends a signal to the input handler that the jump is used and turns it back to false
-            Debug.Log("jumpinput detected going into jump state");
+            //Debug.Log("jumpinput detected going into jump state");
             stateMachine.ChangeState(Core.JumpState);
         }
         else if (attackinput)

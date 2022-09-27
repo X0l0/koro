@@ -30,7 +30,7 @@ public class State // no monobehaviour as this is used more as a template and no
         DoCheck();
         Core.Anim.SetBool(animBoolName, true);//set animator upon entering a state
         startTime = Time.time;
-        Debug.Log(animBoolName);
+        //Debug.Log(animBoolName);
         Animationtriggered = false;
         isAnimationFinished = false;//sets animation triggers to false when entering state
     }
