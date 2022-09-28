@@ -29,18 +29,24 @@ public class OWMatchManager : MonoBehaviour
     [SerializeField]
     public GameObject OverWorldGrid;
     //scenes 
+    private Scene OverworldScene;
     private Scene CombatScene;
     public string sceneToLoad;
 
+    public BattleStarter Currentenemy;
+
     public bool IsInCombat;//bool is used to track when the player is in combat
 
-    public void EnterCombat()//make sure this command is only called by player? that way theres a way to check if the player can even fight.
+    public void EnterCombat(BattleStarter CurrentEnemy)//make sure this command is only called by player? that way theres a way to check if the player can even fight.
     {
         IsInCombat = true;
+
+        Currentenemy = CurrentEnemy;
 
         //play noise and graphic
 
         //Set combat scene as active scene
+        OverworldScene = SceneManager.GetActiveScene();
         CombatScene = SceneManager.GetSceneByName(sceneToLoad);
         SceneManager.SetActiveScene(CombatScene);//reduce to 1 line?
 
@@ -66,10 +72,10 @@ public class OWMatchManager : MonoBehaviour
 
     }
 
-    public void ExitCombat()//can only be called by match manager on a loss win or run from a battle?
+    public void ExitCombat(bool p1win)//can only be called by match manager on a loss win or run from a battle?
     {
         //Set Overworld Scene as active scene
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("korotopdown"));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(OverworldScene.name));
 
         //set camera to on
         OWVcam.SetActive(true);
@@ -78,6 +84,10 @@ public class OWMatchManager : MonoBehaviour
         PlayerMovement.instance.ControlOn(true);
 
         IsInCombat = false;
+
+        if(p1win){
+            Destroy(Currentenemy);
+        }
     }
 
 }

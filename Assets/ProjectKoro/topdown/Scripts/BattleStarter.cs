@@ -11,6 +11,8 @@ public class BattleStarter : MonoBehaviour//this script would be put on wild kor
     public CardHolder KoroCardHolder;//temporary variable that holds card holder
     public MatchConnecter KoroConnector;//temporary variable that holds connector
 
+    private void Start(){} //This is added so that the script can be enabled/disabled
+
     public void AddKoroObject(Transform newKoro)
     {
         Koro = newKoro;
