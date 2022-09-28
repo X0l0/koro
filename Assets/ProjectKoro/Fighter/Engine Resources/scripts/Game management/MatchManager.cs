@@ -11,7 +11,7 @@ public class MatchManager : MonoBehaviour
     public static MatchManager instance;
     //static variables are variables that are shared in every instance of a class.
     //when starting the game you set the static variable to this script, which means there will only ever be one koroparty
-    //and you can call it easily by just calling PlayerMovement.instance
+    //and you can call it easily by just calling OWPlayerMovement.instance
 
     private void Awake()
     {

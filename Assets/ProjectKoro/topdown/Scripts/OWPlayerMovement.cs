@@ -11,20 +11,20 @@ public enum PlayerState1//basic enum to manage what the player is doing
     //ride?
 }
 
-public class PlayerMovement : MonoBehaviour
+public class OWPlayerMovement : MonoBehaviour
 {
 
     #region singleton
-    public static PlayerMovement instance;
+    public static OWPlayerMovement instance;
     //static variables are variables that are shared in every instance of a class.
     //when starting the game you set the static variable to this script, which means there will only ever be one koroparty
-    //and you can call it easily by just calling PlayerMovement.instance
+    //and you can call it easily by just calling OWPlayerMovement.instance
 
     private void Awake()
     {
         if (instance != null)
         {
-            Debug.LogWarning("More then one instance of PlayerMovement found");
+            Debug.LogWarning("More then one instance of OWPlayerMovement found");
             return;
         }
         instance = this;
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 change;//vector 3 responsible for taking in movement input
     private Animator animator;//player animator
     public VectorValue startingPosition;//used in scene changes
-
+    private KoroParty Party;
 
     void Start()
     {
@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         //gets components
         animator = GetComponent<Animator>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
+        Party = GetComponent<KoroParty>();
         //sets animator to looking down
         animator.SetFloat("MoveX", 0);
         animator.SetFloat("MoveY", -1);
@@ -90,6 +91,8 @@ public class PlayerMovement : MonoBehaviour
                 InventoryOpen = true;
                 //Stop player moving animations
                 animator.SetBool("Moving", false);
+
+                Party.ShowParty();
             }
             else if (InventoryOpen == true)
             {

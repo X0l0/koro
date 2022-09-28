@@ -438,7 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OWVcam: {fileID: 1787302590}
   OverWorldGrid: {fileID: 778320884}
-  sceneToLoad: SampleScene
+  sceneToLoad: Combat
   Currentenemy: {fileID: 0}
   IsInCombat: 0
 --- !u!1 &310817741
@@ -18372,8 +18372,6 @@ MonoBehaviour:
   KoroRig: {fileID: 0}
   KoroCardHolder: {fileID: 0}
   KoroConnector: {fileID: 0}
-  isKoro: 1
-  isDefeated: 0
 --- !u!114 &1982942118
 MonoBehaviour:
   m_ObjectHideFlags: 0

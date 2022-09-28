@@ -47,14 +47,14 @@ public class KoroMaker : MonoBehaviour//rename to koromaker
                 {
                     dialogueBox.SetActive(false);
                     SendKoroToPlayer();
-                    GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
+                    GameObject.Find("player").GetComponent<OWPlayerMovement>().ControlActive = true;
                     Destroy(gameObject);
                 }
                 else
                 {
                     dialogueBox.SetActive(true);
                     dialogueText.text = dialogue;
-                    GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
+                    GameObject.Find("player").GetComponent<OWPlayerMovement>().ControlActive = false;
                 }
             }
         }
@@ -111,8 +111,8 @@ public class KoroMaker : MonoBehaviour//rename to koromaker
         //Load Koro Object into player KoroParty
         Createdkoro.transform.parent = KoroParty.instance.transform;//this places the newly created Koro as a child to the player.
 
-        //KoroParty.instance.AddKoro(Createdkoro);
-        KoroParty.instance.AddKoroObject(Createdkoro.transform);//this logs the transform of the created Koro in the player inventory.
+        KoroParty.instance.AddKoro(Createdkoro);//this is the new add koro to party script as it passses in game object
+        //KoroParty.instance.AddKoroObject(Createdkoro.transform);//this logs the transform of the created Koro in the player inventory.
 
         KoroSent = true;
     }

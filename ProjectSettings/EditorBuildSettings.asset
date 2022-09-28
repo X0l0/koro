@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/ProjectKoro/topdown/Regions/Ianni/korotopdown.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/ProjectKoro/Fighter/Engine Resources/Stages/Plains/SampleScene.unity
+    path: Assets/ProjectKoro/Fighter/Engine Resources/Stages/Plains/Combat.unity
     guid: f88b01bdd710bf94d807c7ab087782c7
   m_configObjects: {}
