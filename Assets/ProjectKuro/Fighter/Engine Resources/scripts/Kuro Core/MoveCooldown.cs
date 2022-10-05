@@ -222,11 +222,14 @@ public class MoveCooldown : MonoBehaviour
     {
         if (Atk2OnCoolDown)//if this command is called again while cooldown is active, returns nothing and or can be programmed to make a fail noise. this may be able to be left empty as player inputs will check the bool before being sent .
         {
+            Debug.Log("FLAg");
             //return false;
             //put in error noise 
         }
         else
         {
+
+            Debug.Log("FLAg");
             Atk2OnCoolDown = true;//this means the move is now on cool down
             Atk2textCooldown.gameObject.SetActive(true);//this turns on the text
             Atk2cooldownTimer = Atk2cooldownTime;//this fills in the timer with the eloted cooldown amount

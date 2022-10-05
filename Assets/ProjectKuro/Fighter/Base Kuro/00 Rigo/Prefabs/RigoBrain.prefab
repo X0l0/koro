@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 5000
-  Lifespan: 3
+  Lifespan: 8.87
   User: {fileID: 5768847037124079947}
   MovePower: 70
   upwardfactor: -3
@@ -858,12 +858,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerBrain: {fileID: 0}
-  KoroRig: {fileID: 0}
-  KoroRigTransform: {fileID: 0}
+  KuroRig: {fileID: 0}
+  KuroRigTransform: {fileID: 0}
   Player: {fileID: 0}
-  KoroCore: {fileID: 0}
+  KuroCore: {fileID: 0}
   MoveCooldown: {fileID: 0}
   Health: {fileID: 0}
   InputHandler: {fileID: 0}
-  SwitchKoro: {fileID: 0}
+  SwitchKuro: {fileID: 0}
   P1: 0
