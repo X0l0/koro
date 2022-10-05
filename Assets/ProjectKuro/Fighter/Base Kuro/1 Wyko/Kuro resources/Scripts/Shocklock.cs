@@ -27,7 +27,7 @@ public class Shocklock : MonoBehaviour
            // Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();//connects to whatever is colliding's rigidbody and names it enemy 
                                                                       //if (enemy != null)//if the enemys hitbox is active, does the next things
                                                                       
-            collision.GetComponent<Player>().BeStunned(1f);//finds enemies health script and applies damage value.
+            //collision.GetComponent<Player>().BeStunned(1f);//finds enemies health script and applies damage value. temporary disabled for cleaning
 
            //Vector2 direction = (new Vector2(enemy.transform.position.x, enemy.transform.position.y) - new Vector2(transform.position.x, transform.position.y + upwardfactor)).normalized;//figures out the knockback direction from both players positions and other variables
            // enemy.AddForce(direction * thrust, ForceMode2D.Impulse);//applies direction and thrust to enemies rigid body via impulse.

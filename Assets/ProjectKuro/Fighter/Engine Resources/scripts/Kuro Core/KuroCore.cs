@@ -220,6 +220,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
         else
         {
             Attack2Input = true;
+            Debug.Log("FLAg");
             //MoveCoolDown.StartAtk2Cooldown();
         }
     }
@@ -360,6 +361,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public void DoAttack2()
     {
         DoATK2 = true;
+        Debug.Log("FLAg");
     }
     //public void DoDash()
     //{

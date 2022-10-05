@@ -104,6 +104,7 @@ public class Projectile : MonoBehaviour
         ActiveLifespan = Lifespan;
         IsActive = true;
 
+        Debug.Log("FLAg");
         //Debug.Log("projectile set to active");
         //StartCoroutine("ProjectileLifeSpan");
     }
@@ -114,10 +115,10 @@ public class Projectile : MonoBehaviour
         ActiveLifespan = Lifespan;
         ProjCollider.enabled = false;
         ProjSprite.enabled =false;
-        ProjRB.velocity = Vector2.zero;
         ProjRB.simulated = false;
+        ProjRB.velocity = Vector2.zero;
 
-       
+        Debug.Log("FLAg");
         //move to specific spot?
     }
 

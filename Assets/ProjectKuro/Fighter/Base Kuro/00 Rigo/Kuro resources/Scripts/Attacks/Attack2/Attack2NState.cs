@@ -11,10 +11,9 @@ public class Attack2NState : AbilityState
     public override void Enter()
     {
         base.Enter();
-        //Core.DoATK2 = false;//relates to the individual vs base core system as a confirm for the base core signal sytem.
+        //relates to the individual vs base core system as a confirm for the base core signal sytem.
         Core.MoveCoolDown.StartAtk2Cooldown();//starts cooldown only when actually entering the state.
-
-
+        Debug.Log("FLAg");
         //Core.r2d.velocity = new Vector2(Core.r2d.velocity.x, Core.JumpHeight * .75f);
 
     }
@@ -28,12 +27,15 @@ public class Attack2NState : AbilityState
         {
             Animationtriggered = false;//stops multiple fx from appearing
         IndivCore.EyeLazer();
+            Debug.Log("FLAg");
+
         }
 
         if (isAnimationFinished)
         {
             //IndivCore.DeActivateHB1();//de activates hitbox depending on animator
             IsAbilityDone = true;//lets ability super state take over, mainly switching to idle or in air depending on if grounded
+            Debug.Log("animation cycle defined as finished");
         }
     }
 }

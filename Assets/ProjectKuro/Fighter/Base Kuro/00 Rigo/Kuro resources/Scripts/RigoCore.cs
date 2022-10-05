@@ -87,6 +87,7 @@ public class RigoCore : KuroCore
             else
             {
                 StateMachine.ChangeState(Attack2CharState);
+                Debug.Log("FLAG");
             }
         }
     }
@@ -105,7 +106,8 @@ public class RigoCore : KuroCore
         eyelazerRB.AddForce(Mouth.right * projectileSpeed, ForceMode2D.Impulse);
 
         //soundManager.PlaySound("Bark");
-      
+        Debug.Log("eye lazer fired");
+
     }
 
     #region Hitboxes
