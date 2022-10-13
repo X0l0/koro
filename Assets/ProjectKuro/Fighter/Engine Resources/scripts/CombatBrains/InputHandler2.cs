@@ -37,7 +37,7 @@ public class InputHandler2 : InputHandler//attaches to game object and handles i
         if (Input.GetKey(KeyCode.DownArrow))
         {
             //IsDownPressed = Input.GetKey(KeyCode.S);
-            KuroCore.DownIsPressed(Input.GetKey(KeyCode.S));
+            KuroCore.DownIsPressed(Input.GetKey(KeyCode.DownArrow));
         }
         else if (Input.GetKeyUp(KeyCode.DownArrow))
         {

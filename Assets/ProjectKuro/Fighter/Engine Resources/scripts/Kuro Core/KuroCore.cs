@@ -82,7 +82,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public bool hit;//may be replaced by direct beHit function 
     public float StunTime;
     public bool IsStunned;
-    [SerializeField] private GameObject DownEffect;
+    private GameObject DownEffect;
     #endregion
 
     //#region Dash
@@ -133,6 +133,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
       
         r2d.gravityScale = 60;
         t = transform;//may be able to be removed
+        DownEffect = transform.Find("LandEffect").gameObject;
         #endregion
 
         #region initializeVariables
@@ -305,9 +306,11 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
 
     public void DownFX()
     {
-    GameObject effect = Instantiate(DownEffect, t.position, transform.rotation);//instantiates hit effect at calculated fx location
-    Destroy(effect, .222f);//destroys effect after a certain amount of time.
+        //GameObject effect = Instantiate(DownEffect, t.position, transform.rotation);//instantiates hit effect at calculated fx location
+        //Destroy(effect, .222f);//destroys effect after a certain amount of time.
 
+        DownEffect.transform.position = t.position;
+        DownEffect.SetActive(true);
     }
 
     public void BeStunned(float Stuntime)//takes in stun time from atack

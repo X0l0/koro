@@ -903,13 +903,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1894312544299930018, guid: 102a88a457122694380c19cd6db12903,
         type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894312544299930018, guid: 102a88a457122694380c19cd6db12903,
+        type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1075257668}
+      objectReference: {fileID: 1694958976}
     - target: {fileID: 1894312544299930018, guid: 102a88a457122694380c19cd6db12903,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: ToggleFPS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894312544299930018, guid: 102a88a457122694380c19cd6db12903,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FPSCounter, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894312544299930018, guid: 102a88a457122694380c19cd6db12903,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1894312544366671176, guid: 102a88a457122694380c19cd6db12903,
         type: 3}
@@ -993,12 +1008,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1894312542381955765, guid: 102a88a457122694380c19cd6db12903,
     type: 3}
   m_PrefabInstance: {fileID: 1059034424}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1075257668 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6447518125482931950, guid: 0e6acb5a5e8339f4e9a357558ffba5f8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1694958974}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1099976093 stripped
 MonoBehaviour:
@@ -1506,6 +1515,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6447518125482931922, guid: 0e6acb5a5e8339f4e9a357558ffba5f8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.1694336
+      objectReference: {fileID: 0}
     - target: {fileID: 6447518125771118986, guid: 0e6acb5a5e8339f4e9a357558ffba5f8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1519,6 +1533,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1694958974}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1694958976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6447518125482931921, guid: 0e6acb5a5e8339f4e9a357558ffba5f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1694958974}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc7e0f8e8b3f234790d4e5cea5e8561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1697364677
 GameObject:
   m_ObjectHideFlags: 0
