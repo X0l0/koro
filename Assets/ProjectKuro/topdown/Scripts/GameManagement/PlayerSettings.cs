@@ -8,7 +8,7 @@ public class PlayerSettings : MonoBehaviour
 
     void Start()
     {
-        //Singleton definition. Any DontDestroyOnLoad objects need to make sure they don't end up duplicating themselves.
+        /*//Singleton definition. Any DontDestroyOnLoad objects need to make sure they don't end up duplicating themselves.
         DontDestroyOnLoad(gameObject);
         if (instance == null)
         {
@@ -17,15 +17,15 @@ public class PlayerSettings : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
+        }*/
         //If no player preferences have been set before, they need to be defined by default values now
-        if(PlayerPrefs.HasKey("InitialSetup")){
+        if(!PlayerPrefs.HasKey("InitialSetup")){
             SetToDefault();
         }
     }
 
     public void SetToDefault(){
-        PlayerPrefs.SetString("InitialSetup", "TRUE");
+        PlayerPrefs.SetString("InitialSetup", "COMPLETE");
         PlayerPrefs.SetInt("ShowFPS", 0);
     }
 }
