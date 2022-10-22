@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour
     private CapsuleCollider2D ProjCollider;
     private SpriteRenderer ProjSprite;
     private Rigidbody2D ProjRB;
+    private Transform ProjTransform;
 
     private bool IsActive;
     private float ActiveLifespan;
@@ -27,6 +28,7 @@ public class Projectile : MonoBehaviour
         ProjCollider = GetComponent<CapsuleCollider2D>();
         ProjSprite = GetComponent<SpriteRenderer>();
         ProjRB = GetComponent<Rigidbody2D>();
+        ProjTransform = GetComponent<Transform>();
         soundManager = User.soundManager;
 
         IsActive = false;
@@ -96,6 +98,7 @@ public class Projectile : MonoBehaviour
 
     public void BecomeActive()
     {
+        Debug.Log("projectile become active");
         ProjRB.velocity = Vector2.zero;
         ProjCollider.enabled = true;
         ProjSprite.enabled = true;
@@ -104,22 +107,22 @@ public class Projectile : MonoBehaviour
         ActiveLifespan = Lifespan;
         IsActive = true;
 
-        Debug.Log("FLAg");
         //Debug.Log("projectile set to active");
         //StartCoroutine("ProjectileLifeSpan");
     }
 
     private void BecomeInactive()
     {
+        Debug.Log("projectile Become Inactive");
         IsActive = false;
-        ActiveLifespan = Lifespan;
+        ActiveLifespan = 0;//sets to zero to stop from being negative
         ProjCollider.enabled = false;
         ProjSprite.enabled =false;
         ProjRB.simulated = false;
         ProjRB.velocity = Vector2.zero;
 
-        Debug.Log("FLAg");
         //move to specific spot?
+        ProjTransform.position = User.transform.position;
     }
 
 }

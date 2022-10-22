@@ -12,7 +12,7 @@ public class Attack2CharState : AbilityState
     {
         base.Enter();
         Core.DoATK2 = false;//relates to the individual vs base core system as a confirm for the base core signal sytem.
-        Debug.Log("FLAG");
+        Debug.Log("Attack2 charge state enetered");
 
     }
 
@@ -22,7 +22,7 @@ public class Attack2CharState : AbilityState
 
         if (isAnimationFinished)
         {
-            Debug.Log("FLAg");
+            Debug.Log("ccharge animation finished");
             if (Core.isDownPressed == true)//if down is pressed
             {
                 stateMachine.ChangeState(IndivCore.Attack2AngState);
@@ -30,8 +30,8 @@ public class Attack2CharState : AbilityState
             }
             else if (Core.isDownPressed == false)//if down is not pressed
             {
+                Debug.Log("down is not pressed");
                 stateMachine.ChangeState(IndivCore.Attack2NState);
-                Debug.Log("FLAg");
 
             }
 

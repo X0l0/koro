@@ -33,6 +33,7 @@ public class Attack2AerState : AbilityState
 
         if (isAnimationFinished)
         {
+            isAnimationFinished = false;
             IsAbilityDone = true;//lets ability super state take over, mainly switching to idle or in air depending on if grounded
         }
     }

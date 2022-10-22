@@ -197,7 +197,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     private void FixedUpdate() { StateMachine.CurrentState.PhysicsUpdate(); }
 
     #region Inputs
-    //inputs where orignally handled by having bools in the input handler and having the states read the bools through the player. this new system has the bools instead held directly in player and has them turned on and off by the input handler through these functions.
+    //this new system has the bools instead held directly in player and has them turned on and off by the input handler through these functions.
     public void Attack1()//called by input handler
     {
         if (MoveCoolDown.Atk1OnCoolDown == true)// if on cooldown do nothing
@@ -217,12 +217,13 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
         {
             return;
         }
-        else
+        else 
         {
+            Debug.Log("Attack 2 input confirmed not on cooldown");
             Attack2Input = true;
-            Debug.Log("FLAg");
             //MoveCoolDown.StartAtk2Cooldown();
         }
+
     }
 
     public void Attack3()
@@ -361,7 +362,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public void DoAttack2()
     {
         DoATK2 = true;
-        Debug.Log("FLAg");
+        Debug.Log("Doing Attack 2");
     }
     //public void DoDash()
     //{

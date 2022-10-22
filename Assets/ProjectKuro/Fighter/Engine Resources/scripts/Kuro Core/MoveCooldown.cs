@@ -29,7 +29,7 @@ public class MoveCooldown : MonoBehaviour
     private TMP_Text Atk2textCooldown;
     [SerializeField]
     public bool Atk2OnCoolDown = false;//shows whether or not cooldown is active
-    private float Atk2cooldownTime = .2f;//shows how long cooldown is, make it so takes in from player.playerdata?
+    private float Atk2cooldownTime = 2f;//shows how long cooldown is, make it so takes in from player.playerdata?
     private float Atk2cooldownTimer = 0.0f;//holds cooldown time as it counts down.
 
     [Header("Attack 3")]
@@ -209,7 +209,7 @@ public class MoveCooldown : MonoBehaviour
             //return false;
             //put in error noise 
         }
-        else
+        else if(Atk1OnCoolDown == false)
         {
             Atk1OnCoolDown = true;//this means the move is now on cool down
             Atk1textCooldown.gameObject.SetActive(true);//this turns on the text
@@ -222,14 +222,14 @@ public class MoveCooldown : MonoBehaviour
     {
         if (Atk2OnCoolDown)//if this command is called again while cooldown is active, returns nothing and or can be programmed to make a fail noise. this may be able to be left empty as player inputs will check the bool before being sent .
         {
-            Debug.Log("FLAg");
+            Debug.Log("cant do attack 2 already on cooldown");
             //return false;
             //put in error noise 
         }
-        else
+        else if (Atk2OnCoolDown == false)
         {
 
-            Debug.Log("FLAg");
+            Debug.Log("Attack 2 On cooldown");
             Atk2OnCoolDown = true;//this means the move is now on cool down
             Atk2textCooldown.gameObject.SetActive(true);//this turns on the text
             Atk2cooldownTimer = Atk2cooldownTime;//this fills in the timer with the eloted cooldown amount

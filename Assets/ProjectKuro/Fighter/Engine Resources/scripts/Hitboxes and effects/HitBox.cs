@@ -69,7 +69,7 @@ public class HitBox : MonoBehaviour
 
     public void DeActivateHitBox()//called by hitbox after hitconfirm
     {
-        //Debug.Log("Deactivating hitbox");
+        Debug.Log("Deactivating hitbox");
         //hitboxactive = false;
         Hitbox.enabled = false;
     }
