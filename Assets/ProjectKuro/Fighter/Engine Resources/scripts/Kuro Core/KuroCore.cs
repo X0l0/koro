@@ -32,6 +32,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public DownState DownState { get; private set; }
     public GetUpState GetUpState { get; private set; }
     public DieState DeadState { get; private set; }//naming not consistent may need to be changed later
+    public DieInAirState DeadInAirState { get; private set; }
     //public StunState StunState { get; private set; }
 
     #endregion
@@ -82,7 +83,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public bool hit;//may be replaced by direct beHit function 
     public float StunTime;
     public bool IsStunned;
-    [SerializeField] private GameObject DownEffect;
+    private GameObject DownEffect;
     #endregion
 
     //#region Dash
@@ -112,6 +113,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
         DownState = new DownState(this, StateMachine, "down");
         GetUpState = new GetUpState(this, StateMachine, "getup");
         DeadState = new DieState(this, StateMachine, "dead");
+        DeadInAirState = new DieInAirState(this, StateMachine, "deadinair");
         //StunState = new PlayerStunState(this, StateMachine, "stun");
         #endregion
     }
@@ -133,6 +135,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
       
         r2d.gravityScale = 60;
         t = transform;//may be able to be removed
+        DownEffect = transform.Find("LandEffect").gameObject;
         #endregion
 
         #region initializeVariables
@@ -305,9 +308,11 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
 
     public void DownFX()
     {
-    GameObject effect = Instantiate(DownEffect, t.position, transform.rotation);//instantiates hit effect at calculated fx location
-    Destroy(effect, .222f);//destroys effect after a certain amount of time.
+        //GameObject effect = Instantiate(DownEffect, t.position, transform.rotation);//instantiates hit effect at calculated fx location
+        //Destroy(effect, .222f);//destroys effect after a certain amount of time.
 
+        DownEffect.transform.position = t.position;
+        DownEffect.SetActive(true);
     }
 
     public void BeStunned(float Stuntime)//takes in stun time from atack
@@ -348,6 +353,25 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
         //this.enabled = false;
     }
 
+    public void DieInAir()//called by PlayerDeadState to disable hitboxes and input script
+    {
+        Debug.Log("Died in the air!");
+        //soundManager.PlaySound("WolfDie");//sounds need work!!!
+        GetComponent<Collider2D>().enabled = false;//removes hitbox
+        GetComponent<SpriteRenderer>().sortingLayerName = default;//idk double check what this does?
+        gameObject.transform.Find("playerpushbox").GetComponent<Collider2D>().enabled = false;//removes pushbox
+
+        //communicate when kuro Dies
+        MatchConnecter.KuroDead();
+
+        ////tell Match Connector to start disconencting process.
+        //MatchConnecter.BringOffline();
+
+
+        //GetComponent<InputHandler>().enabled = false;
+        //animator.SetBool("Isdead", true);
+        //this.enabled = false;
+    }
 
     #endregion
 

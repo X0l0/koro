@@ -15,7 +15,7 @@ public class State // no monobehaviour as this is used more as a template and no
 
     protected float startTime;//used to keep track of how long one is in a state 
 
-    private string animBoolName;//used to communicate to the animator
+    public string animBoolName;//used to communicate to the animator
 
     public State(KuroCore core, StateMachine stateMachine, string animBoolName)//constructor, all states need these
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Health : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Health : MonoBehaviour
 
     int damage;//damage int holds the output of the damage calculation
 
+    private TextMeshPro DamageText;
+
     void Awake()//was awake
     {
         CardHolder = GetComponentInParent<CardHolder>();
@@ -21,6 +24,8 @@ public class Health : MonoBehaviour
 
         //Debug.Log("loading current health from cardholder");
         currentHealth = CardHolder.KuroData.CurrHP;
+
+        DamageText = transform.parent.Find("DamageText").GetComponent<TextMeshPro>();
     }
 
     private void Update()
@@ -69,10 +74,19 @@ public class Health : MonoBehaviour
         currentHealth -= damage;//turn this into damage calculation taking in attack power, typing, from enemy. and defense stat, defense typing, of player to finally take away from the players hp
         healthBar.SetHealth(currentHealth); // HealthBar UI
 
+        DamageText.text = damage.ToString(); //Display damage taken
+        DamageText.gameObject.SetActive(true); //Show damage text, which is turned off by DelayedSetInactive.cs
+
         if (currentHealth <= 0)//if an attack kills, sets state to dead
         {
-
-            Core.StateMachine.ChangeState(Core.DeadState);//fix this to compensate for dying in air or residual damage
+            Debug.Log(Core.StateMachine.CurrentState.animBoolName);
+            if(Core.StateMachine.CurrentState.animBoolName == "launch"){ //Checks if died while in the air
+                Core.StateMachine.ChangeState(Core.DeadInAirState); //Used to change state to dying while in the air
+            }
+            else{
+                Core.StateMachine.ChangeState(Core.DeadState);//Used to change state to dying while grounded
+            }
+            
         }
 
     }

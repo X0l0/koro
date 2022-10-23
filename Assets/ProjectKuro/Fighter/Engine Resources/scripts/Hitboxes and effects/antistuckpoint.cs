@@ -18,7 +18,7 @@ public class antistuckpoint : MonoBehaviour
         transform.parent.gameObject.GetComponentInParent<CapsuleCollider2D>().enabled = false;
         //gameObject.GetComponentInParent<PolygonCollider2D>().enabled = false;
         //Debug.Log("colliderdeactivated");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         transform.parent.gameObject.GetComponentInParent<CapsuleCollider2D>().enabled = true;
         //gameObject.GetComponentInParent<PolygonCollider2D>().enabled = true;
         //Debug.Log("collideractivated");

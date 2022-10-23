@@ -100,18 +100,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else if(Input.GetKeyDown(KeyCode.E) && PauseOpen == true){
-            //resume time
-            Time.timeScale = 1;
-            //close pause
-            PauseUI.SetActive(false);
-            //if the inventory is active, make it inactive
-            if(PauseUI.gameObject.transform.parent.transform.GetChild(0).gameObject != null){
-                PauseUI.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(false);
-            }
-            //set bool to false
-            PauseOpen = false;
-            //turn on movement
-            ControlOn(true);
+            UnPause();
         }
         else{
             animator.SetBool("Moving", false);
@@ -148,10 +137,19 @@ public class PlayerMovement : MonoBehaviour
     void MoveCharacter()
     {
         change.Normalize();//normalizes input values for consistency
-        //change is added to the current position, it is multiplied by the walkspeed, and by every tick that passes.
-        myRigidbody2D.MovePosition(
-            transform.position + change * speed * Time.deltaTime
-            );
+        float sprintSpeed = speed * 2; //Temporary sprint speed in case the player is sprinting.
+        if(Input.GetKey(KeyCode.LeftShift)){
+            //change is added to the current position, it is multiplied by the runspeed, and by every tick that passes.
+            myRigidbody2D.MovePosition(
+                transform.position + change * sprintSpeed * Time.deltaTime
+                );
+        }
+        else{
+            //change is added to the current position, it is multiplied by the walkspeed, and by every tick that passes.
+            myRigidbody2D.MovePosition(
+                transform.position + change * speed * Time.deltaTime
+                );
+        }
     }
 
 
@@ -164,5 +162,22 @@ public class PlayerMovement : MonoBehaviour
     public void SetXY(float x, float y){
         MoveX = x;
         MoveY = y;
+    }
+
+    public void UnPause(){
+        //resume time
+        Time.timeScale = 1;
+        //close pause
+        PauseUI.SetActive(false);
+        //if the inventory is active, make it inactive
+        for(int i = 0; i < PauseUI.gameObject.transform.parent.transform.childCount; i++){
+            if(PauseUI.gameObject.transform.parent.transform.GetChild(i).gameObject != null){
+                PauseUI.gameObject.transform.parent.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+        //set bool to false
+        PauseOpen = false;
+        //turn on movement
+        ControlOn(true);
     }
 }

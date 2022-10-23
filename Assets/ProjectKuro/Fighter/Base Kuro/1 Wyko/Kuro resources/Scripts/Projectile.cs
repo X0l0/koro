@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     public int upwardfactor;
     private SoundManager soundManager;
 
-    public GameObject HitEffect;
+    private GameObject HitEffect;
     private Vector3 fx;
 
     private CapsuleCollider2D ProjCollider;
@@ -30,6 +30,8 @@ public class Projectile : MonoBehaviour
         soundManager = User.soundManager;
 
         IsActive = false;
+
+        HitEffect = transform.GetChild(0).gameObject;
     }
 
     private void Update()
@@ -52,7 +54,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)//on the attack trigger hitbox colliding with the enemies hitbox
     {
-        if (collision.CompareTag("Enemy"))//compares tag for enemy, might be removable because of layering?
+        if (User.CompareTag("Player") && collision.CompareTag("Enemy") || User.CompareTag("Enemy") && collision.CompareTag("Player"))//hits Enemy if Player, and vice versa
         {
             //connect variables and calculates direction
             Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();//connects to whatever is colliding's rigidbody and names it enemy 
@@ -88,9 +90,12 @@ public class Projectile : MonoBehaviour
 
         //soundManager.PlaySound("Shock");//plays hit sound if contact is made
 
-        GameObject effect = Instantiate(HitEffect, fx, transform.rotation);
+        /*GameObject effect = Instantiate(HitEffect, fx, transform.rotation);
         Destroy(effect, .222f);//destroys effect after set amount of time.
+        */
 
+        HitEffect.transform.position = fx; //Set FX position to where the collision occurred
+        HitEffect.SetActive(true); //Set FX active; will become inactive again via DelayedSetInactive.cs
     }
 
 
