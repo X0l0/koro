@@ -12,7 +12,7 @@ public class HitState : State
     public override void Enter()
     {
         base.Enter();
-
+        
         //damage function is in player and is directly called by enemy hitbox, move here?
     }
 

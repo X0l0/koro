@@ -52,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool currentlyMoving;
 
+    private KuroParty Party;
+
     void Start()
     {
         //initilizes state
@@ -59,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         //gets components
         animator = GetComponent<Animator>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
+        Party = GetComponent<KuroParty>();
         //sets animator to look in last known direction
         animator.SetFloat("MoveX", MoveX);
         animator.SetFloat("MoveY", MoveY);
@@ -96,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
                     PauseOpen = true;
                     //Stop player moving animations
                     animator.SetBool("Moving", false);
+
+                    Party.ShowParty();
                 }
             }
         }

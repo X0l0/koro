@@ -55,7 +55,7 @@ public class InputHandler1 : InputHandler
         // Attack 2
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Debug.Log("atk 2 keycode pressed down");
+            //Debug.Log("atk 2 keycode pressed down");
             //player.Attack2();
             KuroCore.Attack2();//activates function in controlled kuro core that the input was pressed
 

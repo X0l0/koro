@@ -9,6 +9,11 @@ public class LaunchState : State
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+       
+    }
 
     public override void LogicUpdate()
     {

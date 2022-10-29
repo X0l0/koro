@@ -95,7 +95,7 @@ public class RigoCore : KuroCore
 
     public void EyeLazer()
     {
-        Debug.Log("eye lazer fired");
+        //Debug.Log("eye lazer fired");
         //relocates it
         eyelazer.transform.position = Mouth.transform.position;
         eyelazer.transform.rotation = Mouth.rotation;

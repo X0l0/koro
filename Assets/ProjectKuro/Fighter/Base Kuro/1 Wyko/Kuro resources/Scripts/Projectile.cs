@@ -110,7 +110,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            Debug.Log("projectile set active");
+            //Debug.Log("projectile set active");
             //ProjTransform.parent = null;
 
             ProjRB.velocity = Vector2.zero;
@@ -129,7 +129,7 @@ public class Projectile : MonoBehaviour
 
     private void BecomeInactive()
     {
-        Debug.Log("projectile set to inactive");
+        //Debug.Log("projectile set to inactive");
         IsActive = false;
         ActiveLifespan = Lifespan;
 

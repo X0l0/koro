@@ -711,7 +711,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   MaxSpeed: 75
-  JumpHeight: 140
+  JumpHeight: 100
   DoATK1: 0
   DoATK2: 0
   Mouth: {fileID: 5768847036841995293}

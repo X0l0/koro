@@ -79,7 +79,7 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)//if an attack kills, sets state to dead
         {
-            Debug.Log(Core.StateMachine.CurrentState.animBoolName);
+            //Debug.Log(Core.StateMachine.CurrentState.animBoolName);
             if(Core.StateMachine.CurrentState.animBoolName == "launch"){ //Checks if died while in the air
                 Core.StateMachine.ChangeState(Core.DeadInAirState); //Used to change state to dying while in the air
             }
