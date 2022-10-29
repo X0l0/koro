@@ -218,12 +218,15 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     {
         if (MoveCoolDown.Atk2OnCoolDown == true)
         {
+            //Debug.Log("atk 2 input sent but attack on cooldown");
             return;
         }
         else
         {
+
+            //Debug.Log("atk 2 input sent and not on cooldown, confirming input");
             Attack2Input = true;
-            Debug.Log("FLAg");
+            
             //MoveCoolDown.StartAtk2Cooldown();
         }
     }
@@ -286,6 +289,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     {
         AttackInput = false;//this function has all attack inputs on the same timer. this means any and all attack inputs that are put in while an attack cannot be performed will not be counted after a certain amount of time.
         Attack2Input = false;
+        //Debug.Log("atk 2 attack input expired");
         Attack3Input = false;
         Attack4Input = false;
 
@@ -298,6 +302,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
 
     public void BeHit()//CHANGE TO DO LAUCNH STATES
     {//slow time before entering hit state?
+        HitStop.instance.Stop(5f);
         if (isGrounded == false)
             StateMachine.ChangeState(LaunchState);
         else if (isGrounded == true)
@@ -385,7 +390,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public void DoAttack2()
     {
         DoATK2 = true;
-        Debug.Log("FLAg");
+
     }
     //public void DoDash()
     //{

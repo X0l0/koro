@@ -6,6 +6,9 @@ public class InAirState : AerialState
 {
 
     private float movedirection;
+    private bool FacingRight;
+
+
 
     private bool attackinput;
     private bool attack2input;
@@ -23,6 +26,9 @@ public class InAirState : AerialState
     public override void Enter()
     {
         base.Enter();
+    
+        
+
     }
 
     public override void Exit()
@@ -39,6 +45,21 @@ public class InAirState : AerialState
         attack2input = Core.Attack2Input;//this senses if the attack input is pressed
         attack3input = Core.Attack3Input;//this senses if the attack input is pressed
         attack4input = Core.Attack4Input;//this senses if the attack input is pressed
+
+
+        //if (Input.GetKey(KeyCode.W))
+        //{
+        //    //Core.r2d.velocity = new Vector2(Core.r2d.velocity.x, Core.JumpHeight * .4f);//apply jump force
+        //    if (Input.GetKey(KeyCode.W) != true)//if w is let go
+        //    {
+        //        Debug.Log("w is let go, switching to down air state");
+        //        //Core.r2d.velocity = new Vector2(Core.r2d.velocity.x, Core.r2d.velocity.y + 50f);//applys a fast fall
+        //        return;
+        //    }
+        //}
+        
+       
+
 
         if (attackinput)
         {
@@ -58,6 +79,6 @@ public class InAirState : AerialState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        Core.r2d.velocity = new Vector2((movedirection * Core.MaxSpeed) * .65f  , Core.r2d.velocity.y);//this allows the player to control there movement midair
+        Core.r2d.velocity = new Vector2((movedirection * Core.MaxSpeed) * .75f  , Core.r2d.velocity.y);//this allows the player to control there movement midair
     }
 }

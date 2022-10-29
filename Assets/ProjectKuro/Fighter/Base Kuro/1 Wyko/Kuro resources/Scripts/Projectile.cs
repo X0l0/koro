@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour
     private CapsuleCollider2D ProjCollider;
     private SpriteRenderer ProjSprite;
     private Rigidbody2D ProjRB;
+    private Transform ProjTransform;
 
     private bool IsActive;
     private float ActiveLifespan;
@@ -27,6 +28,7 @@ public class Projectile : MonoBehaviour
         ProjCollider = GetComponent<CapsuleCollider2D>();
         ProjSprite = GetComponent<SpriteRenderer>();
         ProjRB = GetComponent<Rigidbody2D>();
+        ProjTransform = GetComponent<Transform>();
         soundManager = User.soundManager;
 
         IsActive = false;
@@ -101,29 +103,43 @@ public class Projectile : MonoBehaviour
 
     public void BecomeActive()
     {
-        ProjRB.velocity = Vector2.zero;
-        ProjCollider.enabled = true;
-        ProjSprite.enabled = true;
-        ProjRB.simulated = true;
+        if (IsActive == true)
+        {
+            Debug.Log("projectile set active but is already active");
+            return;
+        }
+        else
+        {
+            //Debug.Log("projectile set active");
+            //ProjTransform.parent = null;
 
-        ActiveLifespan = Lifespan;
-        IsActive = true;
+            ProjRB.velocity = Vector2.zero;
+            ProjCollider.enabled = true;
+            ProjSprite.enabled = true;
+            ProjRB.simulated = true;
 
-        Debug.Log("FLAg");
-        //Debug.Log("projectile set to active");
-        //StartCoroutine("ProjectileLifeSpan");
+            ActiveLifespan = Lifespan;
+            IsActive = true;
+
+
+            //Debug.Log("projectile set to active");
+            //StartCoroutine("ProjectileLifeSpan");
+        }
     }
 
     private void BecomeInactive()
     {
+        //Debug.Log("projectile set to inactive");
         IsActive = false;
         ActiveLifespan = Lifespan;
+
         ProjCollider.enabled = false;
         ProjSprite.enabled =false;
         ProjRB.simulated = false;
         ProjRB.velocity = Vector2.zero;
+        //ProjTransform.parent = User.gameObject.transform;
+        ProjTransform = User.gameObject.transform;
 
-        Debug.Log("FLAg");
         //move to specific spot?
     }
 

@@ -87,7 +87,7 @@ public class RigoCore : KuroCore
             else
             {
                 StateMachine.ChangeState(Attack2CharState);
-                Debug.Log("FLAG");
+
             }
         }
     }
@@ -95,6 +95,7 @@ public class RigoCore : KuroCore
 
     public void EyeLazer()
     {
+        //Debug.Log("eye lazer fired");
         //relocates it
         eyelazer.transform.position = Mouth.transform.position;
         eyelazer.transform.rotation = Mouth.rotation;
@@ -105,8 +106,7 @@ public class RigoCore : KuroCore
         //fires it.
         eyelazerRB.AddForce(Mouth.right * projectileSpeed, ForceMode2D.Impulse);
 
-        //soundManager.PlaySound("Bark");
-        Debug.Log("eye lazer fired");
+        soundManager.PlaySound("Eyelazer");
 
     }
 

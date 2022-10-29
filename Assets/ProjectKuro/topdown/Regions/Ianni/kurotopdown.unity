@@ -1589,7 +1589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad3c0cb6638bc54bbd11f4dfd6cee96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kurotopdown: {fileID: 8300000, guid: 24353e8180b4fcb4d91136e077652b75, type: 3}
+  kurotopdown: {fileID: 8300000, guid: 864c68dfc91e9a54bac0a9262668b68e, type: 3}
 --- !u!82 &1697364680
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1600,7 +1600,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 24353e8180b4fcb4d91136e077652b75, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 864c68dfc91e9a54bac0a9262668b68e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.125
   m_Pitch: 1

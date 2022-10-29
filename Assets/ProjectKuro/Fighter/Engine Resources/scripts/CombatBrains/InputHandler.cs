@@ -50,7 +50,7 @@ public class InputHandler : MonoBehaviour//attaches to game object and handles i
         //    MovementInputStartTime = Time.time;//not used?
         //}
 
-        ////jump
+        //jump
         //if (Input.GetKeyDown(KeyCode.W))//holding up lets you go farther for a certain amount of time
         //{
 

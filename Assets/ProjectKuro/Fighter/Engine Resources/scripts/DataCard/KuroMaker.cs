@@ -107,8 +107,8 @@ public class KuroMaker : MonoBehaviour//rename to kuromaker
         //Load Kuro Object into player KuroParty
         Createdkuro.transform.parent = KuroParty.instance.transform;//this places the newly created Kuro as a child to the player.
 
-        //KuroParty.instance.AddKuro(Createdkuro);
-        KuroParty.instance.AddKuroObject(Createdkuro.transform);//this logs the transform of the created Kuro in the player inventory.
+        KuroParty.instance.AddKuro(Createdkuro);
+        //KuroParty.instance.AddKuroObject(Createdkuro.transform);//this logs the transform of the created Kuro in the player inventory.
 
         KuroSent = true;
     }

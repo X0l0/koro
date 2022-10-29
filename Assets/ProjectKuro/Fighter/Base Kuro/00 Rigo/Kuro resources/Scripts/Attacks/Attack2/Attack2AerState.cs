@@ -27,12 +27,13 @@ public class Attack2AerState : AbilityState
 
         if (Animationtriggered)
         {
-            Animationtriggered = false;//stops multiple fx from appearing
         IndivCore.EyeLazer();
+            Animationtriggered = false;//stops multiple fx from appearing
         }
 
         if (isAnimationFinished)
         {
+            isAnimationFinished = false;
             IsAbilityDone = true;//lets ability super state take over, mainly switching to idle or in air depending on if grounded
         }
     }

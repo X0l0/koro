@@ -20,7 +20,8 @@ public class JumpState : State
 
         if (Animationtriggered)//upon an animation trigger, aka the end of the animation
         {
-            Core.r2d.velocity = new Vector2(Core.r2d.velocity.x, Core.JumpHeight);//apply jump force
+            Vector2 jumpvelocity = new Vector2(Core.r2d.velocity.x, (Core.JumpHeight * 85));//apply jump force
+            Core.r2d.AddForce(jumpvelocity, ForceMode2D.Impulse);
             stateMachine.ChangeState(Core.InAirState);
             //IsAbilityDone = true;//ability is done, letting the super state handle the logic, change to air state automtacially?
         }

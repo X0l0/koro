@@ -18,6 +18,7 @@ public class MoveCooldown : MonoBehaviour
     private TMP_Text Atk1textCooldown;//the number showing how many seconds are left
     [SerializeField]//may be removable as it only needs to be read? 
     public bool Atk1OnCoolDown = false;//shows whether or not cooldown is active, was private but needed to be public
+    [SerializeField]
     private float Atk1cooldownTime = 0.2f;//shows how long cooldown is, make it so takes in from player.playerdata?
     private float Atk1cooldownTimer = 0.0f;//holds cooldown time as it counts down.
 
@@ -29,6 +30,7 @@ public class MoveCooldown : MonoBehaviour
     private TMP_Text Atk2textCooldown;
     [SerializeField]
     public bool Atk2OnCoolDown = false;//shows whether or not cooldown is active
+    [SerializeField]
     private float Atk2cooldownTime = .2f;//shows how long cooldown is, make it so takes in from player.playerdata?
     private float Atk2cooldownTimer = 0.0f;//holds cooldown time as it counts down.
 
@@ -40,6 +42,7 @@ public class MoveCooldown : MonoBehaviour
     private TMP_Text Atk3textCooldown;
     [SerializeField]
     public bool Atk3OnCoolDown = false;//shows whether or not cooldown is active
+    [SerializeField]
     private float Atk3cooldownTime = 5.0f;//shows how long cooldown is, make it so takes in from player.playerdata?
     private float Atk3cooldownTimer = 0.0f;//holds cooldown time as it counts down.
 
@@ -51,6 +54,7 @@ public class MoveCooldown : MonoBehaviour
     private TMP_Text Atk4textCooldown;
     [SerializeField]
     public bool Atk4OnCoolDown = false;//shows whether or not cooldown is active
+    [SerializeField]
     private float Atk4cooldownTime = 2.0f;//shows how long cooldown is, make it so takes in from player.playerdata?
     private float Atk4cooldownTimer = 0.0f;//holds cooldown time as it counts down.
 
@@ -247,7 +251,7 @@ public class MoveCooldown : MonoBehaviour
         else
         {
 
-            Debug.Log("FLAg");
+
             Atk2OnCoolDown = true;//this means the move is now on cool down
             if(Atk2textCooldown != null){ //only turn on text if it exists
                 Atk2textCooldown.gameObject.SetActive(true);//this turns on the text
