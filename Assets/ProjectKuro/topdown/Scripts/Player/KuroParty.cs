@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KuroParty : MonoBehaviour
 {
+    public GameObject[] KuroSlot;
+
     #region singleton
     public static KuroParty instance;
     //static variables are variables that are shared in every instance of a class.
@@ -61,16 +64,21 @@ public class KuroParty : MonoBehaviour
     public void ShowParty()// This function is activated by opening the inventory. 
     {
 
-        //this code cycles through the current party reading out the names of the game objects. succesful test, use for later stuff
+        //this code cycles through the current party displaying their information in the party menu
         for (int i = 0; i < CurrentParty.Count; i++)
         {
-            Debug.Log("party member is " + CurrentParty[i].name);
-
             KuroCardHolder = CurrentParty[i].GetComponent<CardHolder>();//this fills a local cardholder variable with the one from the selected rig
 
-            int Health = KuroCardHolder.KuroData.CurrHP;//this fills a local int variable representing health with the data in the cardholder
+            if(KuroCardHolder.KuroData.NickName != "unnamed"){
+                KuroSlot[i].transform.GetChild(0).GetComponent<Text>().text = KuroCardHolder.KuroData.NickName;
+            }
+            else{
+                KuroSlot[i].transform.GetChild(0).GetComponent<Text>().text = KuroCardHolder.KuroData.SpeciesName;
+            }
+            
+            KuroSlot[i].transform.GetChild(1).GetComponent<Text>().text = KuroCardHolder.KuroData.LVL.ToString();
 
-            print(Health);//this prints that local health variable, effectively communicating the health stat of the koro in your party
+            KuroSlot[i].transform.GetChild(2).GetComponent<Text>().text = KuroCardHolder.KuroData.CurrHP.ToString() + "/" + KuroCardHolder.KuroData.MaxHP.ToString();
         }
     }
         //remove kuro

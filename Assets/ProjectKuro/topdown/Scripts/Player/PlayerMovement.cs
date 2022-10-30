@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
     private KuroParty Party;
 
+    private bool inJumpZone;
+
     void Start()
     {
         //initilizes state
@@ -68,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         //sets starting position
         transform.position = startingPosition.initialValue;
         currentlyMoving = false;
+        inJumpZone = false;
     }
 
     //public void update()
@@ -134,7 +137,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if(currentlyMoving){
+        if(inJumpZone && animator.GetFloat("MoveY") == -1){ //Moves the player down if near a ledge and pressing down
+            ControlActive = false;
+            transform.position += -Vector3.up * Time.deltaTime * 2f;
+        }
+        else if(currentlyMoving){
             MoveCharacter();
         }
     }
@@ -184,5 +191,33 @@ public class PlayerMovement : MonoBehaviour
         PauseOpen = false;
         //turn on movement
         ControlOn(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.name == "JumpDownCollision")
+        {
+            inJumpZone = true;
+        }
+        else if(other.gameObject.name == "EndCollision" && inJumpZone){
+            inJumpZone = false;
+            ControlActive = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other){
+        if(other.gameObject.name == "JumpDownCollision" && ControlActive)
+        {
+            inJumpZone = false;
+        }
+        else if(other.gameObject.name == "NoJumpCollision"){
+            other.isTrigger = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.name == "NoJumpCollision" && !ControlActive){
+            other.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        }
     }
 }
