@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlainsStage: {fileID: 8300000, guid: 68f616bb4cda23b4c81d5886c047fdd4, type: 3}
+  VictoryJingle: {fileID: 8300000, guid: 24353e8180b4fcb4d91136e077652b75, type: 3}
 --- !u!850595691 &1605967396
 LightingSettings:
   m_ObjectHideFlags: 0

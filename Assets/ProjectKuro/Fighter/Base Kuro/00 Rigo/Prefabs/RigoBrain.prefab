@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378819339637328142}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.4, y: 1.6, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.481934, y: -2.791687, z: 5.795762}
+  m_LocalScale: {x: 12, y: 8, z: 1}
   m_Children:
   - {fileID: 1476755297080907143}
-  m_Father: {fileID: 5768847037124079944}
-  m_RootOrder: 5
+  m_Father: {fileID: 5768847037850226327}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5841114528989267041
 SpriteRenderer:
@@ -574,7 +574,6 @@ Transform:
   - {fileID: 5768847036467439259}
   - {fileID: 5768847037010798336}
   - {fileID: 5768847036440739271}
-  - {fileID: 4323903677601715057}
   - {fileID: 9025354578340434589}
   m_Father: {fileID: 5768847037850226327}
   m_RootOrder: 0
@@ -712,6 +711,7 @@ MonoBehaviour:
     m_Bits: 64
   MaxSpeed: 75
   JumpHeight: 100
+  MaxJumpHeight: 385
   DoATK1: 0
   DoATK2: 0
   Mouth: {fileID: 5768847036841995293}
@@ -846,6 +846,7 @@ Transform:
   m_Children:
   - {fileID: 5768847037124079944}
   - {fileID: 5476915049181519041}
+  - {fileID: 4323903677601715057}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1260,7 +1261,7 @@ PrefabInstance:
     - target: {fileID: 3628258600158489297, guid: b3e30bfc79cb1764cbb9732d94456408,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3628258600158489297, guid: b3e30bfc79cb1764cbb9732d94456408,
         type: 3}

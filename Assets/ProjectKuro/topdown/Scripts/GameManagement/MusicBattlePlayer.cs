@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MusicBattlePlayer : MonoBehaviour
 {
     public AudioClip PlainsStage;
+    public AudioClip VictoryJingle;
 
     void Start()
     {
@@ -23,5 +24,10 @@ public class MusicBattlePlayer : MonoBehaviour
         else{
             this.gameObject.GetComponent<AudioSource>().Stop();
         }
+    }
+
+    public void PlayVictoryJingle(){
+        this.gameObject.GetComponent<AudioSource>().clip = VictoryJingle;
+        this.gameObject.GetComponent<AudioSource>().Play();
     }
 }
