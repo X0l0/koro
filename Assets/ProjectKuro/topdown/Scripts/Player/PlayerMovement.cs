@@ -54,7 +54,9 @@ public class PlayerMovement : MonoBehaviour
 
     private KuroParty Party;
 
-    private bool inJumpZone;
+    private bool inDownJumpZone;
+    private bool inLeftJumpZone;
+    private bool inRightJumpZone;
 
     void Start()
     {
@@ -70,13 +72,10 @@ public class PlayerMovement : MonoBehaviour
         //sets starting position
         transform.position = startingPosition.initialValue;
         currentlyMoving = false;
-        inJumpZone = false;
+        inDownJumpZone = false;
+        inLeftJumpZone = false;
+        inRightJumpZone = false;
     }
-
-    //public void update()
-    //{
-
-    //}
 
     void Update()//called every frame
     {
@@ -137,9 +136,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if(inJumpZone && animator.GetFloat("MoveY") == -1){ //Moves the player down if near a ledge and pressing down
+        if(inDownJumpZone && animator.GetFloat("MoveY") == -1){ //Moves the player down if near a ledge and pressing down
             ControlActive = false;
             transform.position += -Vector3.up * Time.deltaTime * 2f;
+        }
+        else if(inLeftJumpZone && animator.GetFloat("MoveX") == -1){
+            ControlActive = false;
+            transform.position += -Vector3.right * Time.deltaTime * 2f;
+        }
+        else if(inRightJumpZone && animator.GetFloat("MoveX") == 1){
+            ControlActive = false;
+            transform.position += Vector3.right * Time.deltaTime * 2f;
         }
         else if(currentlyMoving){
             MoveCharacter();
@@ -197,18 +204,34 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.gameObject.name == "JumpDownCollision")
         {
-            inJumpZone = true;
+            inDownJumpZone = true;
         }
-        else if(other.gameObject.name == "EndCollision" && inJumpZone){
-            inJumpZone = false;
-            ControlActive = true;
+        else if(other.gameObject.name == "JumpLeftCollision"){
+            inLeftJumpZone = true;
+        }
+        else if(other.gameObject.name == "JumpRightCollision"){
+            inRightJumpZone = true;
+        }
+        else if(other.gameObject.name == "EndCollision"){
+            if(inDownJumpZone || inLeftJumpZone || inRightJumpZone){
+                inDownJumpZone = false;
+                inLeftJumpZone = false;
+                inRightJumpZone = false;
+                ControlActive = true;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other){
         if(other.gameObject.name == "JumpDownCollision" && ControlActive)
         {
-            inJumpZone = false;
+            inDownJumpZone = false;
+        }
+        else if(other.gameObject.name == "JumpLeftCollision" && ControlActive){
+            inLeftJumpZone = true;
+        }
+        else if(other.gameObject.name == "JumpRightCollision" && ControlActive){
+            inRightJumpZone = true;
         }
         else if(other.gameObject.name == "NoJumpCollision"){
             other.isTrigger = false;

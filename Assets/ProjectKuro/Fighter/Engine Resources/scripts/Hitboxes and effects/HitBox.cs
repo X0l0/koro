@@ -16,7 +16,7 @@ public class HitBox : MonoBehaviour
     public int upwardfactor;
 
     //fx
-    private GameObject HitEffect;//hit effect prefab to be spawned
+    public GameObject HitEffect;//hit effect prefab to be spawned
     private Vector3 fx;//the location of where to instantiate the prefab
 
 
@@ -32,7 +32,6 @@ public class HitBox : MonoBehaviour
         Hitbox.enabled = false;//makes the collider negative to begin with, control hitbox activation by the collider not the entire game object.
         //hitboxactive = false;
         User = this.gameObject.transform.parent.gameObject.GetComponent<RigoCore>();
-        HitEffect = transform.GetChild(0).gameObject;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)//on the attack trigger hitbox colliding with the enemies hitbox

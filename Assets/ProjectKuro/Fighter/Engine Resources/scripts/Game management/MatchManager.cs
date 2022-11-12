@@ -154,4 +154,23 @@ public class MatchManager : MonoBehaviour
         CombatSystem.SetActive(false);
 
     }
+
+    private bool waiting = false;
+
+    public void Stop(float duration)
+    {
+        if(!waiting)
+        {
+            Time.timeScale = 0.1f;
+            StartCoroutine(Wait(duration));
+        }
+    }
+
+    IEnumerator Wait(float duration)
+    {
+        waiting = true;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1.0f;
+        waiting = false;
+    }
 }
