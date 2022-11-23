@@ -32,8 +32,10 @@ public class MoveState : GroundedState
         base.LogicUpdate();
         FacingRight = Core.facingRight;
         
-
-
+        if(Core.JumpInput == true)
+        {
+            stateMachine.ChangeState(Core.JumpState);
+        }
         if (Core.MoveDirection != CurrentMoveDirection && Core.MoveDirection != 0 )
         {
             stateMachine.ChangeState(Core.TurnState);

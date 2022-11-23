@@ -6,6 +6,8 @@ public class Sound//makes pseudo class that represents a sound file. holds a nam
 {
     public string name;
     public AudioClip clip;
+    [SerializeField]
+    public float Volume = 0.3f;
 
     private AudioSource source;
 
@@ -13,6 +15,7 @@ public class Sound//makes pseudo class that represents a sound file. holds a nam
     {
         source = _source;
         source.clip = clip;
+        source.volume = Volume;
     }
 
     public void Play()
@@ -49,6 +52,9 @@ public class SoundManager : MonoBehaviour
             GameObject _go = new GameObject("Sound_" + i + "_" + sounds[i].name);
             _go.transform.SetParent(this.transform);
             sounds[i].SetSource (_go.AddComponent<AudioSource>());
+
+
+
         }
 
        

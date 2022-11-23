@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     public int upwardfactor;
     private SoundManager soundManager;
 
-    public GameObject HitEffect;
+    private GameObject HitEffect;
     private Vector3 fx;
 
     private CapsuleCollider2D ProjCollider;
@@ -32,6 +32,8 @@ public class Projectile : MonoBehaviour
         soundManager = User.soundManager;
 
         IsActive = false;
+
+        HitEffect = transform.GetChild(0).gameObject;
     }
 
     private void Update()
@@ -54,7 +56,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)//on the attack trigger hitbox colliding with the enemies hitbox
     {
-        if (collision.CompareTag("Enemy"))//compares tag for enemy, might be removable because of layering?
+        if (User.CompareTag("Player") && collision.CompareTag("Enemy") || User.CompareTag("Enemy") && collision.CompareTag("Player"))//hits Enemy if Player, and vice versa
         {
             //connect variables and calculates direction
             Rigidbody2D enemy = collision.GetComponent<Rigidbody2D>();//connects to whatever is colliding's rigidbody and names it enemy 
@@ -90,39 +92,55 @@ public class Projectile : MonoBehaviour
 
         //soundManager.PlaySound("Shock");//plays hit sound if contact is made
 
-        GameObject effect = Instantiate(HitEffect, fx, transform.rotation);
+        /*GameObject effect = Instantiate(HitEffect, fx, transform.rotation);
         Destroy(effect, .222f);//destroys effect after set amount of time.
+        */
 
+        HitEffect.transform.position = fx; //Set FX position to where the collision occurred
+        HitEffect.SetActive(true); //Set FX active; will become inactive again via DelayedSetInactive.cs
     }
 
 
     public void BecomeActive()
     {
-        Debug.Log("projectile become active");
-        ProjRB.velocity = Vector2.zero;
-        ProjCollider.enabled = true;
-        ProjSprite.enabled = true;
-        ProjRB.simulated = true;
+        if (IsActive == true)
+        {
+            Debug.Log("projectile set active but is already active");
+            return;
+        }
+        else
+        {
+            //Debug.Log("projectile set active");
+            //ProjTransform.parent = null;
 
-        ActiveLifespan = Lifespan;
-        IsActive = true;
+            ProjRB.velocity = Vector2.zero;
+            ProjCollider.enabled = true;
+            ProjSprite.enabled = true;
+            ProjRB.simulated = true;
 
-        //Debug.Log("projectile set to active");
-        //StartCoroutine("ProjectileLifeSpan");
+            ActiveLifespan = Lifespan;
+            IsActive = true;
+
+
+            //Debug.Log("projectile set to active");
+            //StartCoroutine("ProjectileLifeSpan");
+        }
     }
 
     private void BecomeInactive()
     {
-        Debug.Log("projectile Become Inactive");
+        //Debug.Log("projectile set to inactive");
         IsActive = false;
-        ActiveLifespan = 0;//sets to zero to stop from being negative
+        ActiveLifespan = Lifespan;
+
         ProjCollider.enabled = false;
         ProjSprite.enabled =false;
         ProjRB.simulated = false;
         ProjRB.velocity = Vector2.zero;
+        //ProjTransform.parent = User.gameObject.transform;
+        ProjTransform = User.gameObject.transform;
 
         //move to specific spot?
-        ProjTransform.position = User.transform.position;
     }
 
 }

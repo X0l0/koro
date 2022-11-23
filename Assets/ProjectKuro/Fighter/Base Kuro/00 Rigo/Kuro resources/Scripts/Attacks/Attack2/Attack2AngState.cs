@@ -30,12 +30,8 @@ public class Attack2AngState : AbilityState
 
         if (Animationtriggered)
         {
-            Animationtriggered = false;//stops multiple fx from appearing
-
-         
             IndivCore.EyeLazer();
-
-            
+            Animationtriggered = false;//stops multiple fx from appearing
         }
 
         if (isAnimationFinished)

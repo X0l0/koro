@@ -6,6 +6,9 @@ public class InAirState : AerialState
 {
 
     private float movedirection;
+    private bool FacingRight;
+
+
 
     private bool attackinput;
     private bool attack2input;
@@ -40,6 +43,7 @@ public class InAirState : AerialState
         attack3input = Core.Attack3Input;//this senses if the attack input is pressed
         attack4input = Core.Attack4Input;//this senses if the attack input is pressed
 
+
         if (attackinput)
         {
             Core.UseAttackInput();
@@ -58,6 +62,6 @@ public class InAirState : AerialState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        Core.r2d.velocity = new Vector2((movedirection * Core.MaxSpeed) * .65f  , Core.r2d.velocity.y);//this allows the player to control there movement midair
+        Core.r2d.velocity = new Vector2((movedirection * Core.MaxSpeed) * .75f  , Core.r2d.velocity.y);//this allows the player to control there movement midair
     }
 }

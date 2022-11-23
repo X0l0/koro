@@ -18,6 +18,9 @@ public class LandState : GroundedState
         //    stateMachine.ChangeState(Core.MoveState);
         //}
         //else 
+
+        Core.ChangeFacingDirection();//added to let the player change direction/pivot when landing, creating a good feeling of tight controls.
+
         if (isAnimationFinished)
         {
             stateMachine.ChangeState(Core.IdleState);

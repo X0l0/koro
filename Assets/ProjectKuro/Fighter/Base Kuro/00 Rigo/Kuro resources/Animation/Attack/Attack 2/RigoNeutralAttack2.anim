@@ -38,13 +38,13 @@ AnimationClip:
     - time: 0
       value: {fileID: -7146019689724948688, guid: 3be7448ce81bec2498ee4850efd34fb5,
         type: 3}
-    - time: 0.05
+    - time: 0.06666667
       value: {fileID: 2430390574572795124, guid: 3be7448ce81bec2498ee4850efd34fb5,
         type: 3}
-    - time: 0.11666667
+    - time: 0.18333334
       value: {fileID: -6091788581434650143, guid: 3be7448ce81bec2498ee4850efd34fb5,
         type: 3}
-    - time: 0.16666667
+    - time: 0.25
       value: {fileID: -6091788581434650143, guid: 3be7448ce81bec2498ee4850efd34fb5,
         type: 3}
     attribute: m_Sprite
@@ -82,7 +82,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.18333334
+    m_StopTime: 0.26666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -159,14 +159,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.05
-    functionName: EyeLazer
+  - time: 0.06666667
+    functionName: AnimationTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.16666667
+  - time: 0.25
     functionName: AnimationFinishTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

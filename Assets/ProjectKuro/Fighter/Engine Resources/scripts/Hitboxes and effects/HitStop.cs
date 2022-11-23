@@ -20,14 +20,19 @@ public class HitStop : MonoBehaviour
     }
     #endregion
 
-    bool waiting;
+    bool waiting = false;
     public void Stop(float duration)
     {
-        if (waiting)
+        if (waiting == true)
+        {
             return;
-        Time.timeScale = 0.1f;
-        //Debug.Log("hitstopactivated");
-        StartCoroutine(Wait(duration));
+        }
+        else
+        {
+            Time.timeScale = 0.1f;
+            //Debug.Log("hitstopactivated");
+            StartCoroutine(Wait(duration));
+        }
     }
 
     IEnumerator Wait(float duration)

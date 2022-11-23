@@ -19,12 +19,13 @@ public class DownState : State
         Core.DownFX();
         //landing noise? bounce? effecT?
         //player.soundManager.PlaySound("Land");
-        //take away hitbox?
+        Core.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
     }
 
     public override void Exit()
     {
         base.Exit();
+        Core.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
     }
 
     public override void LogicUpdate()

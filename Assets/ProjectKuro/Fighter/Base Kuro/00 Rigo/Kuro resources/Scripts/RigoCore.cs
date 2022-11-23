@@ -78,10 +78,8 @@ public class RigoCore : KuroCore
             StateMachine.ChangeState(Attack1CharState);
             }
         }
-        if (DoATK2 == true && MoveCoolDown.Atk2OnCoolDown == false)
+        if (DoATK2 == true)
         {
-                Debug.Log("doing attack 2");
-            
             if (!isGrounded)
             {
                 StateMachine.ChangeState(Attack2AerState);
@@ -89,6 +87,7 @@ public class RigoCore : KuroCore
             else
             {
                 StateMachine.ChangeState(Attack2CharState);
+
             }
         }
     }
@@ -96,18 +95,18 @@ public class RigoCore : KuroCore
 
     public void EyeLazer()
     {
-        Debug.Log("eye lazer fired");
-        //sets it active
-        RigoProjectile.BecomeActive();
+        //Debug.Log("eye lazer fired");
         //relocates it
         eyelazer.transform.position = Mouth.transform.position;
         eyelazer.transform.rotation = Mouth.rotation;
 
+        //sets it active
+        RigoProjectile.BecomeActive();
 
         //fires it.
         eyelazerRB.AddForce(Mouth.right * projectileSpeed, ForceMode2D.Impulse);
 
-        //soundManager.PlaySound("Bark");
+        soundManager.PlaySound("Eyelazer");
 
     }
 
@@ -120,7 +119,7 @@ public class RigoCore : KuroCore
 
     public void DeActivateHB1()
     {
-        Debug.Log("deactivating hb1");
+        //Debug.Log("signal from state received forwarding to hitbox.");
         HB1.DeActivateHitBox();
     }
     //public void ActivateHB2()

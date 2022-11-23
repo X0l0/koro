@@ -32,6 +32,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public DownState DownState { get; private set; }
     public GetUpState GetUpState { get; private set; }
     public DieState DeadState { get; private set; }//naming not consistent may need to be changed later
+    public DieInAirState DeadInAirState { get; private set; }
     //public StunState StunState { get; private set; }
 
     #endregion
@@ -57,6 +58,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public LayerMask GroundLayer;
     public int MaxSpeed;//70
     public int JumpHeight;//140
+    public int MaxJumpHeight; //Upward bounds for how high you can jump
     #endregion
 
     #region Inputs
@@ -82,7 +84,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public bool hit;//may be replaced by direct beHit function 
     public float StunTime;
     public bool IsStunned;
-    [SerializeField] private GameObject DownEffect;
+    private GameObject DownEffect;
     #endregion
 
     //#region Dash
@@ -112,6 +114,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
         DownState = new DownState(this, StateMachine, "down");
         GetUpState = new GetUpState(this, StateMachine, "getup");
         DeadState = new DieState(this, StateMachine, "dead");
+        DeadInAirState = new DieInAirState(this, StateMachine, "deadinair");
         //StunState = new PlayerStunState(this, StateMachine, "stun");
         #endregion
     }
@@ -133,6 +136,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
       
         r2d.gravityScale = 60;
         t = transform;//may be able to be removed
+        DownEffect = transform.Find("LandEffect").gameObject;
         #endregion
 
         #region initializeVariables
@@ -197,7 +201,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     private void FixedUpdate() { StateMachine.CurrentState.PhysicsUpdate(); }
 
     #region Inputs
-    //this new system has the bools instead held directly in player and has them turned on and off by the input handler through these functions.
+    //inputs where orignally handled by having bools in the input handler and having the states read the bools through the player. this new system has the bools instead held directly in player and has them turned on and off by the input handler through these functions.
     public void Attack1()//called by input handler
     {
         if (MoveCoolDown.Atk1OnCoolDown == true)// if on cooldown do nothing
@@ -215,15 +219,17 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     {
         if (MoveCoolDown.Atk2OnCoolDown == true)
         {
+            //Debug.Log("atk 2 input sent but attack on cooldown");
             return;
         }
-        else 
+        else
         {
-            Debug.Log("Attack 2 input confirmed not on cooldown");
+
+            //Debug.Log("atk 2 input sent and not on cooldown, confirming input");
             Attack2Input = true;
+            
             //MoveCoolDown.StartAtk2Cooldown();
         }
-
     }
 
     public void Attack3()
@@ -284,6 +290,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     {
         AttackInput = false;//this function has all attack inputs on the same timer. this means any and all attack inputs that are put in while an attack cannot be performed will not be counted after a certain amount of time.
         Attack2Input = false;
+        //Debug.Log("atk 2 attack input expired");
         Attack3Input = false;
         Attack4Input = false;
 
@@ -296,6 +303,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
 
     public void BeHit()//CHANGE TO DO LAUCNH STATES
     {//slow time before entering hit state?
+        HitStop.instance.Stop(5f);
         if (isGrounded == false)
             StateMachine.ChangeState(LaunchState);
         else if (isGrounded == true)
@@ -306,9 +314,11 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
 
     public void DownFX()
     {
-    GameObject effect = Instantiate(DownEffect, t.position, transform.rotation);//instantiates hit effect at calculated fx location
-    Destroy(effect, .222f);//destroys effect after a certain amount of time.
+        //GameObject effect = Instantiate(DownEffect, t.position, transform.rotation);//instantiates hit effect at calculated fx location
+        //Destroy(effect, .222f);//destroys effect after a certain amount of time.
 
+        DownEffect.transform.position = t.position;
+        DownEffect.SetActive(true);
     }
 
     public void BeStunned(float Stuntime)//takes in stun time from atack
@@ -349,6 +359,25 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
         //this.enabled = false;
     }
 
+    public void DieInAir()//called by PlayerDeadState to disable hitboxes and input script
+    {
+        Debug.Log("Died in the air!");
+        //soundManager.PlaySound("WolfDie");//sounds need work!!!
+        GetComponent<Collider2D>().enabled = false;//removes hitbox
+        GetComponent<SpriteRenderer>().sortingLayerName = default;//idk double check what this does?
+        gameObject.transform.Find("playerpushbox").GetComponent<Collider2D>().enabled = false;//removes pushbox
+
+        //communicate when kuro Dies
+        MatchConnecter.KuroDead();
+
+        ////tell Match Connector to start disconencting process.
+        //MatchConnecter.BringOffline();
+
+
+        //GetComponent<InputHandler>().enabled = false;
+        //animator.SetBool("Isdead", true);
+        //this.enabled = false;
+    }
 
     #endregion
 
@@ -362,7 +391,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public void DoAttack2()
     {
         DoATK2 = true;
-        Debug.Log("Doing Attack 2");
+
     }
     //public void DoDash()
     //{

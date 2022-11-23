@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KuroParty : MonoBehaviour
 {
+    public GameObject[] KuroSlot;
+
     #region singleton
     public static KuroParty instance;
     //static variables are variables that are shared in every instance of a class.
@@ -20,10 +23,7 @@ public class KuroParty : MonoBehaviour
         instance = this;
     }
     #endregion
-    //#region delegate
-    //public delegate void OnPartyChange();//tehse are meant to deleagte things that need to be updtated when there are changes in the party
-    //public OnPartyChange onPartyChangeCallback;
-    //#endregion
+
 
     //this script is in charge of holding the players kuro party, showing there data, and sending them to and from combat.
   
@@ -38,38 +38,50 @@ public class KuroParty : MonoBehaviour
 
     public BattleStarter Currentenemy;
 
-    //make it so there are two lists, one that stores the rigs and one that stores the data cards. The rigs would be loaded
 
     //add function to switch order of kuro in current party
-    public void AddKuro(GameObject NewKuro)//this is called in the create Kuro script.
+    public void AddKuro(GameObject NewKuro)//this is the new add koro to party function.
     {
         if (CurrentParty.Count >= 6)//checks if there is room
         {
             Debug.Log("Not Enough Room");
             return;
         }
+        NewKuro.GetComponent<MatchConnecter>().P1 = true;//defines picked up koro as p1 aka player koro
         CurrentParty.Add(NewKuro);//adds kuro to list
 
     }
 
-    public void AddKuroObject(Transform newKuro)//function used in adding kuro, edited later?
-    {
-        Kuro = newKuro;
-        
-        KuroRig = Kuro.gameObject;//this loads a local rig slot with the rig connected to the trasnform.
-        KuroConnector = KuroRig.GetComponent<MatchConnecter>();//this loads a connector slot with the connector attached to the rig
-        KuroConnector.P1 = true;//TEMPORARY THING, MEANS THAT ONLY THE PLAYER KURO LOADS INTO THE UI
-    }
-
-    //public void ShowParty()
+    //public void AddKuroObject(Transform newKuro)//function used in adding kuro, edited later?
     //{
-        //KuroRig = CurrentParty[0];//this fills a local gameobject variable with the first in the list
-        //KuroCardHolder = KuroRig.GetComponent<CardHolder>();//this fills a local cardholder variable with the one from the selected rig
-        //int Health = KuroCardHolder.KuroData.CurrHP;//this fills a local int variable representing health with the data in the cardholder
-        //print(Health);//this prints that local health variable, effectively communicating the health stat of the kuro in your party
-        ////though this system is a bit complicated and long to get in theory you would only need one variable for each stat to communicate, filling it up with whatever koro is selected.
+    //    Kuro = newKuro;
+
+    //    KuroRig = Kuro.gameObject;//this loads a local rig slot with the rig connected to the trasnform.
+    //    KuroConnector = KuroRig.GetComponent<MatchConnecter>();//this loads a connector slot with the connector attached to the rig
+    //    KuroConnector.P1 = true;//TEMPORARY THING, MEANS THAT ONLY THE PLAYER KURO LOADS INTO THE UI
     //}
-    //remove kuro
+
+    public void ShowParty()// This function is activated by opening the inventory. 
+    {
+
+        //this code cycles through the current party displaying their information in the party menu
+        for (int i = 0; i < CurrentParty.Count; i++)
+        {
+            KuroCardHolder = CurrentParty[i].GetComponent<CardHolder>();//this fills a local cardholder variable with the one from the selected rig
+
+            if(KuroCardHolder.KuroData.NickName != "unnamed"){
+                KuroSlot[i].transform.GetChild(0).GetComponent<Text>().text = KuroCardHolder.KuroData.NickName;
+            }
+            else{
+                KuroSlot[i].transform.GetChild(0).GetComponent<Text>().text = KuroCardHolder.KuroData.SpeciesName;
+            }
+            
+            KuroSlot[i].transform.GetChild(1).GetComponent<Text>().text = KuroCardHolder.KuroData.LVL.ToString();
+
+            KuroSlot[i].transform.GetChild(2).GetComponent<Text>().text = KuroCardHolder.KuroData.CurrHP.ToString() + "/" + KuroCardHolder.KuroData.MaxHP.ToString();
+        }
+    }
+        //remove kuro
 
     public void BeChallenged(BattleStarter CurrentEnemy)//called by wild kuro and trainers thorugh battlestarter.
     {
@@ -85,11 +97,7 @@ public class KuroParty : MonoBehaviour
 
     public void SendKuroToCombat()//called by Match Manager when combat scene is loaded .
     {
-        //this code cycles through the current party reading out the names of the game objects. succesful test, use for later stuff
-        //for (int i = 0; i < CurrentParty.Count; i++)
-        //{
-        //    Debug.Log("party member is " + CurrentParty[i].name);
-        //}
+        //this is here as a way of confirming that the player can indeed fight.
 
 
         Currentenemy.SendEnemyKuroToCombat();//calls for current enemy script to send its kuros as well
@@ -97,10 +105,17 @@ public class KuroParty : MonoBehaviour
 
 
         //add a for loop so that when all kuros have been sent send a signal to switchkuro that teamis done.
+        for (int i = 0; i < CurrentParty.Count; i++)
+        {
+            //add a for loop so that when all koros have been sent send a signal to switchkoro that teamis done.
+            //transforms are required for placemnt
+            CurrentParty[i].transform.parent = SwitchKuro1.instance.transform;//this sends the child koro to under the player brain object.
 
+            //finds koro in first slot and sends that one as first active.
+            KuroConnector = CurrentParty[0].GetComponent<MatchConnecter>();
 
-        Kuro.transform.parent = SwitchKuro1.instance.transform;//this sends the child kuro to under the player brain object.
-        KuroConnector.ConnectToBrain(SwitchKuro1.instance);//sends signal to kuro connector to relocate and connect to player brain.
+            KuroConnector.ConnectToBrain(SwitchKuro1.instance);//sends signal to koro connector to relocate and connect to player brain.
+        }
 
         SwitchKuro1.instance.AllKuroSent();//tells switch kuro that all kuros have been sent and the next steps can begin.
     }

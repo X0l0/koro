@@ -12,7 +12,7 @@ public class HitState : State
     public override void Enter()
     {
         base.Enter();
-
+        GameObject.Find("Combat GameManager").GetComponent<MatchManager>().Stop(0.1f);
         //damage function is in player and is directly called by enemy hitbox, move here?
     }
 
@@ -26,6 +26,11 @@ public class HitState : State
         base.LogicUpdate();
 
         isGrounded = Core.isGrounded;
+
+        //If hit from behind, automatically face the direction the attack came from
+        if(Core.facingRight && Core.r2d.velocity.x > 0 || !Core.facingRight && Core.r2d.velocity.x < 0){
+            Core.ChangeDirection();
+        }
 
         if (isAnimationFinished)//goes off of animator frame events, change to intake data from enemy move and hold for a set amount of stun time.
         {

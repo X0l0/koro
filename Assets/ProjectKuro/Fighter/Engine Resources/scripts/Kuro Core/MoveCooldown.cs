@@ -18,6 +18,7 @@ public class MoveCooldown : MonoBehaviour
     private TMP_Text Atk1textCooldown;//the number showing how many seconds are left
     [SerializeField]//may be removable as it only needs to be read? 
     public bool Atk1OnCoolDown = false;//shows whether or not cooldown is active, was private but needed to be public
+    [SerializeField]
     private float Atk1cooldownTime = 0.2f;//shows how long cooldown is, make it so takes in from player.playerdata?
     private float Atk1cooldownTimer = 0.0f;//holds cooldown time as it counts down.
 
@@ -29,7 +30,8 @@ public class MoveCooldown : MonoBehaviour
     private TMP_Text Atk2textCooldown;
     [SerializeField]
     public bool Atk2OnCoolDown = false;//shows whether or not cooldown is active
-    private float Atk2cooldownTime = 2f;//shows how long cooldown is, make it so takes in from player.playerdata?
+    [SerializeField]
+    private float Atk2cooldownTime = .2f;//shows how long cooldown is, make it so takes in from player.playerdata?
     private float Atk2cooldownTimer = 0.0f;//holds cooldown time as it counts down.
 
     [Header("Attack 3")]
@@ -40,6 +42,7 @@ public class MoveCooldown : MonoBehaviour
     private TMP_Text Atk3textCooldown;
     [SerializeField]
     public bool Atk3OnCoolDown = false;//shows whether or not cooldown is active
+    [SerializeField]
     private float Atk3cooldownTime = 5.0f;//shows how long cooldown is, make it so takes in from player.playerdata?
     private float Atk3cooldownTimer = 0.0f;//holds cooldown time as it counts down.
 
@@ -51,6 +54,7 @@ public class MoveCooldown : MonoBehaviour
     private TMP_Text Atk4textCooldown;
     [SerializeField]
     public bool Atk4OnCoolDown = false;//shows whether or not cooldown is active
+    [SerializeField]
     private float Atk4cooldownTime = 2.0f;//shows how long cooldown is, make it so takes in from player.playerdata?
     private float Atk4cooldownTimer = 0.0f;//holds cooldown time as it counts down.
 
@@ -136,13 +140,17 @@ public class MoveCooldown : MonoBehaviour
         if (Atk1cooldownTimer < 0.0f)//this is if the timer reaches 0, aka the move finishes cooldown.
         {
             Atk1OnCoolDown = false;//sets it back to false.
-            Atk1textCooldown.gameObject.SetActive(false);//turns off text.
-            Atk1imageCooldown.fillAmount = 0.0f;//lowers and keeps the fill amount to 0
+            if(Atk1textCooldown != null && Atk1imageCooldown != null){ //only modify these if they exist
+                Atk1textCooldown.gameObject.SetActive(false);//turns off text.
+                Atk1imageCooldown.fillAmount = 0.0f;//lowers and keeps the fill amount to 0
+            }
         }
         else//this is called every frame the cooldown isnt done and updates the graphic.
         {
-            Atk1textCooldown.text = Mathf.RoundToInt(Atk1cooldownTimer).ToString(); //this fills in the numver on the cooldown with the rounded up amount of time left.
-            Atk1imageCooldown.fillAmount = Atk1cooldownTimer / Atk1cooldownTime;//this fills the image by dividing the cooldown timer by the cooldown time.
+            if(Atk1textCooldown != null && Atk1imageCooldown != null){ //only modify these if they exist
+                Atk1textCooldown.text = Mathf.RoundToInt(Atk1cooldownTimer).ToString(); //this fills in the numver on the cooldown with the rounded up amount of time left.
+                Atk1imageCooldown.fillAmount = Atk1cooldownTimer / Atk1cooldownTime;//this fills the image by dividing the cooldown timer by the cooldown time.
+            }
         }
     }
 
@@ -154,13 +162,17 @@ public class MoveCooldown : MonoBehaviour
         if (Atk2cooldownTimer < 0.0f)//this is if the timer reaches 0, aka the move finishes cooldown.
         {
             Atk2OnCoolDown = false;//sets it back to false.
-            Atk2textCooldown.gameObject.SetActive(false);//turns off text.
-            Atk2imageCooldown.fillAmount = 0.0f;//lowers and keeps the fill amount to 0
+            if(Atk2textCooldown != null && Atk2imageCooldown != null){ //only modify these if they exist
+                Atk2textCooldown.gameObject.SetActive(false);//turns off text.
+                Atk2imageCooldown.fillAmount = 0.0f;//lowers and keeps the fill amount to 0
+            }
         }
         else//this is called every frame the cooldown isnt done and updates the graphic.
         {
-            Atk2textCooldown.text = Mathf.RoundToInt(Atk2cooldownTimer).ToString(); //this fills in the numver on the cooldown with the rounded up amount of time left.
-            Atk2imageCooldown.fillAmount = Atk2cooldownTimer / Atk2cooldownTime;//this fills the image by dividing the cooldown timer by the cooldown time.
+            if(Atk2textCooldown != null && Atk2imageCooldown != null){ //only modify these if they exist
+                Atk2textCooldown.text = Mathf.RoundToInt(Atk2cooldownTimer).ToString(); //this fills in the numver on the cooldown with the rounded up amount of time left.
+                Atk2imageCooldown.fillAmount = Atk2cooldownTimer / Atk2cooldownTime;//this fills the image by dividing the cooldown timer by the cooldown time.
+            }
         }
     }
 
@@ -172,13 +184,17 @@ public class MoveCooldown : MonoBehaviour
         if (Atk3cooldownTimer < 0.0f)//this is if the timer reaches 0, aka the move finishes cooldown.
         {
             Atk3OnCoolDown = false;//sets it back to false.
-            Atk3textCooldown.gameObject.SetActive(false);//turns off text.
-            Atk3imageCooldown.fillAmount = 0.0f;//lowers and keeps the fill amount to 0
+            if(Atk3textCooldown != null && Atk3imageCooldown != null){ //only modify these if they exist
+                Atk3textCooldown.gameObject.SetActive(false);//turns off text.
+                Atk3imageCooldown.fillAmount = 0.0f;//lowers and keeps the fill amount to 0
+            }
         }
         else//this is called every frame the cooldown isnt done and updates the graphic.
         {
-            Atk3textCooldown.text = Mathf.RoundToInt(Atk3cooldownTimer).ToString(); //this fills in the numver on the cooldown with the rounded up amount of time left.
-            Atk3imageCooldown.fillAmount = Atk3cooldownTimer / Atk3cooldownTime;//this fills the image by dividing the cooldown timer by the cooldown time.
+            if(Atk3textCooldown != null && Atk3imageCooldown != null){ //only modify these if they exist
+                Atk3textCooldown.text = Mathf.RoundToInt(Atk3cooldownTimer).ToString(); //this fills in the numver on the cooldown with the rounded up amount of time left.
+                Atk3imageCooldown.fillAmount = Atk3cooldownTimer / Atk3cooldownTime;//this fills the image by dividing the cooldown timer by the cooldown time.
+            }
         }
     }
 
@@ -190,13 +206,17 @@ public class MoveCooldown : MonoBehaviour
         if (Atk4cooldownTimer < 0.0f)//this is if the timer reaches 0, aka the move finishes cooldown.
         {
             Atk4OnCoolDown = false;//sets it back to false.
-            Atk4textCooldown.gameObject.SetActive(false);//turns off text.
-            Atk4imageCooldown.fillAmount = 0.0f;//lowers and keeps the fill amount to 0
+            if(Atk4textCooldown != null && Atk4imageCooldown != null){ //only modify these if they exist
+                Atk4textCooldown.gameObject.SetActive(false);//turns off text.
+                Atk4imageCooldown.fillAmount = 0.0f;//lowers and keeps the fill amount to 0
+            }
         }
         else//this is called every frame the cooldown isnt done and updates the graphic.
         {
-            Atk4textCooldown.text = Mathf.RoundToInt(Atk4cooldownTimer).ToString(); //this fills in the numver on the cooldown with the rounded up amount of time left.
-            Atk4imageCooldown.fillAmount = Atk4cooldownTimer / Atk4cooldownTime;//this fills the image by dividing the cooldown timer by the cooldown time.
+            if(Atk4textCooldown != null && Atk4imageCooldown != null){ //only modify these if they exist
+                Atk4textCooldown.text = Mathf.RoundToInt(Atk4cooldownTimer).ToString(); //this fills in the numver on the cooldown with the rounded up amount of time left.
+                Atk4imageCooldown.fillAmount = Atk4cooldownTimer / Atk4cooldownTime;//this fills the image by dividing the cooldown timer by the cooldown time.
+            }
         }
     }
     #endregion
@@ -209,10 +229,12 @@ public class MoveCooldown : MonoBehaviour
             //return false;
             //put in error noise 
         }
-        else if(Atk1OnCoolDown == false)
+        else
         {
             Atk1OnCoolDown = true;//this means the move is now on cool down
-            Atk1textCooldown.gameObject.SetActive(true);//this turns on the text
+            if(Atk1textCooldown != null){ //only turn on text if it exists
+                Atk1textCooldown.gameObject.SetActive(true);//this turns on the text
+            }
             Atk1cooldownTimer = Atk1cooldownTime;//this fills in the timer with the eloted cooldown amount
             //return true;
         }
@@ -222,16 +244,18 @@ public class MoveCooldown : MonoBehaviour
     {
         if (Atk2OnCoolDown)//if this command is called again while cooldown is active, returns nothing and or can be programmed to make a fail noise. this may be able to be left empty as player inputs will check the bool before being sent .
         {
-            Debug.Log("cant do attack 2 already on cooldown");
+            Debug.Log("FLAg");
             //return false;
             //put in error noise 
         }
-        else if (Atk2OnCoolDown == false)
+        else
         {
 
-            Debug.Log("Attack 2 On cooldown");
+
             Atk2OnCoolDown = true;//this means the move is now on cool down
-            Atk2textCooldown.gameObject.SetActive(true);//this turns on the text
+            if(Atk2textCooldown != null){ //only turn on text if it exists
+                Atk2textCooldown.gameObject.SetActive(true);//this turns on the text
+            }
             Atk2cooldownTimer = Atk2cooldownTime;//this fills in the timer with the eloted cooldown amount
             //return true;
         }
@@ -247,7 +271,9 @@ public class MoveCooldown : MonoBehaviour
         else
         {
             Atk3OnCoolDown = true;//this means the move is now on cool down
-            Atk3textCooldown.gameObject.SetActive(true);//this turns on the text
+            if(Atk3textCooldown != null){ //only turn on text if it exists
+                Atk3textCooldown.gameObject.SetActive(true);//this turns on the text
+            }
             Atk3cooldownTimer = Atk3cooldownTime;//this fills in the timer with the eloted cooldown amount
             //return true;
         }
@@ -263,7 +289,9 @@ public class MoveCooldown : MonoBehaviour
         else
         {
             Atk4OnCoolDown = true;//this means the move is now on cool down
-            Atk4textCooldown.gameObject.SetActive(true);//this turns on the text
+            if(Atk4textCooldown != null){ //only turn on text if it exists
+                Atk4textCooldown.gameObject.SetActive(true);//this turns on the text
+            }
             Atk4cooldownTimer = Atk4cooldownTime;//this fills in the timer with the eloted cooldown amount
             //return true;
         }

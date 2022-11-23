@@ -8,6 +8,7 @@ public class InputHandler : MonoBehaviour//attaches to game object and handles i
 
     public float InputMoveDirection;
     //public bool IsDownPressed;
+    public bool isJumping;
 
     #region inputholdtime
     [SerializeField]//serialized fields allow the variables to be private but be seen and editied in the editor
@@ -50,7 +51,7 @@ public class InputHandler : MonoBehaviour//attaches to game object and handles i
         //    MovementInputStartTime = Time.time;//not used?
         //}
 
-        ////jump
+        //jump
         //if (Input.GetKeyDown(KeyCode.W))//holding up lets you go farther for a certain amount of time
         //{
 

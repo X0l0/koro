@@ -110,6 +110,8 @@ public class MatchManager : MonoBehaviour
     public void MatchSet(bool result)//called by switch kuro scripts to tell when the match is ended, add way to stop both switch kuros sending in signals?
     {
         //stop input and play animation?
+        Time.timeScale = 0.5f; //Slow down time
+        GameObject.Find("MusicBattlePlayer").GetComponent<MusicBattlePlayer>().PlayVictoryJingle(); //Play victory music
         p1win = result;
         if(p1win == true)//this means player 1 wins
         {
@@ -127,6 +129,7 @@ public class MatchManager : MonoBehaviour
     public void ExitCombat(bool p1win)//this would be called after the winnier is decided and intiate going back to the overworld.
     {
         winnerText.text = "";
+        Time.timeScale = 1.0f; //Return time to normal
 
         //upon displaying who won, bring all rigs offline
         SwitchKuro1.instance.BringKuroOffline();
@@ -150,5 +153,24 @@ public class MatchManager : MonoBehaviour
         //unload combat scene, this is done last to make sure all rigs are removed before it is unloaded. may need a way to better communicate when rigs are clear
         CombatSystem.SetActive(false);
 
+    }
+
+    private bool waiting = false;
+
+    public void Stop(float duration)
+    {
+        if(!waiting)
+        {
+            Time.timeScale = 0.1f;
+            StartCoroutine(Wait(duration));
+        }
+    }
+
+    IEnumerator Wait(float duration)
+    {
+        waiting = true;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1.0f;
+        waiting = false;
     }
 }

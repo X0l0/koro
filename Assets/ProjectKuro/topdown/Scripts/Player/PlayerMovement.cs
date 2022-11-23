@@ -52,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
 
     private bool currentlyMoving;
 
+    private KuroParty Party;
+
+    private bool inDownJumpZone;
+    private bool inLeftJumpZone;
+    private bool inRightJumpZone;
+
     void Start()
     {
         //initilizes state
@@ -59,18 +65,17 @@ public class PlayerMovement : MonoBehaviour
         //gets components
         animator = GetComponent<Animator>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
+        Party = GetComponent<KuroParty>();
         //sets animator to look in last known direction
         animator.SetFloat("MoveX", MoveX);
         animator.SetFloat("MoveY", MoveY);
         //sets starting position
         transform.position = startingPosition.initialValue;
         currentlyMoving = false;
+        inDownJumpZone = false;
+        inLeftJumpZone = false;
+        inRightJumpZone = false;
     }
-
-    //public void update()
-    //{
-
-    //}
 
     void Update()//called every frame
     {
@@ -96,22 +101,13 @@ public class PlayerMovement : MonoBehaviour
                     PauseOpen = true;
                     //Stop player moving animations
                     animator.SetBool("Moving", false);
+
+                    Party.ShowParty();
                 }
             }
         }
         else if(Input.GetKeyDown(KeyCode.E) && PauseOpen == true){
-            //resume time
-            Time.timeScale = 1;
-            //close pause
-            PauseUI.SetActive(false);
-            //if the inventory is active, make it inactive
-            if(PauseUI.gameObject.transform.parent.transform.GetChild(0).gameObject != null){
-                PauseUI.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(false);
-            }
-            //set bool to false
-            PauseOpen = false;
-            //turn on movement
-            ControlOn(true);
+            UnPause();
         }
         else{
             animator.SetBool("Moving", false);
@@ -140,7 +136,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if(currentlyMoving){
+        if(inDownJumpZone && animator.GetFloat("MoveY") == -1){ //Moves the player down if near a ledge and pressing down
+            ControlActive = false;
+            transform.position += -Vector3.up * Time.deltaTime * 2f;
+        }
+        else if(inLeftJumpZone && animator.GetFloat("MoveX") == -1){
+            ControlActive = false;
+            transform.position += -Vector3.right * Time.deltaTime * 2f;
+        }
+        else if(inRightJumpZone && animator.GetFloat("MoveX") == 1){
+            ControlActive = false;
+            transform.position += Vector3.right * Time.deltaTime * 2f;
+        }
+        else if(currentlyMoving){
             MoveCharacter();
         }
     }
@@ -148,10 +156,19 @@ public class PlayerMovement : MonoBehaviour
     void MoveCharacter()
     {
         change.Normalize();//normalizes input values for consistency
-        //change is added to the current position, it is multiplied by the walkspeed, and by every tick that passes.
-        myRigidbody2D.MovePosition(
-            transform.position + change * speed * Time.deltaTime
-            );
+        float sprintSpeed = speed * 2; //Temporary sprint speed in case the player is sprinting.
+        if(Input.GetKey(KeyCode.LeftShift)){
+            //change is added to the current position, it is multiplied by the runspeed, and by every tick that passes.
+            myRigidbody2D.MovePosition(
+                transform.position + change * sprintSpeed * Time.deltaTime
+                );
+        }
+        else{
+            //change is added to the current position, it is multiplied by the walkspeed, and by every tick that passes.
+            myRigidbody2D.MovePosition(
+                transform.position + change * speed * Time.deltaTime
+                );
+        }
     }
 
 
@@ -164,5 +181,66 @@ public class PlayerMovement : MonoBehaviour
     public void SetXY(float x, float y){
         MoveX = x;
         MoveY = y;
+    }
+
+    public void UnPause(){
+        //resume time
+        Time.timeScale = 1;
+        //close pause
+        PauseUI.SetActive(false);
+        //if the inventory is active, make it inactive
+        for(int i = 0; i < PauseUI.gameObject.transform.parent.transform.childCount; i++){
+            if(PauseUI.gameObject.transform.parent.transform.GetChild(i).gameObject != null){
+                PauseUI.gameObject.transform.parent.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+        //set bool to false
+        PauseOpen = false;
+        //turn on movement
+        ControlOn(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.name == "JumpDownCollision")
+        {
+            inDownJumpZone = true;
+        }
+        else if(other.gameObject.name == "JumpLeftCollision"){
+            inLeftJumpZone = true;
+        }
+        else if(other.gameObject.name == "JumpRightCollision"){
+            inRightJumpZone = true;
+        }
+        else if(other.gameObject.name == "EndCollision"){
+            if(inDownJumpZone || inLeftJumpZone || inRightJumpZone){
+                inDownJumpZone = false;
+                inLeftJumpZone = false;
+                inRightJumpZone = false;
+                ControlActive = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other){
+        if(other.gameObject.name == "JumpDownCollision" && ControlActive)
+        {
+            inDownJumpZone = false;
+        }
+        else if(other.gameObject.name == "JumpLeftCollision" && ControlActive){
+            inLeftJumpZone = true;
+        }
+        else if(other.gameObject.name == "JumpRightCollision" && ControlActive){
+            inRightJumpZone = true;
+        }
+        else if(other.gameObject.name == "NoJumpCollision"){
+            other.isTrigger = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.name == "NoJumpCollision" && !ControlActive){
+            other.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        }
     }
 }
