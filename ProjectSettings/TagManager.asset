@@ -52,6 +52,9 @@ TagManager:
   - name: player
     uniqueID: 529662011
     locked: 0
+  - name: Grass
+    uniqueID: 3179197933
+    locked: 0
   - name: front
     uniqueID: 1765670345
     locked: 0

@@ -110,7 +110,8 @@ public class MatchManager : MonoBehaviour
     public void MatchSet(bool result)//called by switch kuro scripts to tell when the match is ended, add way to stop both switch kuros sending in signals?
     {
         //stop input and play animation?
-        Time.timeScale = 0.5f; //Slow down time
+        Time.timeScale = 0.2f; //Slow down time
+
         GameObject.Find("MusicBattlePlayer").GetComponent<MusicBattlePlayer>().PlayVictoryJingle(); //Play victory music
         p1win = result;
         if(p1win == true)//this means player 1 wins
@@ -129,7 +130,7 @@ public class MatchManager : MonoBehaviour
     public void ExitCombat(bool p1win)//this would be called after the winnier is decided and intiate going back to the overworld.
     {
         winnerText.text = "";
-        Time.timeScale = 1.0f; //Return time to normal
+        //Time.timeScale = 1.0f; //Return time to normal
 
         //upon displaying who won, bring all rigs offline
         SwitchKuro1.instance.BringKuroOffline();

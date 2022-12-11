@@ -69,7 +69,7 @@ public class HitBox : MonoBehaviour
 
     public void ActivateHitBox()//called by state scripts and core when fighting
     {
-        //Debug.Log("activating hitbox");
+        Debug.Log("activating hitbox");
         //hitboxactive = true;
         Hitbox.enabled = true;
     }
