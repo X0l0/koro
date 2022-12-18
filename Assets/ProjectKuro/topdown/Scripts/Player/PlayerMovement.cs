@@ -48,12 +48,12 @@ public class PlayerMovement : MonoBehaviour
     bool PauseOpen = false;//a way to manage when pause is active
     public bool ControlActive = true;//this bool controls the player inputs and ability to do things. used in pause and combat and controlled by combat scripts
     private bool currentlyMoving;
+    private bool TeamDead;
 
     //animator communication
     public float MoveX;//responsible for managing input to animators
     public float MoveY;
 
-    
     //ledges !
     private bool inDownJumpZone;
     private bool inLeftJumpZone;

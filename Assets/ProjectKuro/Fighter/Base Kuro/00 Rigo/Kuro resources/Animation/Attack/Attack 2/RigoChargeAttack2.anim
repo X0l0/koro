@@ -92,13 +92,6 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.11666667
-    functionName: PlaySound
-    data: LazerCast
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.11666667
     functionName: AnimationFinishTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -26,7 +26,7 @@ public class KuroParty : MonoBehaviour
 
 
     //this script is in charge of holding the players kuro party, showing there data, and sending them to and from combat.
-  
+
     [SerializeField] List<GameObject> CurrentParty;//party sytem, replace with transforms?
 
 
@@ -38,6 +38,8 @@ public class KuroParty : MonoBehaviour
 
     public BattleStarter Currentenemy;
 
+    public bool TeamFainted = false;
+    public int faintCount = 0;
 
     //add function to switch order of kuro in current party
     public void AddKuro(GameObject NewKuro)//this is the new add koro to party function.
@@ -52,46 +54,43 @@ public class KuroParty : MonoBehaviour
 
     }
 
-    //public void AddKuroObject(Transform newKuro)//function used in adding kuro, edited later?
-    //{
-    //    Kuro = newKuro;
-
-    //    KuroRig = Kuro.gameObject;//this loads a local rig slot with the rig connected to the trasnform.
-    //    KuroConnector = KuroRig.GetComponent<MatchConnecter>();//this loads a connector slot with the connector attached to the rig
-    //    KuroConnector.P1 = true;//TEMPORARY THING, MEANS THAT ONLY THE PLAYER KURO LOADS INTO THE UI
-    //}
 
     public void ShowParty()// This function is activated by opening the inventory. 
     {
+        //CheckIfTeamFainted();
 
         //this code cycles through the current party displaying their information in the party menu
         for (int i = 0; i < CurrentParty.Count; i++)
         {
             KuroCardHolder = CurrentParty[i].GetComponent<CardHolder>();//this fills a local cardholder variable with the one from the selected rig
 
-            if(KuroCardHolder.KuroData.NickName != "unnamed"){
+            if (KuroCardHolder.KuroData.NickName != "unnamed")
+            {
                 KuroSlot[i].transform.GetChild(0).GetComponent<Text>().text = KuroCardHolder.KuroData.NickName;
             }
-            else{
+            else
+            {
                 KuroSlot[i].transform.GetChild(0).GetComponent<Text>().text = KuroCardHolder.KuroData.SpeciesName;
             }
-            
+
             KuroSlot[i].transform.GetChild(1).GetComponent<Text>().text = KuroCardHolder.KuroData.LVL.ToString();
 
             KuroSlot[i].transform.GetChild(2).GetComponent<Text>().text = KuroCardHolder.KuroData.CurrHP.ToString() + "/" + KuroCardHolder.KuroData.MaxHP.ToString();
         }
     }
-        //remove kuro
+    //remove kuro
 
     public void BeChallenged(BattleStarter CurrentEnemy)//called by wild kuro and trainers thorugh battlestarter.
     {
-        Currentenemy = CurrentEnemy;
+        
+             Currentenemy = CurrentEnemy;
+            //turn off overworld input 1
+            PlayerMovement.instance.ControlOn(false);
 
-        //turn off overworld input 1
-        PlayerMovement.instance.ControlOn(false);
+            //call entercombat function in game manager
+            OWMatchManager.instance.EnterCombat(Currentenemy);//this tells the overworld match manager to turn off overworld things and turn on combat scene things.
 
-        //call entercombat function in game manager
-        OWMatchManager.instance.EnterCombat(Currentenemy);//this tells the overworld match manager to turn off overworld things and turn on combat scene things.
+        
 
     }
 
@@ -120,4 +119,35 @@ public class KuroParty : MonoBehaviour
         SwitchKuro1.instance.AllKuroSent();//tells switch kuro that all kuros have been sent and the next steps can begin.
     }
 
+    //public void CheckIfTeamFainted()
+    //{
+    //    for (int i = 0; i < CurrentParty.Count; i++)
+    //    {
+    //        KuroCardHolder = CurrentParty[i].GetComponent<CardHolder>();
+    //        if(KuroCardHolder.Fainted == true)
+    //        {
+    //            faintCount++;
+    //        }
+    //        else if(KuroCardHolder.Fainted == false)
+    //        {
+
+    //        }
+    //        else
+    //        {
+    //            return;
+    //        }
+    //    }
+
+    //    if(CurrentParty.Count == faintCount)
+    //    {
+    //        TeamFainted = true;
+    //        faintCount = 0;
+    //    }
+    //    else if(CurrentParty.Count != faintCount)
+    //    {
+    //        TeamFainted = false;
+    //        faintCount = 0;
+    //    }
+
+    //}
 }

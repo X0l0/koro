@@ -38,14 +38,7 @@ public class InputHandler2 : InputHandler//attaches to game object and handles i
             //player.Jump();
             KuroCore.Jump();
             JumpInputStartTime = Time.time;
-            isJumping = true;
-        }
-        else if(Input.GetKeyUp(KeyCode.UpArrow) || KuroCore.gameObject.transform.position.y >= KuroCore.MaxJumpHeight){
-            isJumping = false; //Make the player fall if the jump key is released or the max height is reached
-        }
-        else if (Input.GetKey(KeyCode.UpArrow) && isJumping)
-        {
-            KuroCore.r2d.velocity = new Vector2(KuroCore.r2d.velocity.x, KuroCore.JumpHeight * 0.75f);//apply jump force
+           
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
@@ -65,7 +58,7 @@ public class InputHandler2 : InputHandler//attaches to game object and handles i
             KuroCore.Attack1();
 
             AttackInputStartTime = Time.time;
-            isJumping = false;
+       
         }
 
         // Attack 2
@@ -75,7 +68,7 @@ public class InputHandler2 : InputHandler//attaches to game object and handles i
             KuroCore.Attack2();
 
             AttackInputStartTime = Time.time;
-            isJumping = false;
+
         }
 
         // Attack 3
@@ -83,7 +76,7 @@ public class InputHandler2 : InputHandler//attaches to game object and handles i
         {
             //player.Attack3();
             AttackInputStartTime = Time.time;
-            isJumping = false;
+     
         }
 
         // Attack 4
@@ -91,7 +84,7 @@ public class InputHandler2 : InputHandler//attaches to game object and handles i
         {
             //player.Attack4();
             AttackInputStartTime = Time.time;
-            isJumping = false;
+     
         }
 
 

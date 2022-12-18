@@ -13,6 +13,8 @@ public class Attack1AerState : AbilityState
         base.Enter();
         Core.DoATK1 = false;//relates to the individual vs base core system as a confirm for the base core signal sytem.
         Core.MoveCoolDown.StartAtk1Cooldown();//starts cooldown only when actually entering the state.
+
+        InAirAtk = true;
         //change gravity or velocity to stay in air until attack is finished?
     }
 

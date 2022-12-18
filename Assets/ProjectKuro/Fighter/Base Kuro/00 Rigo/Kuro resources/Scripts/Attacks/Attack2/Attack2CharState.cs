@@ -20,19 +20,20 @@ public class Attack2CharState : AbilityState
     {
         base.LogicUpdate();
 
-        if (isAnimationFinished)
+        if (isAnimationFinished == true)
         {
 
             if (Core.isDownPressed == true)//if down is pressed
             {
                 stateMachine.ChangeState(IndivCore.Attack2AngState);
-                
+                isAnimationFinished = false;
+
             }
             else if (Core.isDownPressed == false)//if down is not pressed
             {
                 stateMachine.ChangeState(IndivCore.Attack2NState);
 
-
+                isAnimationFinished = false;
             }
 
 
