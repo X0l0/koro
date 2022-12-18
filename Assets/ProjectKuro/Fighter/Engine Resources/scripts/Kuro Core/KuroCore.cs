@@ -58,6 +58,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     public LayerMask GroundLayer;
     public int MaxSpeed;//70
     public int JumpHeight;//140
+
     #endregion
 
     #region Inputs

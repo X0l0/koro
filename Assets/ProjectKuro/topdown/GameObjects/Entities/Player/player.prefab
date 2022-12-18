@@ -185,9 +185,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952ed71a2a304e044a2970de1c6c67cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KuroSlot:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   CurrentParty: []
-  Koro: {fileID: 0}
-  KoroRig: {fileID: 0}
-  KoroCardHolder: {fileID: 0}
-  KoroConnector: {fileID: 0}
+  Kuro: {fileID: 0}
+  KuroRig: {fileID: 0}
+  KuroCardHolder: {fileID: 0}
+  KuroConnector: {fileID: 0}
   Currentenemy: {fileID: 0}

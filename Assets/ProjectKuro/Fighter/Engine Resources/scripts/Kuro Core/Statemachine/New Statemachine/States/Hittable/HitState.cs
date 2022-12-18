@@ -12,7 +12,7 @@ public class HitState : State
     public override void Enter()
     {
         base.Enter();
-        
+        GameObject.Find("Combat GameManager").GetComponent<MatchManager>().Stop(0.1f);
         //damage function is in player and is directly called by enemy hitbox, move here?
     }
 

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//this is the overworld player object, responsible for the overworld players inputs and capabilities.
-public enum PlayerState1//basic enum to manage what the player is doing
+//Hello! this script is responsible for controlling the overworld player character. Specifically it handles overworld inputs directly to move around, manages inputs with a enum state machine, communicates with animators depending on state
+//controls some ledge programming, as well as activating and de activating pause. 
+public enum PlayerState//basic enum to manage what the player is doing, an enum can hold some pre determined and different "modes" that can be changed and seen around the script.
 {
-    walk,
-    interact
-    //battle?
+    walk,//basic movement
+    run,//faster movement NEW
+    interact,//with people or items
+    pause,//NEW
     //ride?
 }
 
@@ -30,34 +32,37 @@ public class PlayerMovement : MonoBehaviour
         instance = this;
     }
     #endregion
-
-
-    public bool ControlActive = true;//connects to battle code to turn off and on overworld control.
-
-    [SerializeField]
-    public GameObject PauseUI;
-    bool PauseOpen = false;
-
-
-    public PlayerState1 currentstate;//current state of the enum
-    public float speed;//walkspeed
-    private Rigidbody2D myRigidbody2D;//rigidbody of the player
-    private Vector3 change;//vector 3 responsible for taking in movement input
+    //components
     private Animator animator;//player animator
+    private Rigidbody2D myRigidbody2D;//rigidbody of the player
+    private KuroParty Party;
+    public GameObject PauseUI;// connects UI elements for inventory
+
+    //movement
+    private Vector3 change;//vector 3 responsible for taking in movement input
+    public float speed;//walkspeed
     public VectorValue startingPosition;//used in scene changes
 
-    [SerializeField]
-    public float MoveX;
+    //state control
+    public PlayerState currentstate;//current state of the enum
+    bool PauseOpen = false;//a way to manage when pause is active
+    public bool ControlActive = true;//this bool controls the player inputs and ability to do things. used in pause and combat and controlled by combat scripts
+    private bool currentlyMoving;
+    private bool TeamDead;
+
+    //animator communication
+    public float MoveX;//responsible for managing input to animators
     public float MoveY;
 
-    private bool currentlyMoving;
-
-    private KuroParty Party;
+    //ledges !
+    private bool inDownJumpZone;
+    private bool inLeftJumpZone;
+    private bool inRightJumpZone;
 
     void Start()
     {
         //initilizes state
-        currentstate = PlayerState1.walk;
+        currentstate = PlayerState.walk;
         //gets components
         animator = GetComponent<Animator>();
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -68,27 +73,43 @@ public class PlayerMovement : MonoBehaviour
         //sets starting position
         transform.position = startingPosition.initialValue;
         currentlyMoving = false;
+
+        inDownJumpZone = false;
+        inLeftJumpZone = false;
+        inRightJumpZone = false;
     }
 
-    //public void update()
-    //{
-
-    //}
-
-    void Update()//called every frame
+    void Update()
     {
         change = Vector3.zero;//sets the change vectors to 0 to indicate no movement
+        currentstate = PlayerState.walk;
 
         if (ControlActive == true)//if control is on
         {
+            //gets movement input and applies it to force and animation
             change.x = Input.GetAxisRaw("Horizontal");//sets x values to horizontal inputs
             change.y = Input.GetAxisRaw("Vertical");//see above
-            UpdateAnimationAndMove();
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                currentstate = PlayerState.run;
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                currentstate = PlayerState.walk;
+            }
+
+                UpdateAnimationAndMove();
             //Debug.Log(change);
+
+
             if (Input.GetKeyDown(KeyCode.E))//E is the pause buttom
             {
-                if(PauseOpen == false)//when pressed it will check if the pause is open, false means its not
+               
+                //activate pause state
+                if (PauseOpen == false)//when pressed it will check if the pause is open, false means its not
                 {
+                    currentstate = PlayerState.pause;
                     //stop time
                     Time.timeScale = 0;
                     //turn off movement
@@ -106,8 +127,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.E) && PauseOpen == true){
             UnPause();
+            currentstate = PlayerState.walk;
         }
-        else{
+        else//if the player is not active but also not in pause it will stay still, important for starting
+        {
             animator.SetBool("Moving", false);
             animator.SetFloat("MoveX", MoveX);
             animator.SetFloat("MoveY", MoveY);
@@ -118,23 +141,50 @@ public class PlayerMovement : MonoBehaviour
     {
         if (change != Vector3.zero)//if change is not 0, aka there is input
         {
-            currentlyMoving = true;
-            //setting animator angles and whether or not there is movement
-            MoveX = change.x;
+            currentlyMoving = true;//makes it clear it is moving
+
+            MoveX = change.x;//fills animation variables with input
             MoveY = change.y;
-            animator.SetBool("Moving", true);
+
+            animator.SetBool("Moving", true);//sets animator bool for movement
+
+            if (currentstate == PlayerState.run)//these ifs manage switching between the run and walk animation states while moving
+            {
+                animator.SetBool("Running", true);
+
+            }
+            else if (currentstate == PlayerState.walk)
+            {
+                animator.SetBool("Running", false);
+            }
+
         }
-        else
+        else//if change is 0 aka no input
         {
             currentlyMoving = false;
             animator.SetBool("Moving", false);
+            animator.SetBool("Running", false);
         }
+
+
         animator.SetFloat("MoveX", MoveX);
-        animator.SetFloat("MoveY", MoveY);
+        animator.SetFloat("MoveY", MoveY);//applies animation at the end after it has been determined
     }
 
     void FixedUpdate(){
-        if(currentlyMoving){
+        if(inDownJumpZone && animator.GetFloat("MoveY") == -1){ //Moves the player down if near a ledge and pressing down
+            ControlActive = false;
+            transform.position += -Vector3.up * Time.deltaTime * 2f;
+        }
+        else if(inLeftJumpZone && animator.GetFloat("MoveX") == -1){
+            ControlActive = false;
+            transform.position += -Vector3.right * Time.deltaTime * 2f;
+        }
+        else if(inRightJumpZone && animator.GetFloat("MoveX") == 1){
+            ControlActive = false;
+            transform.position += Vector3.right * Time.deltaTime * 2f;
+        }
+        else if(currentlyMoving){
             MoveCharacter();
         }
     }
@@ -143,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
     {
         change.Normalize();//normalizes input values for consistency
         float sprintSpeed = speed * 2; //Temporary sprint speed in case the player is sprinting.
-        if(Input.GetKey(KeyCode.LeftShift)){
+        if(currentstate == PlayerState.run){
             //change is added to the current position, it is multiplied by the runspeed, and by every tick that passes.
             myRigidbody2D.MovePosition(
                 transform.position + change * sprintSpeed * Time.deltaTime
@@ -184,5 +234,49 @@ public class PlayerMovement : MonoBehaviour
         PauseOpen = false;
         //turn on movement
         ControlOn(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)//ledge jumping
+    {
+        if(other.gameObject.name == "JumpDownCollision")
+        {
+            inDownJumpZone = true;
+        }
+        else if(other.gameObject.name == "JumpLeftCollision"){
+            inLeftJumpZone = true;
+        }
+        else if(other.gameObject.name == "JumpRightCollision"){
+            inRightJumpZone = true;
+        }
+        else if(other.gameObject.name == "EndCollision"){
+            if(inDownJumpZone || inLeftJumpZone || inRightJumpZone){
+                inDownJumpZone = false;
+                inLeftJumpZone = false;
+                inRightJumpZone = false;
+                ControlActive = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other){
+        if(other.gameObject.name == "JumpDownCollision" && ControlActive)
+        {
+            inDownJumpZone = false;
+        }
+        else if(other.gameObject.name == "JumpLeftCollision" && ControlActive){
+            inLeftJumpZone = true;
+        }
+        else if(other.gameObject.name == "JumpRightCollision" && ControlActive){
+            inRightJumpZone = true;
+        }
+        else if(other.gameObject.name == "NoJumpCollision"){
+            other.isTrigger = false;
+        }
+    }//ledge jumping
+
+    private void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.name == "NoJumpCollision" && !ControlActive){
+            other.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+        }
     }
 }

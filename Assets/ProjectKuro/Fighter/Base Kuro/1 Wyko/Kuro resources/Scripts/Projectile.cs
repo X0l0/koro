@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float Lifespan;
     [SerializeField] private KuroCore User;
     [SerializeField] private int MovePower;
+    [SerializeField] public Transform FirePoint;
 
     public int upwardfactor;
     private SoundManager soundManager;
@@ -113,10 +114,10 @@ public class Projectile : MonoBehaviour
             //Debug.Log("projectile set active");
             //ProjTransform.parent = null;
 
-            ProjRB.velocity = Vector2.zero;
-            ProjCollider.enabled = true;
-            ProjSprite.enabled = true;
-            ProjRB.simulated = true;
+            ProjRB.velocity = Vector2.zero;//resets velocity
+            ProjCollider.enabled = true;//activates hitbox
+            ProjSprite.enabled = true;//activates sprite
+            ProjRB.simulated = true;//activates physics
 
             ActiveLifespan = Lifespan;
             IsActive = true;
@@ -130,16 +131,16 @@ public class Projectile : MonoBehaviour
     private void BecomeInactive()
     {
         //Debug.Log("projectile set to inactive");
-        IsActive = false;
-        ActiveLifespan = Lifespan;
 
         ProjCollider.enabled = false;
         ProjSprite.enabled =false;
         ProjRB.simulated = false;
         ProjRB.velocity = Vector2.zero;
+        ActiveLifespan = 0;
         //ProjTransform.parent = User.gameObject.transform;
-        ProjTransform = User.gameObject.transform;
-
+        ProjTransform = FirePoint;
+        IsActive = false;
+        Debug.Log("projectile becoming inactive");
         //move to specific spot?
     }
 

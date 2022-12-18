@@ -8,6 +8,7 @@ public class InputHandler : MonoBehaviour//attaches to game object and handles i
 
     public float InputMoveDirection;
     //public bool IsDownPressed;
+   
 
     #region inputholdtime
     [SerializeField]//serialized fields allow the variables to be private but be seen and editied in the editor

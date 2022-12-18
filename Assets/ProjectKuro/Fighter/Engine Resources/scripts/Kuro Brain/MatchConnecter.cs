@@ -92,7 +92,9 @@ public class MatchConnecter : MonoBehaviour
 
 	public void KuroDead()
     {
+		
 		SwitchKuro.KuroLost();
+
     }
 
 	public void BringOffline()
@@ -130,8 +132,15 @@ public class MatchConnecter : MonoBehaviour
 		SwitchKuro = null;
 		PlayerBrain = null;
 
+		if(P1 == true)
+        {
 		//Reposition Rig
 		KuroRigTransform.transform.position = KuroParty.instance.transform.position;
+        }
+		else if(P1 == false)
+        {
+			Destroy(this.gameObject);
+        }
 
 		//this next step would require the switch kuro script to be able to deterime a loss and send signals to the game manager and the kuros to switch back.
 	}

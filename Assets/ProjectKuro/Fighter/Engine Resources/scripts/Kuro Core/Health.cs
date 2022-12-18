@@ -59,7 +59,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int Attack, int MovePower, int Level)//called by enemy attack hitbox to initiate all the things that need to happen when getting hit. starts off with a hitstop and calculations. then send behit signal and lastly applies damage and effectts
     {
-        FindObjectOfType<HitStop>().Stop(0.01f);//send hitstop signal to gamemanager or stop it here
+        //FindObjectOfType<HitStop>().Stop(0.01f);//send hitstop signal to gamemanager or stop it here
 
         //type effectiveness calculation
 

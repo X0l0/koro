@@ -16,21 +16,28 @@ public class InputHandler1 : InputHandler
         // Movement controls
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            InputMoveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;//glitch where left input can override right input, but not vice versa
-
-            //InputMoveDirection = Input.GetAxisRaw("Horizontal");
+            if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)){
+                InputMoveDirection = 0; //If holding both move keys, don't move
+            }
+            else if(Input.GetKey(KeyCode.A)){
+                InputMoveDirection = -1; //If holding left move key, move left
+            }
+            else{
+                InputMoveDirection = 1; //If holding right move key, move right
+            }
 
             KuroCore.SetMoveDirection(InputMoveDirection);
             MovementInputStartTime = Time.time;
         }
 
         //jump
-        if (Input.GetKeyDown(KeyCode.W))//holding up lets you go farther for a certain amount of time
+        if (Input.GetKey(KeyCode.W) && KuroCore.isGrounded)//holding up lets you go farther for a certain amount of time
         {
 
             //player.Jump();
             KuroCore.Jump();
             JumpInputStartTime = Time.time;
+           
         }
 
         if (Input.GetKey(KeyCode.S))
@@ -44,36 +51,40 @@ public class InputHandler1 : InputHandler
         }
 
         // Attack
-        if (Input.GetKeyDown(KeyCode.U))//instead of having multiple if bools, maybe just one variable that changes depending on the input?
+        if (Input.GetKeyDown(KeyCode.U) && !KuroCore.AttackInput)//instead of having multiple if bools, maybe just one variable that changes depending on the input?
         {
             //player.Attack1();
             KuroCore.Attack1();
 
             AttackInputStartTime = Time.time;
+         
         }
 
         // Attack 2
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && !KuroCore.Attack2Input)
         {
             //Debug.Log("atk 2 keycode pressed down");
             //player.Attack2();
             KuroCore.Attack2();//activates function in controlled kuro core that the input was pressed
 
             AttackInputStartTime = Time.time;
+     
         }
 
         // Attack 3
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O) && !KuroCore.Attack3Input)
         {
             //player.Attack3();
             AttackInputStartTime = Time.time;
+         
         }
 
         // Attack 4
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && !KuroCore.Attack4Input)
         {
             //player.Attack4();
             AttackInputStartTime = Time.time;
+        
         }
 
 
