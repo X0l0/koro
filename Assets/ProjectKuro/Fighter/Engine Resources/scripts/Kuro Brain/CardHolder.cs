@@ -12,9 +12,14 @@ public class CardHolder : MonoBehaviour
     [SerializeField]
     public MatchConnecter MatchConnecter;
 
+    //public bool Fainted = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        
+
+
         //KuroData = new DataCard(SpeciesCard);//this fills the Data card variable with a new data card and whatever species card is plugged in
         //MatchConnecter.ConnectToPlayerBrain();//USUALLY CALLED BY KURO PARTY, SET THIS WAY FOR COMBAT TESTING.
         //Debug.Log("connecting to player brain");
@@ -27,7 +32,14 @@ public class CardHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //if(KuroData.CurrHP <= 0)
+        //{
+        //    Fainted = true;
+        //}
+        //else if(KuroData.CurrHP > 0)
+        //{
+        //    Fainted = false;
+        //}
     }
 
 

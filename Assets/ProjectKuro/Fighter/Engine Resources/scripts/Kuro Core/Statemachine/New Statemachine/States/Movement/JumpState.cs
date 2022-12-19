@@ -12,6 +12,7 @@ public class JumpState : State
     {
         base.Enter();
         Core.soundManager.PlaySound("Bounce");//plays hit sound if contact is made PUT BACK IN
+       
     }
 
     public override void LogicUpdate()
@@ -24,8 +25,21 @@ public class JumpState : State
             Core.r2d.AddForce(jumpvelocity, ForceMode2D.Impulse);
             stateMachine.ChangeState(Core.InAirState);
             //IsAbilityDone = true;//ability is done, letting the super state handle the logic, change to air state automtacially?
-        }
 
+
+            // public bool isJumping;
+            //    isJumping = true;
+            //}
+            //else if (Input.GetKeyUp(KeyCode.W) || KuroCore.gameObject.transform.position.y >= KuroCore.MaxJumpHeight)
+            //{
+            //    isJumping = false; //Make the player fall if the jump key is released or the max height is reached
+            //}
+            //else if (Input.GetKey(KeyCode.W) && isJumping)
+            //{
+            //    KuroCore.r2d.velocity = new Vector2(KuroCore.r2d.velocity.x, KuroCore.JumpHeight * 0.9f);//apply jump force
+            //}
+
+        }
     }
 
     public override void PhysicsUpdate()

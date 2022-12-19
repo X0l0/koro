@@ -8,6 +8,7 @@ public class AbilityState : State
     //protected bool facingright;
     protected bool IsAbilityDone;
     public bool isGrounded; //may need to be protected if ability states need to check if there grounded.
+    public bool InAirAtk;
     public AbilityState(RigoCore core, StateMachine stateMachine, string animBoolName) : base(core, stateMachine, animBoolName)
     {
         IndivCore = core;//this variables is filled with the individual core upon being created.
@@ -29,14 +30,22 @@ public class AbilityState : State
 
         isGrounded = Core.isGrounded;
 
+        if (InAirAtk == true && isGrounded)
+        {
+            stateMachine.ChangeState(Core.LandState);
+            InAirAtk = false;
+        } 
+
         if (IsAbilityDone)
         {
             if (isGrounded && Core.r2d.velocity.y < 0.1f)
             {
+                InAirAtk = false;
                 stateMachine.ChangeState(Core.IdleState);
             }
             else
             {
+                InAirAtk = false;
                 stateMachine.ChangeState(Core.InAirState);//this may need to be moved and focused on the direct aerial superstate
             }
         }

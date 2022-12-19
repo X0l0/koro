@@ -7,7 +7,6 @@ public class BattleStarter : MonoBehaviour//this script would be put on wild kur
 {
 
     public Transform Kuro;//temporary transform variable to hold kuro
-
     public GameObject KuroRig;//temporary variable that holds rig 
     public CardHolder KuroCardHolder;//temporary variable that holds card holder
     public MatchConnecter KuroConnector;//temporary variable that holds connector
@@ -46,7 +45,9 @@ public class BattleStarter : MonoBehaviour//this script would be put on wild kur
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") && !isDefeated && other.transform.childCount > 0){
+   
+
+        if(other.CompareTag("Player") && !isDefeated && other.transform.childCount > 0 ){
             challenger = other;
             this.gameObject.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
             if(this.gameObject.tag == "WildKuro"){
@@ -66,6 +67,8 @@ public class BattleStarter : MonoBehaviour//this script would be put on wild kur
     }
 
     public void Challenge(){
+
+       
         challenger.GetComponent<KuroParty>().BeChallenged(this);
     }
 

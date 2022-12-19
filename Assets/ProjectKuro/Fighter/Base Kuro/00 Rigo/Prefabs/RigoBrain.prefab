@@ -135,10 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5b790616a84c344bacd69b2fec7519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 5000
+  thrust: 3000
   Lifespan: 8.87
   User: {fileID: 5768847037124079947}
   MovePower: 10
+  FirePoint: {fileID: 5768847036841995293}
   upwardfactor: -3
 --- !u!50 &8104207721423005191
 Rigidbody2D:
@@ -247,8 +248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CardHolder: {fileID: 5768847037850226329}
-  MovePower: 20
-  thrust: 4000
+  MovePower: 40
+  thrust: 3500
   upwardfactor: -5
   HitEffect: {fileID: 7598432013544248615}
 --- !u!1 &5768847036467439258
@@ -642,9 +643,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 65
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 35
+  m_LinearDrag: 1
+  m_AngularDrag: 1
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 78d0cc7cb9e845240a75c9545e73d9c5, type: 2}
   m_Interpolate: 0
@@ -710,8 +711,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   MaxSpeed: 75
-  JumpHeight: 100
-  MaxJumpHeight: 385
+  JumpHeight: 85
   DoATK1: 0
   DoATK2: 0
   Mouth: {fileID: 5768847036841995293}

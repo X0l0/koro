@@ -296,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7042123329793762198}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 177.882, y: 75.53001, z: 58.570526}
+  m_LocalPosition: {x: 2.9, y: -0, z: 58.570526}
   m_LocalScale: {x: 3.97, y: 2.3, z: 1}
   m_Children: []
   m_Father: {fileID: 8096362632489197922}
@@ -406,8 +406,6 @@ MonoBehaviour:
   User: {fileID: 0}
   MovePower: 0
   upwardfactor: -3
-  HitEffect: {fileID: 920534590053207288, guid: 44817fdd69e5a514e87d58b0f7b0ab9a,
-    type: 3}
 --- !u!50 &7330010475077001763
 Rigidbody2D:
   serializedVersion: 4
@@ -896,28 +894,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a9b3e53a8f66e4dac89ed3d02958e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 0}
-  t: {fileID: 0}
-  facingRight: 1
-  MoveDirection: 0
-  isGrounded: 0
-  Groundcheck: {fileID: 8096362630653340701}
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  MaxSpeed: 110
-  JumpHeight: 140
-  BarkEffect: {fileID: 598614618317662341, guid: 3ddfe6fe5b8cad14680b6e344bfb2210,
-    type: 3}
-  Mouth: {fileID: 1608456903589096981}
-  projectile: {fileID: 7330010475077001763}
-  projectileSpeed: 150
-  hit: 0
-  StunTime: 0
-  IsStunned: 0
-  dashSpeed: 300
-  startDashTime: 0.06
-  isDashing: 0
 --- !u!114 &6953156300176641518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,15 +924,19 @@ MonoBehaviour:
   Atk1imageCooldown: {fileID: 0}
   Atk1textCooldown: {fileID: 0}
   Atk1OnCoolDown: 0
+  Atk1cooldownTime: 0.2
   Atk2imageCooldown: {fileID: 0}
   Atk2textCooldown: {fileID: 0}
   Atk2OnCoolDown: 0
+  Atk2cooldownTime: 0.2
   Atk3imageCooldown: {fileID: 0}
   Atk3textCooldown: {fileID: 0}
   Atk3OnCoolDown: 0
+  Atk3cooldownTime: 5
   Atk4imageCooldown: {fileID: 0}
   Atk4textCooldown: {fileID: 0}
   Atk4OnCoolDown: 0
+  Atk4cooldownTime: 2
 --- !u!1 &8831915187933473709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,7 +1036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1261072016626827258
 Transform:
   m_ObjectHideFlags: 0

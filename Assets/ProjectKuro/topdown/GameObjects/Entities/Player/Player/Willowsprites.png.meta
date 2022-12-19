@@ -1,0 +1,912 @@
+fileFormatVersion: 2
+guid: 2c2b184398c0c9944b6a37fc1a36db08
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8757191152588253811
+    second: Willowsprites_0
+  - first:
+      213: -4429702142392164959
+    second: Willowsprites_1
+  - first:
+      213: 3825227474566879118
+    second: Willowsprites_2
+  - first:
+      213: 7224670115006344939
+    second: Willowsprites_3
+  - first:
+      213: -6452342106031072467
+    second: Willowsprites_4
+  - first:
+      213: -5154415124448201798
+    second: Willowsprites_5
+  - first:
+      213: -806620350016822717
+    second: Willowsprites_6
+  - first:
+      213: 1154232704016362625
+    second: Willowsprites_7
+  - first:
+      213: 2082342345825299581
+    second: Willowsprites_8
+  - first:
+      213: -4418567816913498940
+    second: Willowsprites_9
+  - first:
+      213: -2803932905524777138
+    second: Willowsprites_10
+  - first:
+      213: -1092626966996358675
+    second: Willowsprites_11
+  - first:
+      213: 9154541675713761021
+    second: Willowsprites_12
+  - first:
+      213: -2902257207962568257
+    second: Willowsprites_13
+  - first:
+      213: -7630398739670552475
+    second: Willowsprites_14
+  - first:
+      213: 2201438439277340491
+    second: Willowsprites_15
+  - first:
+      213: -2269015791098337030
+    second: Willowsprites_16
+  - first:
+      213: -3679733742442947529
+    second: Willowsprites_17
+  - first:
+      213: 2835726552559604092
+    second: Willowsprites_18
+  - first:
+      213: -4247787302421164847
+    second: Willowsprites_19
+  - first:
+      213: 3370795591265227765
+    second: Willowsprites_20
+  - first:
+      213: -7881137807206656024
+    second: Willowsprites_21
+  - first:
+      213: -4086244897785260387
+    second: Willowsprites_22
+  - first:
+      213: 5796471020847655791
+    second: Willowsprites_23
+  - first:
+      213: 2025951559372061316
+    second: Willowsprites_24
+  - first:
+      213: 1152080438629634359
+    second: Willowsprites_25
+  - first:
+      213: -5431785962784345058
+    second: Willowsprites_26
+  - first:
+      213: 2470462725913374460
+    second: Willowsprites_27
+  - first:
+      213: -2622391368482179230
+    second: Willowsprites_28
+  - first:
+      213: -9114247673858100639
+    second: Willowsprites_29
+  - first:
+      213: 2762537195269979933
+    second: Willowsprites_30
+  - first:
+      213: -2031125121580147292
+    second: Willowsprites_31
+  - first:
+      213: 529241114901666577
+    second: Willowsprites_32
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 30
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Willowsprites_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 305
+        width: 32
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8598c75b05387680800000000000000
+      internalID: -8757191152588253811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 305
+        width: 33
+        height: 53
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ad9dedfe598682c0800000000000000
+      internalID: -4429702142392164959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_2
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 305
+        width: 37
+        height: 51
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e879f960f10f51530800000000000000
+      internalID: 3825227474566879118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_3
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 302
+        width: 33
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bee6550113f234460800000000000000
+      internalID: 7224670115006344939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_4
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 302
+        width: 33
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2bd8b06a0da476a0800000000000000
+      internalID: -6452342106031072467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_5
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 248
+        width: 30
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab33d5ae0c6d778b0800000000000000
+      internalID: -5154415124448201798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_6
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 250
+        width: 30
+        height: 52
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34265a8b01f4ec4f0800000000000000
+      internalID: -806620350016822717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_7
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 248
+        width: 30
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18ca8076788a40010800000000000000
+      internalID: 1154232704016362625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_8
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 191
+        width: 34
+        height: 52
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7cabafa457f5ec10800000000000000
+      internalID: 2082342345825299581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_9
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 191
+        width: 34
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ccc5e82bf71ea2c0800000000000000
+      internalID: -4418567816913498940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_10
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 191
+        width: 34
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4faa28d0ed6619d0800000000000000
+      internalID: -2803932905524777138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_11
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 191
+        width: 36
+        height: 53
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de96b20009536d0f0800000000000000
+      internalID: -1092626966996358675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_12
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 191
+        width: 36
+        height: 53
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfe8d66b6277b0f70800000000000000
+      internalID: 9154541675713761021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_13
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 193
+        width: 36
+        height: 53
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb9f298327c19b7d0800000000000000
+      internalID: -2902257207962568257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_14
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 193
+        width: 36
+        height: 53
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 560395b16c06b1690800000000000000
+      internalID: -7630398739670552475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_15
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 193
+        width: 34
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b472408c8941d8e10800000000000000
+      internalID: 2201438439277340491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_16
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 193
+        width: 34
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af8e4d5e826d280e0800000000000000
+      internalID: -2269015791098337030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_17
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 193
+        width: 34
+        height: 52
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73c5ba548a5feecc0800000000000000
+      internalID: -3679733742442947529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_18
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 125
+        width: 51
+        height: 61
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c71557576468a5720800000000000000
+      internalID: 2835726552559604092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_19
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 125
+        width: 55
+        height: 51
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dc85c544f3dc05c0800000000000000
+      internalID: -4247787302421164847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_20
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 125
+        width: 50
+        height: 61
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f311d32bb877ce20800000000000000
+      internalID: 3370795591265227765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_21
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 127
+        width: 50
+        height: 61
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e7db8f9be290a290800000000000000
+      internalID: -7881137807206656024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_22
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 127
+        width: 55
+        height: 51
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d96d1425aedba47c0800000000000000
+      internalID: -4086244897785260387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_23
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 127
+        width: 51
+        height: 61
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6b6874bea3317050800000000000000
+      internalID: 5796471020847655791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_24
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 66
+        width: 32
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48a35849530ad1c10800000000000000
+      internalID: 2025951559372061316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_25
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 66
+        width: 33
+        height: 53
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73112311e030dff00800000000000000
+      internalID: 1152080438629634359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_26
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 66
+        width: 37
+        height: 51
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e143948127b6e94b0800000000000000
+      internalID: -5431785962784345058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_27
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 63
+        width: 33
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfee8e892c8d84220800000000000000
+      internalID: 2470462725913374460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_28
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 63
+        width: 33
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 267b193c1f46b9bd0800000000000000
+      internalID: -2622391368482179230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_29
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 36
+        width: 31
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 162f1cca700b38180800000000000000
+      internalID: -9114247673858100639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_30
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 7
+        width: 30
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1ffeda41f0865620800000000000000
+      internalID: 2762537195269979933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_31
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 9
+        width: 30
+        height: 52
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4add7d9967effc3e0800000000000000
+      internalID: -2031125121580147292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Willowsprites_32
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 7
+        width: 30
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11bde3e6dfd385700800000000000000
+      internalID: 529241114901666577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
