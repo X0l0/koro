@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Hello! this script is responsible for controlling the overworld player character. Specifically it handles overworld inputs directly to move around, manages inputs with a enum state machine, communicates with animators depending on state
 //controls some ledge programming, as well as activating and de activating pause. 
@@ -116,6 +117,8 @@ public class PlayerMovement : MonoBehaviour
                     ControlOn(false);
                     //open pause
                     PauseUI.SetActive(true);
+                    //select the resume button by default
+                    GameObject.Find("ResumeButton").GetComponent<Button>().Select();
                     //set pause bool to true
                     PauseOpen = true;
                     //Stop player moving animations
@@ -132,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
         else//if the player is not active but also not in pause it will stay still, important for starting
         {
             animator.SetBool("Moving", false);
+            animator.SetBool("Running", false);
             animator.SetFloat("MoveX", MoveX);
             animator.SetFloat("MoveY", MoveY);
         }
@@ -222,6 +226,8 @@ public class PlayerMovement : MonoBehaviour
     public void UnPause(){
         //resume time
         Time.timeScale = 1;
+        //deselect any buttons
+        GameObject.Find("EventSystem").GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
         //close pause
         PauseUI.SetActive(false);
         //if the inventory is active, make it inactive

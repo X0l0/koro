@@ -303,7 +303,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
 
     public void BeHit()//CHANGE TO DO LAUCNH STATES
     {//slow time before entering hit state?
-        HitStop.instance.Stop(5f);
+        //HitStop.instance.Stop(5f);
         if (isGrounded == false)
             StateMachine.ChangeState(LaunchState);
         else if (isGrounded == true)

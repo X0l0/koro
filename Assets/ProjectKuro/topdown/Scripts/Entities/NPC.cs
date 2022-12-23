@@ -17,6 +17,8 @@ public class NPC : MonoBehaviour
     public Sprite upSprite;
     public Sprite leftSprite;
     public Sprite rightSprite;
+    public Sprite portraitSprite;
+    public GameObject DialoguePortrait;
     private Sprite defaultSprite;
     public string faceDirection;
     public bool isEnemy;
@@ -38,6 +40,7 @@ public class NPC : MonoBehaviour
             }
             else{
                 dialogueBox.SetActive(false);
+                DialoguePortrait.SetActive(false);
                 index = 0;
                 inDialogue = false;
                 playerMovement.ControlActive = true;
@@ -57,6 +60,8 @@ public class NPC : MonoBehaviour
         inDialogue = true;
         dialogueBox.SetActive(true);
         dialogueText.text = dialogue[index];
+        DialoguePortrait.SetActive(true);
+        DialoguePortrait.GetComponent<Image>().sprite = portraitSprite;
         GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
         turnToFacePlayer();
     }
