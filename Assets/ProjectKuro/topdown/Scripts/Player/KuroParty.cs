@@ -119,6 +119,12 @@ public class KuroParty : MonoBehaviour
         SwitchKuro1.instance.AllKuroSent();//tells switch kuro that all kuros have been sent and the next steps can begin.
     }
 
+    public void resetHealth(){
+        for(int i = 0; i < CurrentParty.Count; i++){
+            CurrentParty[i].GetComponent<CardHolder>().KuroData.FullHeal();
+        }
+    }
+
     //public void CheckIfTeamFainted()
     //{
     //    for (int i = 0; i < CurrentParty.Count; i++)

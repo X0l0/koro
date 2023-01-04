@@ -9,9 +9,15 @@ public class Event00Script : MonoBehaviour
     private bool giving;
     private bool inDialogue;
     private NPC npcScript;
+
+    [SerializeField]
+    public bool isFinished;
     
     void Start()
     {
+        if(isFinished){
+            Destroy(this);
+        }
         walking = true;
         talking = false;
         giving = false;
@@ -42,6 +48,7 @@ public class Event00Script : MonoBehaviour
             npcScript.dialogue[0] = "You can use your Kuro to fight with other Kuro and trainers.";
             npcScript.dialogue[1] = "You can take up to six Kuro with you on your journeys, once you've caught them.";
             npcScript.dialogue[2] = "Now go out there and see what the world has to offer you!";
+            isFinished = true;
             Destroy(this);
         }
     }

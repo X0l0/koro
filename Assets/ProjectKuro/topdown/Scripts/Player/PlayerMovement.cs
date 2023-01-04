@@ -242,6 +242,10 @@ public class PlayerMovement : MonoBehaviour
         ControlOn(true);
     }
 
+    public void resetHealth(){
+        gameObject.GetComponent<KuroParty>().resetHealth();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)//ledge jumping
     {
         if(other.gameObject.name == "JumpDownCollision")

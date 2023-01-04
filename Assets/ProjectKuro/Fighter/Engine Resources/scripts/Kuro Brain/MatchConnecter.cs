@@ -102,6 +102,9 @@ public class MatchConnecter : MonoBehaviour
 		//turn input off
 		InputHandler.ClearCore();
 
+		//reset kuro state
+		KuroCore.ResetState();
+
 		//unload UI
 		Health.UnloadHealthBar();
 		if (P1 == true)
@@ -139,7 +142,7 @@ public class MatchConnecter : MonoBehaviour
         }
 		else if(P1 == false)
         {
-			Destroy(this.gameObject);
+			//Destroy(this.gameObject);
         }
 
 		//this next step would require the switch kuro script to be able to deterime a loss and send signals to the game manager and the kuros to switch back.

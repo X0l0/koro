@@ -100,6 +100,10 @@ public class OWMatchManager : MonoBehaviour
                 Currentenemy.isDefeated = true;
             }
         }
+        else{
+            PlayerMovement.instance.transform.position = PlayerMovement.instance.startingPosition.initialValue;
+            PlayerMovement.instance.resetHealth();
+        }
     }
 
 }

@@ -47,7 +47,13 @@ public class Health : MonoBehaviour
         else
         {
             //Debug.Log("Loading Healthbar");
-       healthBar.SetMaxHealth(currentHealth); // UI
+            if(currentHealth < 0){ //upon losing, then re-entering battle, this function can sometimes be called before Awake(), hence check
+                currentHealth = CardHolder.KuroData.CurrHP;
+                healthBar.SetMaxHealth(currentHealth);
+            }
+            else{
+                healthBar.SetMaxHealth(currentHealth); // UI
+            }
 
         }
     }

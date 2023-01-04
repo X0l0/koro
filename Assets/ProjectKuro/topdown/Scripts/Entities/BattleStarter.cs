@@ -45,8 +45,6 @@ public class BattleStarter : MonoBehaviour//this script would be put on wild kur
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-   
-
         if(other.CompareTag("Player") && !isDefeated && other.transform.childCount > 0 ){
             challenger = other;
             this.gameObject.GetComponent<CinemachineImpulseSource>().GenerateImpulse();

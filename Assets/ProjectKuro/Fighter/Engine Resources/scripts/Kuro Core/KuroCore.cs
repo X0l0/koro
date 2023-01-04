@@ -344,7 +344,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
         //Debug.Log("Enemy Died!");
         //soundManager.PlaySound("WolfDie");//sounds need work!!!
         GetComponent<Collider2D>().enabled = false;//removes hitbox
-        GetComponent<SpriteRenderer>().sortingLayerName = default;//idk double check what this does?
+        //GetComponent<SpriteRenderer>().sortingLayerName = default;//idk double check what this does?
         gameObject.transform.Find("playerpushbox").GetComponent<Collider2D>().enabled = false;//removes pushbox
 
         //communicate when kuro Dies
@@ -364,7 +364,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
         Debug.Log("Died in the air!");
         //soundManager.PlaySound("WolfDie");//sounds need work!!!
         GetComponent<Collider2D>().enabled = false;//removes hitbox
-        GetComponent<SpriteRenderer>().sortingLayerName = default;//idk double check what this does?
+        //GetComponent<SpriteRenderer>().sortingLayerName = default;//idk double check what this does?
         gameObject.transform.Find("playerpushbox").GetComponent<Collider2D>().enabled = false;//removes pushbox
 
         //communicate when kuro Dies
@@ -377,6 +377,12 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
         //GetComponent<InputHandler>().enabled = false;
         //animator.SetBool("Isdead", true);
         //this.enabled = false;
+    }
+
+    public void ResetState(){
+        StateMachine.ChangeState(IdleState);
+        GetComponent<Collider2D>().enabled = true;//enables hitbox
+        gameObject.transform.Find("playerpushbox").GetComponent<Collider2D>().enabled = true;//enables pushbox
     }
 
     #endregion

@@ -41,6 +41,7 @@ public class SwitchKuro1 : SwitchKuro
 
     public void Player1Lost()
     {
+        NoKuroLeft = false;
         MatchManager.instance.MatchSet(false);//this means playe 1 wins, false means player 2 wins
         //something something to match manager
         //MatchManager.instance.ExitCombat();
