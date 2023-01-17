@@ -32,7 +32,7 @@ public class KuroMaker : MonoBehaviour//rename to kuromaker
         KuroDataCard = new DataCard(SpeciesCard);
         CreateKuro();
 
-        if(Enemy != null)
+        if(Enemy != null && KuroSent == false)
         {
             SendKuroToEnemy();
         }
@@ -40,20 +40,22 @@ public class KuroMaker : MonoBehaviour//rename to kuromaker
 
     void Update()
     {
-        if(!KuroSent){ //Essentially, if this script isn't attached to an enemy
-            if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange && GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive)
-            {
-                dialogueBox.SetActive(true);
-                dialogueText.text = dialogue;
-                GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
-            }
-            else if(Input.GetKeyDown(KeyCode.Space) && PlayerInRange && dialogueBox.activeInHierarchy){
-                dialogueBox.SetActive(false);
-                SendKuroToPlayer();
-                GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
-                Destroy(gameObject);
-            }
-        }
+        //the code below is redundant as the npc give kuro code does essentially the same thing. could be useful later though in instances where the player can pick up a kuro without any direct npcs around.
+
+        //if(!KuroSent){ //Essentially, if this script isn't attached to an enemy
+        //    if (Input.GetKeyDown(KeyCode.Space) && PlayerInRange && GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive)
+        //    {
+        //        dialogueBox.SetActive(true);
+        //        dialogueText.text = dialogue;
+        //        GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = false;
+        //    }
+        //    else if(Input.GetKeyDown(KeyCode.Space) && PlayerInRange && dialogueBox.activeInHierarchy){
+        //        dialogueBox.SetActive(false);
+        //        SendKuroToPlayer();
+        //        GameObject.Find("player").GetComponent<PlayerMovement>().ControlActive = true;
+        //        Destroy(gameObject);
+        //    }
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D other)

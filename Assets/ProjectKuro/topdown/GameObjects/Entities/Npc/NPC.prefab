@@ -206,7 +206,7 @@ SpriteRenderer:
   m_SortingLayerID: 1728390583
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5905282609249609229, guid: 29e4c757c150fe440a4d2c91b4227c7f,
+  m_Sprite: {fileID: -2757298984738394219, guid: 465278d5db97bd740ac61117ae4c69b8,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -234,8 +234,8 @@ BoxCollider2D:
   m_Offset: {x: -0.0053100586, y: 0.89907837}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.3666667, y: 2.1666667}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.875, y: 1.3125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -256,22 +256,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84ca3d130324f749834c4b7f4a32a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerInRange: 0
+  isEnemy: 0
+  faceDirection: 
+  KuroToGive: 1
+  currentstate: 0
+  walking: 0
+  inDialogue: 0
+  MoveX: 0
+  MoveY: 0
   dialogueBox: {fileID: 0}
   dialogueText: {fileID: 0}
+  DialoguePortrait: {fileID: 0}
+  index: 0
   dialogue:
   - 
   defeatedDialogue: []
-  PlayerInRange: 0
-  index: 0
-  inDialogue: 0
-  downSprite: {fileID: 0}
-  upSprite: {fileID: 0}
-  leftSprite: {fileID: 0}
-  rightSprite: {fileID: 0}
   portraitSprite: {fileID: 0}
-  DialoguePortrait: {fileID: 0}
-  faceDirection: 
-  isEnemy: 0
 --- !u!1 &3925059569771575339
 GameObject:
   m_ObjectHideFlags: 0

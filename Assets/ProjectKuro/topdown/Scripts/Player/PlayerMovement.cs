@@ -191,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
         else if(currentlyMoving){
             MoveCharacter();
         }
-    }
+    }//used for ledges
 
     void MoveCharacter()
     {
@@ -210,7 +210,6 @@ public class PlayerMovement : MonoBehaviour
                 );
         }
     }
-
 
     public void ControlOn(bool ControlOn)//bool controlled by combat scripts to turn input on and off.
     {
@@ -244,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void resetHealth(){
         gameObject.GetComponent<KuroParty>().resetHealth();
-    }
+    }//??? adjust to be more in line with kuroparty and data card functions
 
     private void OnTriggerEnter2D(Collider2D other)//ledge jumping
     {

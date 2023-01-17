@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;//these libraries are added so this script can work with UI and Text
+using TMPro;
 
 public class OWMatchManager : MonoBehaviour
 {
@@ -21,13 +23,19 @@ public class OWMatchManager : MonoBehaviour
             return;
         }
         instance = this;
+
+        BlackoutBox.SetActive(true);
     }
     #endregion
+
     //overworld aspects
     [SerializeField]
     public GameObject OWVcam;
     [SerializeField]
     public GameObject OverWorldGrid;
+    [SerializeField]
+    public GameObject KiaNPC;
+
     //scenes 
     private Scene OverworldScene;
     private Scene CombatScene;
@@ -37,8 +45,67 @@ public class OWMatchManager : MonoBehaviour
 
     public bool IsInCombat;//bool is used to track when the player is in combat
 
-    private void Start(){
+    //bools for checking if combat capable, when boys are sent, when each of overworld and combat world are loaded or unloaded, when boys are received. 
+
+    //transition graphic variables
+    [SerializeField]
+    private GameObject BlackoutBox;//image that does fade ins and screen wipes
+    [SerializeField]
+    private CanvasGroup EffectCanvas;
+    [SerializeField]
+    public bool Introdone = false;//bool used to tell when the intro is completed
+    [SerializeField]
+    private float IntroTime;//how long the fade in is
+    private float IntroTimer = 0.0f;//counts down
+
+
+
+    private void Start()
+    {
         SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+
+        IntroTimer = IntroTime;
+
+        //IF EVERYTHING LOADED
+        PlayerMovement.instance.ControlActive = false;
+    
+
+        
+    }
+
+    private void Update()
+    {
+        if (!Introdone) { IntroCountdown(); }
+    }
+
+    void IntroCountdown()//this is called in update and it counts down the time but also updates the graphic
+    {
+        //subtract time since last called
+        IntroTimer -= Time.deltaTime;
+
+        if (IntroTimer < 0.0f)//this is if the timer reaches 0, aka the move finishes cooldown.
+        {
+            Introdone = true;//says intro is done
+
+            if (BlackoutBox != null)
+            { 
+                BlackoutBox.gameObject.SetActive(false);//turns off blackout box
+                KiaNPC.GetComponent<NPC>().walking = true;//sets kia npc to walking aka kicking off cutscene
+                //Atk1imageCooldown.fillAmount = 0.0f;//lowers and keeps the fill amount to 0, sace code for enemy encounter
+            }
+        }
+        else//this is called every frame the cooldown isnt done and updates the graphic.
+        {
+            if (BlackoutBox != null)
+            {
+
+                EffectCanvas.alpha = IntroTimer/IntroTime;
+
+                //Atk1imageCooldown.fillAmount = Atk1cooldownTimer / Atk1cooldownTime;//this fills the image by dividing the cooldown timer by the cooldown time.//see above greened out code
+            }
+        }
+
+
     }
 
     public void EnterCombat(BattleStarter CurrentEnemy)//make sure this command is only called by player? that way theres a way to check if the player can even fight.
