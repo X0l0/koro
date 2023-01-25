@@ -87,8 +87,10 @@ public class KuroParty : MonoBehaviour
             //turn off overworld input 1
             PlayerMovement.instance.ControlOn(false);
 
-            //call entercombat function in game manager
-            OWMatchManager.instance.EnterCombat(Currentenemy);//this tells the overworld match manager to turn off overworld things and turn on combat scene things.
+     
+
+        //call entercombat function in game manager
+        OWMatchManager.instance.EnterCombat(Currentenemy);//this tells the overworld match manager to turn off overworld things and turn on combat scene things.
 
         
 
