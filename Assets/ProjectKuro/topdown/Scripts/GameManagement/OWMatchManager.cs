@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//these libraries are added so this script can work with UI and Text
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class OWMatchManager : MonoBehaviour
 {
+    //this script is in charge of managing overall game activities and events. specifically entering and exiting combat as well as certain cutscenes.
 
     #region singleton
     public static OWMatchManager instance;
@@ -21,44 +24,85 @@ public class OWMatchManager : MonoBehaviour
             return;
         }
         instance = this;
+
+        BlackoutBox.SetActive(true);
     }
     #endregion
-    //overworld aspects
+
+    //general components
     [SerializeField]
-    public GameObject OWVcam;
+    public GameObject OWVcam;//game camera
     [SerializeField]
-    public GameObject OverWorldGrid;
+    public GameObject OverWorldGrid;//this gameobject is parent to all active overworld elements and thus can be unloaded and loaded
+    [SerializeField]
+    private GameObject BlackoutBox;//image that does fade ins and screen wipes
+    [SerializeField]
+    private CanvasGroup EffectCanvas;//parent of box used in transparency functions
+
     //scenes 
     private Scene OverworldScene;
     private Scene CombatScene;
     public string sceneToLoad;
 
+    //combat switching
     public BattleStarter Currentenemy;
-
     public bool IsInCombat;//bool is used to track when the player is in combat
 
-    private void Start(){
-        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+    //Intro cutscene variables
+    [SerializeField]
+    public GameObject KiaNPC;//this is a imporant npc, its place here is for the intro cutscene
+    [SerializeField]
+    private float IntroTime;//how long the fade in is
+    private float IntroTimer = 0.0f;//counts down
+    public bool Introdone = false;//bool used to tell when the intro is completed
+
+    //transition fx variables
+    public bool FillTransitionfx = false;//these fill and empty bools are used to track when the respective animations are done
+    public bool EmptyTransitionfx = false;
+    public float TransitionfxTime;//this decides how long the transitions are, usually around 1f or 1 second
+    public float TransitionfxTimer = 0.0f;//counts up and down depending on function.
+    public bool TransitionLoaded = false;//this is a overall bool that helps track which transition was last used .
+
+    private void Start()
+    {
+        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);//used to load in current scene
+
+        IntroTimer = IntroTime;//sets up intro timer with intro time.
+
+        PlayerMovement.instance.ControlActive = false;//sets players control as to false to start off cutscene.
     }
 
-    public void EnterCombat(BattleStarter CurrentEnemy)//make sure this command is only called by player? that way theres a way to check if the player can even fight.
+    private void Update()
     {
-        IsInCombat = true;
+        if (!Introdone) { IntroCountdown(); }//if intro not done, do intro
 
-        Currentenemy = CurrentEnemy;
+        if (FillTransitionfx) { FIllTransition(); }//if doing enter battle fx, start countdown
+        if(EmptyTransitionfx) { EmptyTransition(); }
+    }
 
-        //play noise and graphic
+    //entering and exiting combat functions
+    public void EnterCombat(BattleStarter CurrentEnemy)//called only by kuro party after being succesfully challenged. kicks off process
+    {
 
-        //Set combat scene as active scene
-        OverworldScene = SceneManager.GetActiveScene();
-        CombatScene = SceneManager.GetSceneByName(sceneToLoad);
-        SceneManager.SetActiveScene(CombatScene);//reduce to 1 line?
+        IsInCombat = true;//sets bool used in do battle transition code. helps let know to do loading actions after the animation
 
-        //set camera off
-        OWVcam.SetActive(false);
+        Currentenemy = CurrentEnemy;//fill bool with current enemy so it can be passed through
 
-        //tell Match manager to start combat, turns on UI and camera
-        MatchManager.instance.LoadCombatSystem();//this uses a singleton to communicate through classes to tell the match manager to begin entering combat this entails turning on the camera and UI
+        DoBattleTransition();
+
+
+        //these below actions where moved into the battletransition fx system. create another sub function?
+
+        ////Set combat scene as active scene
+        //OverworldScene = SceneManager.GetActiveScene();
+        //CombatScene = SceneManager.GetSceneByName(sceneToLoad);
+        //SceneManager.SetActiveScene(CombatScene);//reduce to 1 line?
+
+        ////set camera off
+        //OWVcam.SetActive(false);
+
+        ////tell Match manager to start combat, turns on UI and camera
+        //MatchManager.instance.LoadCombatSystem();//this uses a singleton to communicate through classes to tell the match manager to begin entering combat this entails turning on the camera and UI
 
     }
 
@@ -84,10 +128,15 @@ public class OWMatchManager : MonoBehaviour
         //set camera to on
         OWVcam.SetActive(true);
 
+        //activates battle transition
+        DoBattleTransition();
+
         //turn overworld input on
         PlayerMovement.instance.ControlOn(true);
 
         IsInCombat = false;
+
+ 
 
         if(p1win){
             if(Currentenemy.gameObject.tag == "WildKuro"){
@@ -100,6 +149,136 @@ public class OWMatchManager : MonoBehaviour
                 Currentenemy.isDefeated = true;
             }
         }
+        else{//else if player dies
+            PlayerMovement.instance.transform.position = PlayerMovement.instance.startingPosition.initialValue;
+            PlayerMovement.instance.resetHealth();
+        }
     }
+
+
+    //intro countdown used for fade in
+    void IntroCountdown()//this is called in update and it counts down the time but also updates the graphic
+    {
+        //subtract time since last called
+        IntroTimer -= Time.deltaTime;
+
+        if (IntroTimer < 0.0f)//this is if the timer reaches 0, aka the move finishes cooldown.
+        {
+            Introdone = true;//says intro is done
+
+            if (BlackoutBox != null)
+            { 
+                BlackoutBox.gameObject.SetActive(false);//turns off blackout box
+                EffectCanvas.alpha = 1.0f;
+
+                KiaNPC.GetComponent<NPC>().walking = true;//sets kia npc to walking aka kicking off cutscene
+               
+            }
+        }
+        else//this is called every frame the cooldown isnt done and updates the graphic.
+        {
+            if (BlackoutBox != null)
+            {
+
+                EffectCanvas.alpha = IntroTimer/IntroTime;
+
+                //Atk1imageCooldown.fillAmount = Atk1cooldownTimer / Atk1cooldownTime;//this fills the image by dividing the cooldown timer by the cooldown time.//see above greened out code
+            }
+        }
+
+
+    }
+
+
+    //battle transitions
+    public void DoBattleTransition()//called when entering and exiting combat, fills and emptys a screen wipe using update countdowns.
+    {
+        //Debug.Log("battle transition called");
+        if (!TransitionLoaded)//if the transition is not filled aka filling screen to do loading 
+        {
+            BlackoutBox.gameObject.SetActive(true);//sets fx box as active, turned off in emptytransition function
+            TransitionfxTimer = 0;//makes timer 0 so it can fill up reflecting the fill of the transition box
+            BlackoutBox.GetComponent<Image>().fillAmount = 0f;//makes box completely empty so it can be filled
+
+            FillTransitionfx = true;//bool is set to true, this is detected in update and thus counts down. 
+
+        }
+        else if (TransitionLoaded)//if the transition is filled, aka loading is done and filled screen can now be emptied
+        {
+            TransitionfxTimer = TransitionfxTime;
+            BlackoutBox.GetComponent<Image>().fillAmount = 1f;
+
+            EmptyTransitionfx = true;//bool is set to true, this is detected in update and activates the transition.
+
+        }
+        
+ 
+    }
+
+    void FIllTransition()//this is called in update when the game needs to wipe to a black screen and do some loading functions.
+    {
+        //Debug.Log("fill transition called");
+
+        TransitionfxTimer += Time.deltaTime;//counts up every update
+
+        if (TransitionfxTimer >= TransitionfxTime)//when timer counts up to equal the fx time
+        {
+
+            FillTransitionfx = false;//says no longer doing battle fx so stops counting
+            TransitionLoaded = true;//changes this bool to transition loaded aka the screen is now blacked out.
+
+            if (IsInCombat)//if is in combat aka going from the overworld into combat
+            {
+                    //these following actions are loading actions, maybe move into there own function?
+                
+                    //Set combat scene as active scene
+                    OverworldScene = SceneManager.GetActiveScene();//not sure?
+                    CombatScene = SceneManager.GetSceneByName(sceneToLoad);//not sure?
+                    SceneManager.SetActiveScene(CombatScene);//reduce to 1 line?
+
+                    //set camera off
+                    OWVcam.SetActive(false);
+
+                    //tell Match manager to start combat, turns on UI and camera
+                    MatchManager.instance.LoadCombatSystem();//this uses a singleton to communicate through classes to tell the match manager to begin entering combat this entails turning on the camera and UI
+            }
+            else if( !IsInCombat )//if not in combat aka going from combat back to the overworld.
+            {
+                MatchManager.instance.UnloadCombatSystem();//calls to combat game manager to do its unloading processes.
+            }
+        }
+        else//this is called every frame the timer ticks up.
+        {
+            if (BlackoutBox != null)//if the box is active, which it should be.
+            {
+                BlackoutBox.GetComponent<Image>().fillAmount = TransitionfxTimer / TransitionfxTime; //as the timer tiks up, so does the amount of fill of the blackout box. thus giving a wiping transition effect.
+            }
+        }
+    }
+
+    void EmptyTransition()//this is called in update and it counts down the time but also updates the graphic
+    {
+        //Debug.Log("empty transition called");
+
+        //tiks down every update frame.
+        TransitionfxTimer -= Time.deltaTime;
+
+        if (TransitionfxTimer <= 0.0f)//this is if the timer reaches 0
+        {
+            EmptyTransitionfx = false;//says no longer doing battle fx
+            TransitionLoaded = false;//sets transition loaded to false aka the screen is not blacked out.
+        }
+        else//this is called every time the timer tiks down.
+        {
+            if (BlackoutBox != null)
+            {
+                BlackoutBox.GetComponent<Image>().fillAmount = TransitionfxTimer / TransitionfxTime; //as the timer gets closer to 0, so does the amount of fill of the blackout box.
+            }
+        }
+
+
+    }
+
+
 
 }

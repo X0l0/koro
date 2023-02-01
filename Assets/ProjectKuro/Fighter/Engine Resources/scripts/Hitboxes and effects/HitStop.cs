@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HitStop : MonoBehaviour
 {
-    #region singleton
+    /*#region singleton
     public static HitStop instance;
     //static variables are variables that are shared in every instance of a class.
     //when starting the game you set the static variable to this script, which means there will only ever be one kuroparty
@@ -41,5 +41,5 @@ public class HitStop : MonoBehaviour
         yield return new WaitForSecondsRealtime(duration);
         Time.timeScale = 1.0f;
         waiting = false;
-    }
+    }*/
 }

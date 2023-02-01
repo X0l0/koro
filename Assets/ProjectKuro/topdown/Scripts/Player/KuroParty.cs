@@ -87,8 +87,10 @@ public class KuroParty : MonoBehaviour
             //turn off overworld input 1
             PlayerMovement.instance.ControlOn(false);
 
-            //call entercombat function in game manager
-            OWMatchManager.instance.EnterCombat(Currentenemy);//this tells the overworld match manager to turn off overworld things and turn on combat scene things.
+     
+
+        //call entercombat function in game manager
+        OWMatchManager.instance.EnterCombat(Currentenemy);//this tells the overworld match manager to turn off overworld things and turn on combat scene things.
 
         
 
@@ -117,6 +119,12 @@ public class KuroParty : MonoBehaviour
         }
 
         SwitchKuro1.instance.AllKuroSent();//tells switch kuro that all kuros have been sent and the next steps can begin.
+    }
+
+    public void resetHealth(){
+        for(int i = 0; i < CurrentParty.Count; i++){
+            CurrentParty[i].GetComponent<CardHolder>().KuroData.FullHeal();
+        }
     }
 
     //public void CheckIfTeamFainted()

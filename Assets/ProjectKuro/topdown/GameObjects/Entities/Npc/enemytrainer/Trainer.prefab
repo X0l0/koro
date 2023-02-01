@@ -81,10 +81,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2516811461707452936}
   - component: {fileID: 2516811461707452933}
+  - component: {fileID: 746682784474935307}
   - component: {fileID: 2516811461707452932}
   - component: {fileID: 2516811461707452934}
-  - component: {fileID: 2516811461707452938}
   - component: {fileID: 2516811461707452937}
+  - component: {fileID: 2516811461707452938}
   - component: {fileID: 2516811461707452939}
   - component: {fileID: -3354724346711919635}
   m_Layer: 0
@@ -150,7 +151,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1728390583
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2757298984738394219, guid: 465278d5db97bd740ac61117ae4c69b8,
     type: 3}
@@ -164,6 +165,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &746682784474935307
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2516811461707452943}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65a2d5bee75a1a74f8d66c5ad418643f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &2516811461707452932
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -206,6 +226,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.154457
+--- !u!114 &2516811461707452937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2516811461707452943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2061399e17a23d4ba30887e195820c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Kuro: {fileID: 0}
+  KuroRig: {fileID: 0}
+  KuroCardHolder: {fileID: 0}
+  KuroConnector: {fileID: 0}
+  isDefeated: 0
 --- !u!114 &2516811461707452938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,31 +256,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeciesCard: {fileID: 11400000, guid: 2062b50737e84fb47a3a5db98b7f14da, type: 2}
-  KoroRig: {fileID: 5768847037850226326, guid: 671309744c8e10945a1c4adec8a401ea, type: 3}
+  KuroRig: {fileID: 0}
   Enemy: {fileID: 2516811461707452937}
-  KoroCardHolder: {fileID: 0}
-  KoroHoldPoint: {fileID: 2516811461707452936}
+  KuroCardHolder: {fileID: 0}
+  KuroHoldPoint: {fileID: 0}
   dialogueBox: {fileID: 0}
   dialogueText: {fileID: 0}
   dialogue: 
   PlayerInRange: 0
---- !u!114 &2516811461707452937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2516811461707452943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2061399e17a23d4ba30887e195820c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Koro: {fileID: 0}
-  KoroRig: {fileID: 0}
-  KoroCardHolder: {fileID: 0}
-  KoroConnector: {fileID: 0}
-  isDefeated: 0
 --- !u!114 &2516811461707452939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,26 +276,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84ca3d130324f749834c4b7f4a32a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerInRange: 0
+  isEnemy: 0
+  faceDirection: 
+  KuroToGive: 1
+  currentstate: 0
+  walking: 0
+  inDialogue: 0
+  MoveX: 0
+  MoveY: 0
   dialogueBox: {fileID: 0}
   dialogueText: {fileID: 0}
+  DialoguePortrait: {fileID: 0}
+  index: 0
   dialogue:
   - Let's battle!
   defeatedDialogue:
   - You won the battle!
   - Congatulations!
-  PlayerInRange: 0
-  index: 0
-  inDialogue: 0
-  downSprite: {fileID: -2757298984738394219, guid: 465278d5db97bd740ac61117ae4c69b8,
+  portraitSprite: {fileID: 4411923371137299535, guid: 465278d5db97bd740ac61117ae4c69b8,
     type: 3}
-  upSprite: {fileID: -6431366237039918707, guid: 465278d5db97bd740ac61117ae4c69b8,
-    type: 3}
-  leftSprite: {fileID: -8018767669905319889, guid: 465278d5db97bd740ac61117ae4c69b8,
-    type: 3}
-  rightSprite: {fileID: 4411923371137299535, guid: 465278d5db97bd740ac61117ae4c69b8,
-    type: 3}
-  faceDirection: 
-  isEnemy: 0
 --- !u!114 &-3354724346711919635
 MonoBehaviour:
   m_ObjectHideFlags: 0

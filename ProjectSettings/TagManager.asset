@@ -9,6 +9,7 @@ TagManager:
   - Walls
   - Trainer
   - WildKuro
+  - NonTriggeringCollider
   layers:
   - Default
   - TransparentFX
@@ -46,14 +47,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Grass
+    uniqueID: 3179197933
+    locked: 0
   - name: signs
     uniqueID: 1728390583
     locked: 0
   - name: player
     uniqueID: 529662011
-    locked: 0
-  - name: Grass
-    uniqueID: 3179197933
     locked: 0
   - name: front
     uniqueID: 1765670345
