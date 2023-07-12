@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] public Transform FirePoint;
 
     public int upwardfactor;
-    private SoundManager soundManager;
+    private KuroSoundManager soundManager;
 
     private GameObject HitEffect;
     private Vector3 fx;

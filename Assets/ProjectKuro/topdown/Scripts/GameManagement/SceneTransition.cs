@@ -15,7 +15,7 @@ public class SceneTransition : MonoBehaviour
         if (collision.CompareTag("Player") && !collision.isTrigger)
         {
             //playerStorage.initialValue = playerPosition;
-            //SceneManager.LoadScene(sceneToLoad);
+            //SceneManager.LoadScene(sceneName);
             SceneManager.LoadScene(sceneToLoad);
 
         }

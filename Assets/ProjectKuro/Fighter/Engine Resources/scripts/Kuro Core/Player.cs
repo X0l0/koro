@@ -46,7 +46,7 @@ public class Player : MonoBehaviour//attaches to game object to create states an
     ////making these get private set and then connecting them in start lets you reference across them. however doing so here may be uneccessary as these scripts are more likely to send signals to player then rather recieve them from player.
     ////public InputHandler inputHandler { get; private set; }//gets movement input to change states
 
-    //public SoundManager soundManager;
+    //public KuroSoundManager soundManager;
 
     //public Health health {get; private set; }
     //public MoveCooldown MoveCoolDown { get; private set; }
@@ -139,7 +139,7 @@ public class Player : MonoBehaviour//attaches to game object to create states an
     //    //mainCollider = GetComponent<CapsuleCollider2D>();
     //    r2d.gravityScale = 70;
     //    t = transform;//may be able to be removed
-    //    //soundManager = SoundManager.instance;
+    //    //soundManager = KuroSoundManager.instance;
     //    #endregion
 
     //    #region initializeVariables

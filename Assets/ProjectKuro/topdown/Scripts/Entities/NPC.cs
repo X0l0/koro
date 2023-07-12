@@ -95,15 +95,19 @@ public class NPC : MonoBehaviour//this script is a base class for npcs. it is me
                     GiveKuro();
                 }
 
-                //if the npc is an enemy, it will start combat after dialogue.
-                else if (isEnemy && !this.gameObject.GetComponent<BattleStarter>().isDefeated)
+
+                stopDialogue();
+
+
+                    //if the npc is an enemy, it will start combat after dialogue.
+                if (isEnemy && !this.gameObject.GetComponent<BattleStarter>().isDefeated)
                 {
                     this.gameObject.GetComponent<BattleStarter>().Challenge();
                 }
 
 
-                stopDialogue();
-                //GetComponent<SpriteRenderer>().sprite = defaultSprite;//sets back to default overworld sprite replace with
+          
+         
 
             }
         }
@@ -200,8 +204,8 @@ public class NPC : MonoBehaviour//this script is a base class for npcs. it is me
     public void GiveKuro()
     {
         KuroToGive = false;
-        GameObject.Find("KuroMaker").GetComponent<KuroMaker>().SendKuroToPlayer();//sends kuro to plyaer
-        Destroy(GameObject.Find("KuroMaker"));//destroys kuromaker gameobject
+        GameObject.Find("KuroPickup").GetComponent<KuroMaker>().SendKuroToPlayer();//sends kuro to plyaer
+        Destroy(GameObject.Find("KuroPickup"));//destroys kuromaker gameobject
 
         //updates with some new dialogue
         dialogue[0] = "You can use your Kuro to fight with other Kuro and trainers.";
@@ -224,7 +228,7 @@ public class NPC : MonoBehaviour//this script is a base class for npcs. it is me
             //talking = true;//is talking now
             //walking = false;//no more walking
 
-            GameObject.Find("KuroMaker").GetComponent<SpriteRenderer>().enabled = true;//finds kuro maker and makes it visible
+            GameObject.Find("KuroPickup").GetComponent<SpriteRenderer>().enabled = true;//finds kuro maker and makes it visible
 
             StopMoving();
             startDialogue();

@@ -40,7 +40,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
     #region othercomponents
     //making these get private set and then connecting them in start lets you reference across them. however doing so here may be uneccessary as these scripts are more likely to send signals to player then rather recieve them from player.
 
-    public SoundManager soundManager;
+    public KuroSoundManager soundManager;
     public Health health { get; private set; }
     public MoveCooldown MoveCoolDown { get; private set; }
     public Animator Anim { get; private set; }//animator
@@ -126,7 +126,7 @@ public class KuroCore : MonoBehaviour//attaches to game object to create states 
         CardHolder = GetComponentInParent<CardHolder>();
         MatchConnecter = GetComponentInParent<MatchConnecter>();
 
-        soundManager = GetComponent<SoundManager>();
+        soundManager = GetComponent<KuroSoundManager>();
 
         health = GetComponent<Health>();
         MoveCoolDown = GetComponent<MoveCooldown>();

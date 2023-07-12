@@ -9,7 +9,7 @@ public class Shocklock : MonoBehaviour
 
     //public GameObject Player_2;// get player 2?
    // public int upwardfactor;
-    private SoundManager soundManager;
+    private KuroSoundManager soundManager;
 
     //public Transform user;
    // public GameObject HitEffect;
@@ -17,7 +17,7 @@ public class Shocklock : MonoBehaviour
     private void Start()
     {
         //player = GetComponent<Player>();
-        //soundManager = SoundManager.instance;
+        //soundManager = KuroSoundManager.instance;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)//on the attack trigger hitbox colliding with the enemies hitbox

@@ -25,6 +25,7 @@ public class MatchManager : MonoBehaviour
     }
     #endregion
 
+  
 
     //components 
     [SerializeField]
@@ -37,6 +38,9 @@ public class MatchManager : MonoBehaviour
     GameObject Brain1;//these are the actual player brains aka objects that are in charge of handling the kuro and representing the player and the enemy, or the 2 players.
     [SerializeField]
     GameObject Brain2;
+    [SerializeField]
+    GameObject SoundManager;
+    
 
     //match bools
     bool p1Ready;//these are some bools representing when players are loaded and ready to fight.
@@ -68,9 +72,9 @@ public class MatchManager : MonoBehaviour
             p2Ready = false;
 
             //called after all kuro are sent to minimize data usage
-            OWMatchManager.instance.UnloadOverworld();//communicates to overworld match manager to unload the overworld
+            GameManager.instance.UnloadOverworld();//communicates to overworld match manager to unload the overworld
 
-            if (OWMatchManager.instance.TransitionLoaded)//if transition fx are fully covered and eveyrthing is loaded, start combat.
+            if (GameManager.instance.TransitionLoaded)//if transition fx are fully covered and eveyrthing is loaded, start combat.
             {
                 StartCombat();//starts battle after everything is loaded
             }
@@ -96,11 +100,12 @@ public class MatchManager : MonoBehaviour
     
     public void LoadCombatSystem()//this is called by the OW match manager after the fill transition to start combat
     {
+
         CombatSystem.SetActive(true);//loads combat system
 
 
         CombatVcam.SetActive(true);//turns on vcameraman
-
+        CombatVcam.transform.position = new Vector3(48.3684082f,-54.5299988f,-20f);
         FightingUI.SetActive(true);//turns on UI
 
         //pass in Kuroparty members under the player brain.
@@ -113,8 +118,12 @@ public class MatchManager : MonoBehaviour
     {
         //have player control off
 
+        SoundManager.GetComponent<MusicManager>().PauseOverworldMusic();
+        SoundManager.GetComponent<MusicManager>().PlayCombatMusic();
+
+
         //play animatoin and starting voice
-        OWMatchManager.instance.DoBattleTransition();//emptys screen wipe
+        GameManager.instance.DoBattleTransition();//emptys screen wipe
 
         //have kuros do intro animation
 
@@ -136,9 +145,12 @@ public class MatchManager : MonoBehaviour
     {
         //stop input and play animation?
         Time.timeScale = 0.2f; //Slow down time
-       
-        GameObject.Find("MusicBattlePlayer").GetComponent<MusicBattlePlayer>().PlayVictoryJingle(); //Play victory music
+
+        SoundManager.GetComponent<MusicManager>().StopCombatMusic();
+        SoundManager.GetComponent<MusicManager>().PlayVictoryJingle();
+
         p1win = result;
+
         if(p1win == true)//this means player 1 wins
         {
             //play a graphic
@@ -156,9 +168,10 @@ public class MatchManager : MonoBehaviour
     {
         winnerText.text = "";
         Time.timeScale = 1.0f; //Return time to normal
+        GameManager.instance.IsInCombat = false;
+        GameManager.instance.DoBattleTransition();
+        SoundManager.GetComponent<MusicManager>().PlayOverworldMusic();
 
-        OWMatchManager.instance.IsInCombat = false;
-        OWMatchManager.instance.DoBattleTransition();
     }
 
     public void UnloadCombatSystem()
@@ -168,7 +181,7 @@ public class MatchManager : MonoBehaviour
         SwitchKuro2.instance.BringKuroOffline();
 
         //load overworld
-        OWMatchManager.instance.loadOverworld();
+        GameManager.instance.loadOverworld();
 
         //send rigs back to overworld
         SwitchKuro1.instance.UnloadKuroTeam();
@@ -180,7 +193,7 @@ public class MatchManager : MonoBehaviour
         CombatVcam.SetActive(false);
 
         //tell overworld that things are ready for it to take over again
-        OWMatchManager.instance.ExitCombat(p1win);
+        GameManager.instance.ExitCombat(p1win);
 
         //unload combat scene, this is done last to make sure all rigs are removed before it is unloaded. may need a way to better communicate when rigs are clear
         CombatSystem.SetActive(false);
